@@ -1,0 +1,114 @@
+[
+	{		
+		"Icon": "npm",
+		"Name": "npm",
+		"Text": "Duh. J'utilise Yarn pour manager les packages (J'aime les emojis)."
+	},
+	{		
+		"Icon": "git",
+		"Name": "GIT",
+		"Text": "Ben là. Je suis plutôt bitbucket mais c'est vous qui voyez."
+	},
+	{		
+		"Icon": "grunt",
+		"Name": "Grunt",
+		"Text": "J'utilise Grunt pour les tâches front-end."
+	},
+	{		
+		"Icon": "gulp",
+		"Name": "Gulp",
+		"Text": "Ou Gulp, avec lequel j'ai commencé."
+	},
+	{
+		"Icon": "sass",
+		"Name": "Sass",
+		"Text": "Mon preprocessor! Sur tous mes projets."
+	},
+	{
+		"Name": "Pug",
+		"Text": "[Pug](https://pugjs.org) is a template engine for NodeJS. It is the perfect tool to build static intergrating prototype."
+	},
+	{
+		"Icon": "css3",
+		"Name": "CSS3",
+		"Text": "L'intégration c'est ma passion! Je suis avidement les nouveauté et les dernières specs et les appliques dès que c'est raisonnable."
+	},
+	{
+		"Icon": "html5",
+		"Name": "HTML5",
+		"Text": "Pareil que plus haut"
+	},
+	{		
+		"Icon": "wordpress",
+		"Big" : true,
+		"Name": "Wordpress",
+		"Text": "C'est mon CMS de choix. Il a le back office parfait, et avec une bonne API Rest, on a même pas besoin de son front."
+	},
+	{		
+		"Name": "MYSQL",
+		"Text": "Oui mais je laisse plutôt le framework faire le plus dur."
+	},
+	{		
+		"Icon": "angular",
+		"Name": "AngularJS",
+		"Text": "Ai pas mal pratiqué AngularJS, et attend un opportunité de travailler sur le nouveau."
+	},
+	{
+		"Icon": "react",
+		"Name": "React",
+		"Text": "J'ai fait la plupart des formations disponible en ligne... J'attends le bon projet pour passer pro."
+	},
+	{
+		"Icon": "vuejs",
+		"Name": "Vue.js",
+		"Text": "J'ai fait la plupart des formations disponible en ligne... J'attends le bon projet pour passer pro."
+	},
+	{
+		"Name": "PHP",
+		"Text": "Mon language LV1!"
+	},
+	{
+		"Icon": "laravel",
+		"Name": "Laravel",
+		"Text": "Mon framework PHP de coeur. J'ai consruit l'API du 375è anniversaire de Montréal avec!"
+	},
+	{
+		"Name": "Go",
+		"Text": "S'il vout plait donnez moi du Go ! J'ai déjà dit que j'avais codé ce site avec [Hugo](https://gohugo.io) ?"
+	},
+{
+		"Icon": "bitbucket",
+		"Name": "Bitbucket",
+		"Text": "Je suis plus Bitbucket... Mais c'est vous qui voyez."
+	},
+	{
+		"Name": "🤡",
+		"Text": "J'ai peur des clowns. Ben ouais."
+	},
+	{
+		"Icon": "codepen",
+		"Name": "Codepen",
+		"Text": "Oui [ici](https://codepen.io/regisphilibert/pens/popular/). Rien de malade hein."
+	},
+	{
+		"Icon": "cpanel",
+		"Name": "cPanel",
+		"Text": "Qu'est-ce que c'est fun ça!"
+	},
+	{
+		"Icon": "font-awesome-flag",
+		"Name": "Font Awesome",
+		"Text": "Faut rendre à César son machin."
+	},
+	{
+		"Icon": "less",
+		"Name": "Less",
+		"Text": "Je m'en servais quand c'était populaire mais j'ai dû arrêter. On se moquait de moi. Non sérieusement leur logique de boucles c'était pas ça."
+	
+	},
+	{
+		"Icon": "pied-piper",
+		"Name": "Pied Piper",
+		"Text": "Ah ah."
+	}
+]

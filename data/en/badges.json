@@ -1,0 +1,113 @@
+[
+	{		
+		"Icon": "npm",
+		"Name": "npm",
+		"Text": "Duh. I use Yarn for package managing though (cuz I like emoji)."
+	},
+	{
+		"Icon": "laravel",
+		"Name": "Laravel",
+		"Text": "My PHP framework of choice. I build the 375mtl API with it plus a bunch of personnal projects."
+	},
+	{
+		"Name": "PHP",
+		"Text": "My native language!"
+	},
+	{		
+		"Icon": "git",
+		"Name": "GIT",
+		"Text": "Duh again. I'm a bitbucket dude, but hey, whatever your prefer."
+	},
+	{
+		"Icon": "codepen",
+		"Name": "Codepen",
+		"Text": "Oh yeah [here](https://codepen.io/regisphilibert/pens/popular/). Not too much over there though."
+	},
+	{		
+		"Icon": "grunt",
+		"Name": "Grunt",
+		"Text": "Been doing a lot fo Gulp until I moved to Grunt, no idea why."
+	},
+	{		
+		"Icon": "gulp",
+		"Name": "Gulp",
+		"Text": "Not my first choice, but I've used it enough to remember."
+	},
+	{
+		"Icon": "sass",
+		"Name": "Sass",
+		"Text": "My preprocessor of choice, every projects."
+	},
+	{
+		"Name": "Pug",
+		"Text": "[Pug](https://pugjs.org) is a template engine for NodeJS. It is the perfect tool to build static intergrating prototype."
+	},
+	{
+		"Icon": "css3",
+		"Name": "CSS3",
+		"Text": "That is my expertise, integrating is my true love! I'm up with the latest specs and already use it to display this badge"
+	},
+	{
+		"Icon": "html5",
+		"Name": "HTML5",
+		"Text": "Again, my expertise! The view is all I care for."
+	},
+	{
+		"Name": "Hugo",
+		"Text": "This is the best static generator out there. I code my website with it, I [write about it](https://regisphilibert.com/tags/hugo/), I'm eager to work with it! Go [Hugo](https://gohugo.io/)!"
+	},
+	{		
+		"Icon": "wordpress",
+		"Big" : true,
+		"Name": "Wordpress",
+		"Text": "Yep, it takes up most of my projects. Seven years working with it really build up your expertise. Handsdown it's the best CMS Backoffice out there and the world knows it. Beside with a little help of Rest API its backoffice is all you need."
+	},
+	{		
+		"Name": "MYSQL",
+		"Text": "Of course, but I usually let the framework handles it."
+	},
+	{		
+		"Icon": "angular",
+		"Name": "AngularJS",
+		"Text": "Can't wait for an opportunity to really dig in this one. I built many personnal projects with it and low leve internal job as well"
+	},
+	{
+		"Icon": "react",
+		"Name": "React",
+		"Text": "Trained myself on serveral tutorials out there. Can't wait to go pro though."
+	},
+		{
+		"Icon": "vuejs",
+		"Name": "Vue.js",
+		"Text": "Trained myself on serveral tutorials out there. Can't wait to go pro though."
+	},
+	{
+		"Icon": "github",
+		"Name": "GitHub",
+		"Text": "Sure, use it for my public repos [here](https://github.com/regisphilibert)."
+	},
+	{
+		"Name": "🤡",
+		"Text": "I'm afraid of clowns. Yeah. Look a those creeps."
+	},
+	{
+		"Icon": "cpanel",
+		"Name": "cPanel",
+		"Text": "Damn! Those are fun."
+	},
+	{
+		"Icon": "font-awesome-flag",
+		"Name": "Font Awesome",
+		"Text": "Credit where credit's due. This is FA 5 by the way"
+	},
+	{
+		"Icon": "less",
+		"Name": "Less",
+		"Text": "Used when it was still popular, but had to drop it! People were making fun of me. Serioulsy though, their approach of loops drove me crazy."
+	},
+	{
+		"Icon": "pied-piper",
+		"Name": "Pied Piper",
+		"Text": "Ah ah."
+	}
+]

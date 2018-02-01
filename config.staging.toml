@@ -1,0 +1,54 @@
+baseURL = "https://staging.regisphilibert.com/"
+DefaultContentLanguage = "en"
+MetaDataFormat = "yaml"
+title = "Regis Philibert"
+theme = "regisphilibert"
+enableRobotsTXT = true
+
+# Highlights
+# Set pygments ref to false to use prism
+pygmentsCodefences = true
+pygmentsUseClasses = true
+pygmentsCodefencesGuessSyntax = true
+
+googleAnalytics = "UA-24416415-4"
+
+disqusShortname = "regisphilibert"
+
+[outputs]
+  section = ["html", "json", "RSS"]
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  project_tag = "project_tags"
+
+[permalinks]
+  post = "blog/:year/:month/:slug/"
+
+[params]
+  description = "I'm a front dev from Montréal building websites under any weather."
+  author = "Regis Philibert"
+  jobtitle = "Front Dev in Montreal"
+  twitter_handle = "regisphilibert"
+  ajax = false
+  env = "staging"
+  less = false
+  sass = true
+  contactFormApi = "https://api.regisphilibert.com/mail/"
+  prism = false
+# We use widht as key so range gets it in the right order
+[params.imagesizes]
+    500 = "small"
+    750 = "medium"
+
+[languages]
+[languages.en]
+weight = 1
+
+[languages.fr]
+weight = 2
+
+[languages.fr.params]
+  description = "Je crée des sites web dans la bonne humeur sur Montréal"
+  jobtitle = "Dev Front à Montréal"
