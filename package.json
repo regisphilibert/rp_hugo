@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Hugo Website for Regis Philibert",
   "scripts": {
-    "rp": "cd themes/regisphilibert; npm install; grunt production; cd ../..; hugo --config config.prod.toml;"
+    "rp": "cd themes/regisphilibert; npm install; grunt production; cd ../..; hugo --config config.netlify.toml;"
   },
   "repository": {
     "type": "git",
