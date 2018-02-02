@@ -1,0 +1,13 @@
+[build]
+  publish = "public"
+  command = "npm run rp"
+
+[context.production.environment]
+  HUGO_VERSION = "0.35"
+  HUGO_ENV = "production"
+
+[context.deploy-preview.environment]
+  HUGO_VERSION = "0.35"
+
+[context.branch-deploy.environment]
+  HUGO_VERSION = "0.35"

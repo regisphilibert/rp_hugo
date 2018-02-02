@@ -1,0 +1,18 @@
+{
+  "name": "rp_hugo",
+  "version": "1.0.0",
+  "description": "Hugo Website for Regis Philibert",
+  "scripts": {
+    "rp": "cd themes/regisphilibert; npm install; grunt production; cd ../..; hugo --config config.prod.toml;"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/regisphilibert/rp_hugo.git"
+  },
+  "author": "Regis Philibet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/regisphilibert/rp_hugo/issues"
+  },
+  "homepage": "https://github.com/regisphilibert/rp_hugo#readme"
+}
