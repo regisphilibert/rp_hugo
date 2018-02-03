@@ -11,6 +11,10 @@
   },
   "author": "Regis Philibet",
   "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-htmlmin": "^3.0.0"
+  },
   "bugs": {
     "url": "https://github.com/regisphilibert/rp_hugo/issues"
   },
