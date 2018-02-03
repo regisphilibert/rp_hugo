@@ -6,7 +6,6 @@ theme = "regisphilibert"
 
 enableRobotsTXT = true
 
-disqusShortname = "regisphilibert"
 buildDrafts = false
 
 # Highlights
