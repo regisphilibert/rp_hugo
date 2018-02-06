@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin');
 
 gulp.task('minify-html', function() {
-  return gulp.src('public/**/*.html')
+  return gulp.src('production/**/*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('public'));
+    .pipe(gulp.dest('production'));
 });
