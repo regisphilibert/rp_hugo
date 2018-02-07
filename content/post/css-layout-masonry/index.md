@@ -5,7 +5,7 @@ draft: false
 title: 'Pure CSS Masonry in 2018?'
 slug: pure-css-masonry-layout-with-flexbox-grid-columns-in-2018
 description: "With those awesome css layout systems now available (Flexbox, Mutli-column, Grid), one must wonder if they cannot help us build the masonry grid every client has been asking for the last couple of years. Let's review what a masonry layout is and how those modern options could help us build it"
-featured: masonry_featured.png
+featured: small
 ---
 
 ## The state of CSS bricklaying.
