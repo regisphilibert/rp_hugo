@@ -1,9 +1,15 @@
 ---
 title: "Hugo, the scope, the context and the dot"
-date: 2018-02-5T15:32:27-05:00
+date: 2018-02-05T15:32:27-05:00
+description: Moving from old regular template languages where the scope is rarely an issue, you may have a hard time wrapping your head around Go Template scoping constraints. Why is my variable not available here or there ? Let's see how, in Hugo, the scope or rather the context works.
+slug: 'hugo-the-scope-the-context-and-the-dot'
+tags:
+ - Hugo
+ - Variables
+ - Go Template
 ---
 
-Moving from old regular template languages where the scope is rarely an issue, you may have a hard time wrapping your head around Go Template scoping constraints. What is my variable not available here or there ?
+Moving from old regular template languages where the scope is rarely an issue, you may have a hard time wrapping your head around Go Template scoping constraints. Why is my variable not available here or there ?
 
 In this article we’ll try and understand the impact of the scope or context within our templates and discipline ourselves to always know what is available and what is not.
 
