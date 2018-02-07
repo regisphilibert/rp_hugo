@@ -134,7 +134,7 @@ The partial function here has for parameter your context, most probably your Pag
 ~~~
 
 
-Now, let's say you build a partial to render your a fancy framed image, you only need its path so that would be your context.
+Now, let's say you build a partial to render your fancy framed image, you only need its path so that would be your context.
 
 ~~~go
 {{ partial "img" $path }}
