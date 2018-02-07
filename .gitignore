@@ -4,3 +4,4 @@ staging
 production
 resources
 .sass-cache/
+content/post/ignore
