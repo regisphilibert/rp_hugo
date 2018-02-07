@@ -150,17 +150,15 @@ And in your partials/img.html
 
 The dot is that `$path` value.
 
-That is simple, most of the time, we'll need more than this. I can only pass one parameter, so one context.
+That is a simple case though. Most of the time, we'll need more values than that.
 
-You can use the `dict` function to pass an object as parameter. `dict` creates a map or as I more commonly know it, an associative array. See the [doc](https://gohugo.io/functions/dict) or my own take on it [here]({{< ref hugo-translator >}}#associative-arrays).
-
-Within the partial your dot will hold that object. 
+It's ok, we can use the `dict` function to pass an object as parameter. `dict` creates a map or as I more commonly know it, an associative array. See the [doc](https://gohugo.io/functions/dict) or my own take on it [here]({{< ref hugo-translator >}}#associative-arrays).
 
 ~~~go
 {{ partial "img" dict("path" $path "alt" "Nice blue sky") }}
 ~~~
 
-The context is still an object, so prefix with `.`
+From within the partial the dot will hold that object, so we prefix our keys with `.`
 
 ~~~go
 <figure class="Figure Figure--framed">
@@ -168,7 +166,7 @@ The context is still an object, so prefix with `.`
 </figure>
 ~~~
 
-You can choose to capitalize your keys so they look more like what we're used to, but I like having them lowercase, this way from within that partial, I instantly identify this as a custom `dict` rather than a more conventional context.
+You can choose to .Capitalize your keys so they look more "Hugo", but I like having them lowercase. This way from within that partial, I instantly identify them as custom rather from the page context.
 
 ### Top level $ from partial
 
@@ -176,21 +174,21 @@ Contrary to `range` and `with`, your page context will not be available in `$`
 
 No fret, we'll just add the page context to our `dict`.
 
-You can use any name for that important key, a lot of people use « context » reasulting in `.context.Title` whatever suits you, just try and be consistent with it.
+You can use any name for that important key, a lot of people use "Page" resulting in `.Page.Title`. Whatever suits you, but try to be consistent with it.
 
 ~~~go
-{{ partial "img" dict("context" . "path" $path "alt" "Nice blue sky") }}
+{{ partial "img" dict("Page" . "path" $path "alt" "Nice blue sky") }}
 ~~~
 
 ~~~go
 <figure class="Figure Figure--framed">
-	<img src="{{ .path }}" alt="{{ .alt }} from {{ .context.Title }}">
+	<img src="{{ .path }}" alt="{{ .alt }} from {{ .Page.Title }}">
 </figure>
 ~~~
 
 ## Conclusion
 
-That dot becomes super friendly and simple once you know how to juggle with it. It makes the code easy to read and adapt. You will find other context passing with `block` and `template`.
+That dot becomes super friendly and convenient once you know how to juggle with it. It makes the code easy to read but can sometime lost us in depth. You will find other context passing juggling with `block` and `template`.
 
 Happy dotting!
 
