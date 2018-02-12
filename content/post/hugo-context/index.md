@@ -1,21 +1,27 @@
 ---
 title: "Hugo, the scope, the context and the dot"
 date: 2018-02-05T15:32:27-05:00
-description: Moving from old regular template languages where the scope is rarely an issue, you may have a hard time wrapping your head around Go Template scoping constraints. Why is my variable not available here or there ? Let's see how, in Hugo, the scope or rather the context works.
+lastmod: 2018-02-07T17:32:27-05:00
+description: Moving from old regular template languages where the scope is rarely an issue, you may have a hard time wrapping your head around Go Template scoping constraints. Why is my variable not available here or there? Let's see how. Let's try and understand the impact of the scope/context within our templates and partials.
 slug: 'hugo-the-scope-the-context-and-the-dot'
 toc: true
-featured: true
+twitter_card: summary_large_image
 tags:
  - Hugo
  - Variables
+ - Dot
+ - Scope
  - Go Template
  - Context
- - Dot
+
 ---
 
-Moving from old regular template languages where the scope is rarely an issue, you may have a hard time wrapping your head around Go Template scoping constraints. Why is my variable not available here or there ?
+__Why is my variable not available here or there?__ 🙄
 
-In this article we’ll try and understand the impact of the scope or context within our templates and discipline ourselves to always know what is available and what is not.
+Moving from old regular template languages where the scope is rarely an issue, you may have a hard time wrapping your head around Go Template scoping constraints. 
+
+In this article we’ll try and understand the impact of the scope/context within our templates and partials and how to juggle with the dot 🤹.
+<!--more-->
 
 ## The context and the dot
 
@@ -152,10 +158,11 @@ The dot is that `$path` value.
 
 That is a simple case though. Most of the time, we'll need more values than that.
 
-It's ok, we can use the `dict` function to pass an object as parameter. `dict` creates a map or as I more commonly know it, an associative array. See the [doc](https://gohugo.io/functions/dict) or my own take on it [here]({{< ref hugo-translator >}}#associative-arrays).
+It's ok, we can use the `dict` function to pass an object as parameter. `dict` creates a map or as I more commonly know it, an associative array.
+See the [doc](https://gohugo.io/functions/dict) or my own take on it [here]({{< ref hugo-translator >}}#associative-arrays).
 
 ~~~go
-{{ partial "img" dict("path" $path "alt" "Nice blue sky") }}
+{{ partial "img" (dict "path" $path "alt" "Nice blue sky") }}
 ~~~
 
 From within the partial the dot will hold that object, so we prefix our keys with `.`
@@ -166,7 +173,7 @@ From within the partial the dot will hold that object, so we prefix our keys wit
 </figure>
 ~~~
 
-You can choose to .Capitalize your keys so they look more "Hugo", but I like having them lowercase. This way from within that partial, I instantly identify them as custom rather from the page context.
+You can choose to .Capitalize your keys so they look more "Hugo", but I like having them lowercase. This way from within that partial, I instantly identify the keys as from a custom context rather than the page one.
 
 ### Top level $ from partial
 
@@ -177,7 +184,7 @@ No fret, we'll just add the page context to our `dict`.
 You can use any name for that important key, a lot of people use "Page" resulting in `.Page.Title`. Whatever suits you, but try to be consistent with it.
 
 ~~~go
-{{ partial "img" dict("Page" . "path" $path "alt" "Nice blue sky") }}
+{{ partial "img" (dict "Page" . "path" $path "alt" "Nice blue sky") }}
 ~~~
 
 ~~~go
@@ -188,7 +195,9 @@ You can use any name for that important key, a lot of people use "Page" resultin
 
 ## Conclusion
 
-That dot becomes super friendly and convenient once you know how to juggle with it. It makes the code easy to read but can sometime lost us in depth. You will find other context passing juggling with `block` and `template`.
+That dot becomes super friendly and convenient once you know how to juggle with it. It makes the code easy to read but can sometime have us lost in its depth. 
+
+For other context taking function, you should look for `block` and `template`.
 
 Happy dotting!
 

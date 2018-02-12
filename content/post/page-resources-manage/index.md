@@ -139,9 +139,6 @@ The absolute URL of the resource.
 ### .RelPermalink (string)
 The relative URL of the resource.
 
-### .AbsSourceFilename (string)
-The absolute path of the file. (not available for resources of type page)
-
 ## How to use them?
 
 Now. How can it benefit my coding? 
