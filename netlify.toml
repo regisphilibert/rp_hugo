@@ -1,6 +1,6 @@
 [build]
   publish = "public"
-  command = "npm run stage"
+  command = "cd themes/regisphilibert && npm install && grunt production && cd ../.. && hugo --config config.toml,config.netlify.toml"
 
 [context.production.environment]
   HUGO_VERSION = "0.35"
