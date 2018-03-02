@@ -103,7 +103,7 @@ Now to get it.
 
 //Or with delimit
 //Will output Hello, Goodbye, Aloha, Buenos dias
-{{ delimit (.Scratch.Get "greetings"), ", " }}
+{{ delimit (.Scratch.Get "greetings") ", " }}
 
 
 ~~~ 
