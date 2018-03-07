@@ -10,6 +10,11 @@
 		"Text": "Ben là. Je suis plutôt bitbucket mais c'est vous qui voyez."
 	},
 	{		
+		"Icon": "algolia",
+		"Name": "Algolia",
+		"Text": "La recherche parfaite pour n'importe quoi! J'adore [Algolia](https://algolia.com) et ai bien hâte de pimper la recherche de votre site."
+	},
+	{		
 		"Icon": "grunt",
 		"Name": "Grunt",
 		"Text": "J'utilise Grunt pour les tâches front-end."
@@ -51,7 +56,7 @@
 	{		
 		"Icon": "angular",
 		"Name": "AngularJS",
-		"Text": "Ai pas mal pratiqué AngularJS, et attend un opportunité de travailler sur le nouveau."
+		"Text": "Ai pas mal pratiqué AngularJS, et attend une opportunité de travailler sur le nouveau."
 	},
 	{
 		"Icon": "react",

@@ -18,6 +18,11 @@
 		"Name": "GIT",
 		"Text": "Duh again. I'm a bitbucket dude, but hey, whatever your prefer."
 	},
+	{		
+		"Icon": "algolia",
+		"Name": "Algolia",
+		"Text": "Super fast search for... whatever! I love [Algolia](https://algolia.com) and can't wait to supercharge any website's search with it."
+	},
 	{
 		"Icon": "codepen",
 		"Name": "Codepen",
@@ -54,7 +59,7 @@
 	},
 	{
 		"Name": "Hugo",
-		"Text": "This is the best static generator out there. I code my website with it, I [write about it](https://regisphilibert.com/tags/hugo/), I'm eager to work with it! Go [Hugo](https://gohugo.io/)!"
+		"Text": "Wordpress is like a mom, love her and alway will, but Hugo is my mate! This is the best static generator out there. I code my websites with it, I [write about it](https://regisphilibert.com/tags/hugo/), I'm eager to tell you mnore about it! Go [Hugo](https://gohugo.io/)!"
 	},
 	{		
 		"Icon": "wordpress",
@@ -69,7 +74,7 @@
 	{		
 		"Icon": "angular",
 		"Name": "AngularJS",
-		"Text": "Can't wait for an opportunity to really dig in this one. I built many personnal projects with it and low leve internal job as well"
+		"Text": "Good old AngularJS! I built many personnal projects with it and low level internal job as well"
 	},
 	{
 		"Icon": "react",

@@ -9,7 +9,9 @@ I build websites from and occasionally [**for**](/project_tags/mtl/) MontrÃ©al ð
 
 My name is mentioned in the <span class="desktop-inline">sidebar (twice)</span><span class="mobile-inline tablet-inline">header (biggly)</span>, I've been in the business since 2010 and I have this <a target="_blank" class="no-ajax" rel="nofollow" href="https://regisphilibert.com/2011/">old thing</a> to prove it.
 
-I specialise in [Hugo](http://gohugo.io/)[^1]  I can't stop writing about [here](/tags/hugo) and Wordpress
+I specialise in __WordPress__ and __[Hugo](http://gohugo.io/)__!
+
+WordPress is like my mom, she's been part of the better part of my life, I love her and always will but Hugo is my mate! I use it whenever possible[^1] and can't stop writing about it [here](/tags/hugo)
 
 I am __front end__ first and foremost, the view is what I love best. That being said, yeah, I do __back end__ as well.
 
@@ -19,6 +21,6 @@ I'm on <span class="black-color">{{% a_blank "__GitHub__" "https://github.com/re
 
 As many of my clients I'm afraid no one sees what's below the fold. Have you seen the skill grid below ? Down there, one or two scroll away.
 
-[^1]: I would never, in my wildest dream, imply that LinkedIn is toilet, it's just the [emoji](https://emojipedia.org/water-closet/) closer to their logo.
+[^1]: Yes this website is built with Hugo.
 
-[^2]: Yes this website is built with Hugo.
+[^2]: I would never, in my wildest dream, imply that LinkedIn is toilet, it's just the [emoji](https://emojipedia.org/water-closet/) closer to their logo.
