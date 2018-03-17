@@ -1,7 +1,7 @@
 ---
 title: "Hugo Page Resources"
 date: 2018-01-09T13:03:53-05:00
-lastmod: 2018-02-01T11:44:00-05:00
+lastmod: 2018-03-17T11:44:00-05:00
 slug: hugo-page-resources-and-how-to-use-them
 subtitle: and how to use them...
 toc: true
@@ -62,8 +62,43 @@ The content folder is a bit more clustered but every images/files are stored wit
     │       └── images
     │           ├── overcooked-dough.jpg
     │           └── sloppy-icing.jpg
-    └── page
+    └── recipes
 ~~~
+
+So to turn a page into a page bundle, you just make it a directory and an `index.md`. Every other files will be considered it's Resources.
+
+### Page Bundle vs. Section Bundles
+
+Section pages can have bundles too, but there are a few things to consider.
+
+We'll discuss it later, but Page Bundles can contain `.md` files as Resources. 
+So for Hugo to make a distinction between a Regular Page containing `.md` files as Resources and a section containing `.md` files as pages, we use `_index.md` for Section Bundles. Let's go back to our structure example and focus on a Section Bundle.
+
+
+~~~nohighlight
+.
+└── content
+    ├── post
+    └── recipes
+        ├── _index.md // This is the .md file of the section. You grab its Front Matter from the section's template. 
+        ├── recipes_header.jpg 	  // This is a resource of the recipe section's Bundle.
+	 	├── all_recipes_print.pdf // Same as above.
+        ├── chocolate-cupcakes.md // This a Regular Page inside the section.
+        └── vanilla-cupcakes      // This is a Regular Page with a Bundle inside the section.
+            ├── index.md
+            ├── vanilla_cupcakes_print.pdf
+            └── header.jpg
+    
+~~~
+
+So, you should remember two things about Section Bundles. 
+
+1. Make sure your sections don't contain an `index.md` at their root, only `_index.md` if needed. 
+2. Section Bundles cannot have `.md` files as resources.
+
+{{< notice >}}
+Adding a Bundle to the homepage is as easy as dropping an `_index.md` and your resources at the root of `content/`.
+{{< /notice >}}
 
 ## What are their methods and properties?
 
@@ -445,8 +480,7 @@ There's plenty of use case to think about.
 
 Of course a __gallery__ comes to mind or a __carousel__, using the Front Matter metadata techniques for adding an image description or a carousel slide text and title.
 
-Another use case could be a solution to store your post's __revisions__ directly in the Page Bundle and reference them using `.Match "revision-*"`. 
-Every mardownfile could be very easily listed a the bottom of your post as a reference to its past version. It wouldn't have its own standalone page, but with an accordeon you could have them handy for your editors.
+Another use case could be to add rich full width __sections__ to a page. Big title, big background images, critical CTA, all modern websites need those sectionned pages. Before Page Resources you had to use complicated attributes overstuffed "section" shortcodes in the single `index.md` file or worse too many ocean deep Front Matter objects. But now, all you have to do is drop some cleverly named `.md` files in your bundle with the minimum Front Matter and Markdown content. Then loop on them in your template, and voilà! You build your sections!
 
 Feel free to suggest improvements, use cases or your own discoveries in the comments! 
 
