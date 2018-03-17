@@ -18,7 +18,9 @@ In this article we'll cover __Page Resources__ and its impact on the way we stru
 
 ## What are Page Resources?
 
-Pages can now have their own images, files or pages stored in their own content folder or "bundle". We explain more on the directory structure below.
+Pages can now have their own images, `.md` files or any files stored in their own content folder or __Bundle__. You can then use those files in your templates with a special method called: `.Resources`.
+
+## Content Managing and Bundles
 
 ### Before Page Resources
 
@@ -46,7 +48,7 @@ I personnaly used to store them under a directory named after their respective T
 ### After Page Resources: Hello Page Bundles
 Now since Hugo 0.32, with Resources, you have a better option.
 
-The content folder is a bit more clustered but every images/files are stored within their post directory bundle. And their url will follow the posts' too.
+The content folder is a bit more clustered but every images/files are stored within their post directory Bundle. And their url will follow the posts' too.
 
 ~~~nohighlight
 .
@@ -442,33 +444,6 @@ Thanks!
 
 ~~~
 
-## Page bundle for the home page
-The home page is usually the most complex page of your website and hosts a plethora of little gizmoz: carousels, quotes, sections, all of them great use cases for Page Resources.
-
-Unfortunately and quiet logically there is no Page Bundle implementation for the home page yet.
-
-But with Hugo 0.35 new [headless feature](https://github.com/gohugoio/hugo/commit/0432c64dd22e4610302162678bb93661ba68d758) we can imagine doing something pretty simple to manage that.
-
-We create a new page bundle called `home` at the root of our content directory and set the headless parameter to true in its Front Matter. 
-
-~~~yaml
-# content/home/index.md
-title: "Home Bundle"
-date: 2018-01-10
-headless: true
-~~~
-This way the page will not be rendered by Hugo but will answer to a simple `.GetPage` so accessing its resources from the `index.html` template is as easy as that:
-
-```go
-{{ $home := (.GetPage "page" "home").Resources }}
-<div class="Carousel">
-	{{ range $home.Resources.Match "carousel/*" }}
-	[ ... ]
-	{{ end }}
-</div>
-
-```
-
 ## Conclusion
 
 Page Resouces is still an early feature in the Hugo universe and is bound to improve. 
@@ -476,7 +451,7 @@ Page Resouces is still an early feature in the Hugo universe and is bound to imp
 Since I first published the article __.Resources.Match__ and __metadata__ have landed! Think of what's coming ahead at this pace!
 
 ### Use cases
-There's plenty of use case to think about.
+There's plenty of use cases to think about.
 
 Of course a __gallery__ comes to mind or a __carousel__, using the Front Matter metadata techniques for adding an image description or a carousel slide text and title.
 
@@ -484,55 +459,6 @@ Another use case could be to add rich full width __sections__ to a page. Big tit
 
 Feel free to suggest improvements, use cases or your own discoveries in the comments! 
 
-## Before you go: manifest.json alternative
-
-An alternative if you happen to have hundreds of file to go through would be to dynamicaly create a manifest.json to be added to the Page Bundle and use it as a resource.
-
-To do this though, you will have to target a manifest file included in the bundle instead of the Front Matter metadata
-
-~~~go
-// We store the page resources for future use form inside the range / with.
-{{ $resources := $.Page.Resources }}
-
-{{ with $.Page.Resources.GetMatch "*manifest.json" }}
-~~~
-
-We got our json, inside of it sits an array of all your referenced resources. They have their own parameters plus a very important __match__ key. This key will help us retrieve the .Resource object using .GetMatch, so I suggest a unique filename.
-
-Now we need to read our json's data. 
-
-`{{ $manifest := getJSON .Permalink }}` is tempting but we can't rely on `.Permalink` or `.RelPermalink` because it may very well be not available on your first publish.
-
-We need to target its path straight from the `content` folder
-
-The resource holds `.AbsSourceFilename` which is the absolute path, but in order to use Hugos's `getJSON` on it, we need its relative path to the hugo install.
-
-~~~go
-// ... inside {{ with }}
-{{ $AbsPath := strings.Split .AbsSourceFilename "/content/" }}
-{{ $RelPath := printf "/content/%s" (index $AbsPath 1) }}
-
-// We are finally able to get the json with its relative path. 
-// It doesn't matter if it has already been published or not.
-{{ $manifest := getJSON $RelPath }}
-~~~
-
-Then all you have to do, is use the same range code as in the Front Matter exemple. Or you could add a parameter to the shortcode to choose the Front Matter way or the json way. Up to you.
-
-~~~go
-<ul>
-	{{ range $manifest }}
-	{{ $resource := $resources.GetMatch .prefix }}
-	<li>
-		<a target="_blank" href="{{ $resource.Permalink }}">
-			<i class="far fa-file-{{ .type }}"></i> {{ .name }} <small>{{ with .ref }}(Ref.{{ . }}) {{ end }}</small>
-		</a>
-	</li>
-	{{ end }}
-</ul>
-
-// We started with a with, let's close it.
-{{ end }}
 ~~~
 
 
