@@ -20,7 +20,7 @@ In this article we'll cover __Page Resources__ and its impact on the way we stru
 
 Pages can now have their own images, `.md` files or any files stored in their own content folder or __Bundle__. You can then use those files in your templates with a special method called: `.Resources`.
 
-## Content Managing and Bundles
+## How to Manage them?
 
 ### Before Page Resources
 
@@ -71,35 +71,40 @@ So to turn a page into a page bundle, you just make it a directory and an `index
 
 ### Page Bundle vs. Section Bundles
 
-Section pages can have bundles too, but there are a few things to consider.
+Or `index.md` vs `_index.md`.
 
-We'll discuss it later, but Page Bundles can contain `.md` files as Resources. 
-So for Hugo to make a distinction between a Regular Page containing `.md` files as Resources and a section containing `.md` files as pages, we use `_index.md` for Section Bundles. Let's go back to our structure example and focus on a Section Bundle.
+Sections can have bundles too, but there are a few things to consider.
+
+Because Page Bundles can contain `.md` files as Resources, Hugo needs to make the distinction between the following:
+
+- A Section containing `.md` files as pages.
+- A Page Bundle containing `.md` files as Resources
+
+To make this distinction you should create a Section Bundle by adding an `_index.md`, yes prefixed with an underscore.
+
+Let's go back to our structure example and focus on a Section Bundle.
 
 
 ~~~nohighlight
-.
-└── content
-    ├── post
-    └── recipes
-        ├── _index.md // This is the .md file of the section. You grab its Front Matter from the section's template. 
-        ├── recipes_header.jpg 	  // This is a resource of the recipe section's Bundle.
-	 	├── all_recipes_print.pdf // Same as above.
-        ├── chocolate-cupcakes.md // This a Regular Page inside the section.
-        └── vanilla-cupcakes      // This is a Regular Page with a Bundle inside the section.
-            ├── index.md
-            ├── vanilla_cupcakes_print.pdf
-            └── header.jpg
-    
+├── post
+└── recipes
+    ├── _index.md // That's your Section markdown and Front Matter 
+    ├── recipes_header.jpg    // This is a resource of the recipe section's Bundle.
+    ├── all_recipes_print.pdf // Same as above.
+    ├── chocolate-cupcakes.md // This a Regular Page inside the section.
+    └── vanilla-cupcakes      // This is a Regular Page with a Bundle inside the section.
+        ├── index.md
+        ├── vanilla_cupcakes_print.pdf
+        └── header.jpg
 ~~~
 
 So, you should remember two things about Section Bundles. 
 
-1. Make sure your sections don't contain an `index.md` at their root, only `_index.md` if needed. 
-2. Section Bundles cannot have `.md` files as resources.
+1. Make sure there's no `index.md` at your section's root or Hugo will mistake it for a Regular Page with a Bundle. 
+2. Section Bundles cannot have `.md` files as resources for those will pass for Regular Pages.
 
 {{< notice >}}
-Adding a Bundle to the homepage is as easy as dropping an `_index.md` and your resources at the root of `content/`.
+Adding a Bundle to the homepage is as easy as dropping an `_index.md` and its resources at the root of `content/`.
 {{< /notice >}}
 
 ## What are their methods and properties?
@@ -253,7 +258,7 @@ Or you could just use Page Resources Metadata which leads us to...
 
 [@bep](https://github.com/bep) has worked hard so we can manage metadata for our resources[^2].
 
-Since Hugo 0.33, you can assign metadata directly from the bundle's index.md Front Matter.
+Since Hugo 0.33, you can assign metadata directly from the bundle's `index.md` Front Matter.
 You will add an array called `resources`
 
 This is how it looks like in the front matter. Those * in the src param look familiar? More below.
@@ -274,9 +279,9 @@ resources:
 
 Each item is targeted by its `src` parameter. 
 
-The `src` parameter will use the name of the file relative to the bundle to target which resource this metadata belongs to. Along the .Match Globbing mechanism, you can use the `*` to build that src.
+The `src` parameter will use the name of the file relative to the bundle to target which resource this metadata belongs to. Along the `.Match` Globbing mechanism, you can use the `*` to build that src.
 
-Trying to match images/yummy-cupcakes.jpg: 
+Trying to match `images/yummy-cupcakes.jpg` : 
 
 ~~~yaml
 src: 'images/yummy-cupcake.jpg' ✅
@@ -289,7 +294,7 @@ src: 'yummy-cupcake.jpg' 		🚫
 src: 'yummy-cupcake' 			🚫
 ~~~
 
-From our Front Matter exemple above we can see that yummy-cupcake.jpg and shiny-cupcake.jpg are getting respective titles.
+From our Front Matter exemple above we can see that `yummy-cupcake.jpg` and `shiny-cupcake.jpg` are getting respective titles.
 On the other hand, every jpg images in the bundle including our two cupcakes will have a custom param `credits`
 
 ### Metadata parameters
@@ -304,7 +309,7 @@ I write it in lowercase, for this is the way in you Front Matter but you should 
 
 We already reviewed its [default](#name-string), now you can overwrite it.
 
-Now remember those functions .Match and .ByMatch ? This is what they use, the `.Name`. So once we apply a custom `name` to yummy-cupcake.jpg, you will have to .Match this new name and not the filename. In our case, trying to match yummy-cupcake.jpg:
+Now remember those functions `.Match` and `.ByMatch`? This is what they use, the `.Name`. So once we apply a custom `name` to yummy-cupcake.jpg, you will have to .Match this new name and not the filename. In our case, trying to match yummy-cupcake.jpg:
 ```
 {{ .Resources.Match "*/yummy-*" }} 🚫
 {{ .Resources.Match "*/cupcake-*" }} ✅
@@ -312,10 +317,10 @@ Now remember those functions .Match and .ByMatch ? This is what they use, the `.
 
 Using Front Matter resources metadata we changed the name of yummy-cupcake, it is now called `cupcake-1` and will only respond when called by its new name even by `.Match`.
 
-This may seem weird but it is actually very useful. If youre image filename end up being some very complicated hash, you may simplify their targeting by specifying a name in the front matter and use .Match on that.
+This may seem weird but it is actually very useful. If your image filename end up being some very complicated hash, you may simplify their targeting by specifying a name in the front matter and use .Match on that.
 
 #### title 
-More like .Title, it holds the same default value as name, now you can overwrite it. This time, it won't break anything.
+More like `.Title`, it holds the same default value as name, now you can overwrite it. This time, it won't break anything.
 
 #### params
 
@@ -342,9 +347,9 @@ Obviously there are plenty use cases for them. Already I can think of adding a d
 
 Another use case is the building of a manifest shortcode to list certain files from your bundle right in your content.
 
-### Adding a Page Resources Manifest using metadata
+## Pratcice: Page manifest using Resources and Metadata
 
-Let's try and build a page that lists important PDF to print, fill and send for like a bogus application.
+Let's try and put in action what we learned. We'll build a page that lists important files to download and print. This is often use for applications.
 
 First we create a page.
 ~~~markdown
@@ -353,7 +358,7 @@ title: "Bogus Application"
 date: 2018-01-10
 ---
 
-Hey there! Welcome to a bogus application! 
+Hey there! Please fill the files below and send them back to us.
 
 ::FILE LIST WILL GO HERE::
 
@@ -436,7 +441,7 @@ date: 2018-01-10T10:36:47-05:00
 draft: true
 ---
 
-Hey there! Welcome to a bogus application! 
+Hey there! Please fill the files below and send them back to us.
 
 {{</* manifest */>}}
 
