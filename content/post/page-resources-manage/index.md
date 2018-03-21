@@ -68,47 +68,9 @@ The content folder is a bit more clustered but every images/files are stored wit
 ~~~
 
 So to turn a page into a page bundle, you just make it a directory and an `index.md`. Every other files will be considered it's Resources.
-
-### Regular Page Bundles vs. Section Bundles
-
-The official [Hugo documentation](https://gohugo.io/content-management/page-bundles/#readout) talks about Leaf Bundles vs. Branch Bundles. Once you'll have read the following, you'll find it makes a lot of sense, in the mean time we'll keep our focus on sections.
-
-Those can have bundles too, but there are a few things to consider.
-
-Because Page Bundles can contain `.md` files as Resources, Hugo needs to make the distinction between the following:
-
-- A Section containing `.md` files as pages.
-- A Page Bundle containing `.md` files as Resources
-
-#### `index.md` vs `_index.md`.
-
-To make this distinction you should create a Bundle for a Section by adding an `_index.md`, yes prefixed with an underscore.
-
-Let's go back to our structure example and focus on a Bundle for a section containing recipes.
-
-
-~~~nohighlight
-├── post
-└── recipes
-    ├── _index.md // That's your Section markdown and Front Matter 
-    ├── recipes_header.jpg    // This is a resource of the section's Bundle.
-    ├── all_recipes_print.pdf // Same as above.
-    ├── chocolate-cupcakes.md // This a Regular Page inside the section.
-    └── vanilla-cupcakes      // This is a Regular Page with a Bundle inside the section.
-        ├── index.md
-        ├── vanilla_cupcakes_print.pdf
-        └── header.jpg
-~~~
-
-So, you should remember two things about Bundles for sections or Branch Bundles. 
-
-1. Make sure there's no `index.md` at your section's root or Hugo will mistake it for a Regular Page with a Bundle. 
-2. Branch Bundles cannot have `.md` files as resources for those will pass for Regular Pages.
-
 {{< notice >}}
-Adding a Bundle to the homepage is as easy as dropping an `_index.md` and its resources at the root of `content/`.
+You need to add Resources to a page of Kind `section` or `taxonomy`, head down [there](#about-branch-bundles)
 {{< /notice >}}
-
 ## What are their methods and properties?
 
 ### Available methods for .Resources
@@ -349,9 +311,38 @@ Obviously there are plenty use cases for them. Already I can think of adding a d
 
 Another use case is the building of a manifest shortcode to list certain files from your bundle right in your content.
 
+## What about Bundles for sections?
+
+You can turn pages of any [Kind](https://gohugo.io/templates/section-templates/#page-kinds) into a Bundle so it benefits from Page Resources: sections, taxonomy even the home page. 
+
+__But those take an `_index.md` instead of `index.md`__. 
+
+If you inadvertently drop an _underscoreless_ `index.md` in there, Hugo will mistake it for a a page of Kind `page` which is essentially a single page.
+
+In this case, Hugo terminology speaks of a __Branch Bundle__, as oppose the the single page __Leaf Bundle__ we've been covering so far.
+
+Let's go back to our structure example and focus on a Bundle for a section containing recipes.
+
+~~~nohighlight
+├── post
+└── recipes
+    ├── _index.md // That's your Section markdown and Front Matter 
+    ├── recipes_header.jpg    // This is a resource of the section's Bundle.
+    ├── all_recipes_print.pdf // Same as above.
+    ├── chocolate-cupcakes.md // This a Regular Page inside the section.
+    └── vanilla-cupcakes      // This is a Regular Page with a Bundle inside the section.
+        ├── index.md
+        ├── vanilla_cupcakes_print.pdf
+        └── header.jpg
+~~~
+
+{{< notice >}}
+Want to learn more about Leaf Bundle vs. Branch Bundle in Hugo? You should start by the [doc](https://gohugo.io/content-management/page-bundles/#readout) and keep on reeding this thorough [piece](https://scripter.co/hugo-leaf-and-branch-bundles/) by [@kaushalmodi](https://github.com/kaushalmodi)
+{{< /notice >}}
+
 ## Pratcice: Page manifest using Resources and Metadata
 
-Let's try and put in action what we learned. We'll build a page that lists important files to download and print. This is often use for applications.
+Let's try and put in action what we learned. We'll build a page that lists important files to download and print. Each file will of course be Resources from the page's Bundle.
 
 First we create a page.
 ~~~markdown
