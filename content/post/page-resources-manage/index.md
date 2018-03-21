@@ -69,27 +69,29 @@ The content folder is a bit more clustered but every images/files are stored wit
 
 So to turn a page into a page bundle, you just make it a directory and an `index.md`. Every other files will be considered it's Resources.
 
-### Page Bundle vs. Section Bundles
+### Regular Page Bundles vs. Section Bundles
 
-Or `index.md` vs `_index.md`.
+The official [Hugo documentation](https://gohugo.io/content-management/page-bundles/#readout) talks about Leaf Bundles vs. Branch Bundles. Once you'll have read the following, you'll find it makes a lot of sense, in the mean time we'll keep our focus on sections.
 
-Sections can have bundles too, but there are a few things to consider.
+Those can have bundles too, but there are a few things to consider.
 
 Because Page Bundles can contain `.md` files as Resources, Hugo needs to make the distinction between the following:
 
 - A Section containing `.md` files as pages.
 - A Page Bundle containing `.md` files as Resources
 
-To make this distinction you should create a Section Bundle by adding an `_index.md`, yes prefixed with an underscore.
+#### `index.md` vs `_index.md`.
 
-Let's go back to our structure example and focus on a Section Bundle.
+To make this distinction you should create a Bundle for a Section by adding an `_index.md`, yes prefixed with an underscore.
+
+Let's go back to our structure example and focus on a Bundle for a section containing recipes.
 
 
 ~~~nohighlight
 ├── post
 └── recipes
     ├── _index.md // That's your Section markdown and Front Matter 
-    ├── recipes_header.jpg    // This is a resource of the recipe section's Bundle.
+    ├── recipes_header.jpg    // This is a resource of the section's Bundle.
     ├── all_recipes_print.pdf // Same as above.
     ├── chocolate-cupcakes.md // This a Regular Page inside the section.
     └── vanilla-cupcakes      // This is a Regular Page with a Bundle inside the section.
@@ -98,10 +100,10 @@ Let's go back to our structure example and focus on a Section Bundle.
         └── header.jpg
 ~~~
 
-So, you should remember two things about Section Bundles. 
+So, you should remember two things about Bundles for sections or Branch Bundles. 
 
 1. Make sure there's no `index.md` at your section's root or Hugo will mistake it for a Regular Page with a Bundle. 
-2. Section Bundles cannot have `.md` files as resources for those will pass for Regular Pages.
+2. Branch Bundles cannot have `.md` files as resources for those will pass for Regular Pages.
 
 {{< notice >}}
 Adding a Bundle to the homepage is as easy as dropping an `_index.md` and its resources at the root of `content/`.
