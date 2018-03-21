@@ -67,9 +67,9 @@ The content folder is a bit more clustered but every images/files are stored wit
     └── recipes
 ~~~
 
-So to turn a page into a page bundle, you just make it a directory and an `index.md`. Every other files will be considered it's Resources.
+So to turn a page into a Page Bundle, you just make it a directory and an `index.md` at its root. Every other files in there will be considered its Resources.
 {{< notice >}}
-You need to add Resources to a page of Kind `section` or `taxonomy`, head down [there](#about-branch-bundles)
+You need to add Resources to a page of Kind `section` or `taxonomy`? Go on and head down [there](#what-about-bundles-for-sections)
 {{< /notice >}}
 ## What are their methods and properties?
 
@@ -317,9 +317,9 @@ You can turn pages of any [Kind](https://gohugo.io/templates/section-templates/#
 
 __But those take an `_index.md` instead of `index.md`__. 
 
-If you inadvertently drop an _underscoreless_ `index.md` in there, Hugo will mistake it for a a page of Kind `page` which is essentially a single page.
+If you inadvertently drop an _underscoreless_ `index.md` in there, Hugo will mistake it for a single page's Bundle.
 
-In this case, Hugo terminology speaks of a __Branch Bundle__, as oppose the the single page __Leaf Bundle__ we've been covering so far.
+Hugo terminology speaks of a __Branch Bundle__, as oppose the single page or Regular Page's __Leaf Bundle__ we've been covering so far.
 
 Let's go back to our structure example and focus on a Bundle for a section containing recipes.
 
