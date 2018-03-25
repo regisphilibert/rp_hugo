@@ -5,8 +5,11 @@ tags: ["hugo", "Go Template", "Front End", "Go"]
 draft: false
 toc: false
 title: Hugo Translator
-slug: hugo-go-template-translator-explained-understanding
-description: "Go Template is the templating language used by Hugo. It is a far stretch from those well known Templating languages out there... Using comparison with more familiar syntaxes, I wrote this modest article to try and help unveil the misteries of Go Template."
+slug: hugo-cheat-sheet-go-template-translator
+subtitle: a cheat sheet
+aliases: 
+    - blog/2017/04/hugo-go-template-translator-explained-understanding
+description: "Go Template is the templating language used by Hugo. It is a far stretch from those well known Templating languages out there... Using comparison with more familiar syntaxes, I wrote this modest cheat sheat article to try and help unveil the misteries of Go Template."
 ---
 
 Go Template is the templating language used by Hugo and other Go systems. Now it is not Twig or Blade or Liquid, don't get fooled by the familiar curlies. It is a far stretch from those well known Templating Language out there...
@@ -26,7 +29,7 @@ The first time you're gonna stumble on the syntax above may be a bit deconcertin
 
 I spent a lot a time trying to figure out how best to use Go Template.
 
-Using comparison with more familiar syntaxes, I wrote this modest article to try and help unveil the misteries of Go Template 
+Using comparison with more familiar syntaxes, I wrote this modest cheat sheat article to try and help unveil the misteries of Go Template 
 <!--more-->
 ## Arguments
 
