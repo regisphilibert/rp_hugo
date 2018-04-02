@@ -105,8 +105,15 @@ Now to get it.
 //Will output Hello, Goodbye, Aloha, Buenos dias
 {{ delimit (.Scratch.Get "greetings"), ", " }}
 
-
 ~~~ 
+
+### .Scratch.Delete[^1]
+
+When using `.Scratch.Add` from within in a loop, `.Scratch.Delete` comes handy to reset a value.
+
+~~~go
+{{ .Scratch.Delete "greetings" }}
+~~~
 
 ## Working with arrays or maps
 
@@ -281,3 +288,5 @@ But .Scratch will still be needed to attach key/values to a page or shortcode co
 ~~~
 
 Beside, I don't think meddling with complex maps could be as convenient as it currently is with __.Scratch.SetInMap__!
+
+[^1]: Since [Hugo 0.38](https://gohugo.io/news/0.38-relnotes/)

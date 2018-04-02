@@ -12,7 +12,7 @@ aliases:
 description: "Go Template is the templating language used by Hugo. It is a far stretch from those well known Templating languages out there... Using comparison with more familiar syntaxes, I wrote this modest cheat sheat article to try and help unveil the misteries of Go Template."
 ---
 
-Go Template is the templating language used by Hugo and other Go systems. Now it is not Twig or Blade or Liquid, don't get fooled by the familiar curlies. It is a far stretch from those well known Templating Language out there...
+Go Template is the templating language used by Hugo and other Go systems. Now it is not Twig or Blade or Liquid, don't get fooled by the familiar curlies. It is a far stretch from those well known Templating Languages out there...
 
 ~~~go
 {{ printf "Hello %s %s. %s" $firstname (slicestr $middlename 0 1) $lastname }}
@@ -61,22 +61,16 @@ To
 {{ $fullname := printf "%s %s" $firstname $lastname }}
 ~~~
 
-### Concatenation hacks
+{{< notice >}}
+###### Concatenation hacks
 
-`add` joins two strings together but it is limited to two. So in our exemple, we can't even add our whitespace in there without piping and, in the process, losing the logical order.
+`add` joins two strings together but it is limited to two.
 
-~~~go
-{{ $fullname := add " " $lastname | add $firstname }}
-~~~
-
-[`delimit`](#helpers) is a nicer hack because it brings easy readability and an unlimited number of strings. But the common delimiter may bring issues on more complex sentences. Oh and yeah, it's a __hack__.
-~~~go
-{{ $fullname := delimit (slice $firstname " " $lastname) " "}}
-~~~
-
+[`delimit`](#helpers) brings easy readability and an unlimited number of strings. But the common delimiter may bring issues on more complex sentences. Oh and yeah, it's a __hack__.
+{{< /notice >}}
 ## Conditions
 
-Conventional templating languages systematically offer an intuitive syntax for conditions. Go Template doest not. It gives you some bool functions to use in place of conditions.
+Conventional templating languages systematically offer an intuitive syntax for conditions. Go Template does not. It gives you some bool functions to use in place of conditions.
 
 ### bool (the simple one)
 <div class="row">
