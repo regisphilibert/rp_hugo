@@ -29,7 +29,7 @@ $greetings = $sky == "dark" ? "Good Night : Good Morning";
 ~~~
 
 That next bit of code would be tempting :
-~~~go
+~~~go-html-template
 {{ $greetings := "Good Morning" }}
 {{ if eq $sky "dark" }}
 	{{ $greetings = "Good Night" }}
@@ -56,7 +56,7 @@ It comes with several methods.
 You use *Set* to store a value and maybe later perform a simple override. 
 Taking our PHP exemple above, we'd have something like that:
 
-~~~go
+~~~go-html-template
 {{ .Scratch.Set "greetings" "Good Morning" }}
 {{ if eq $sky "dark" }}
 	{{ .Scratch.Set "greetings" "Good Night" }}
@@ -69,18 +69,17 @@ Taking our PHP exemple above, we'd have something like that:
 
 This will deal with adding or pushing mutliple values to the same variable or key.
 
-~~~go
-//For strings.
+~~~go-html-template
 {{ .Scratch.Add "greetings" "Hello" }}
 {{ .Scratch.Add "greetings" "Goodbye" }}
 
 {{ .Scratch.Get "greetings" }}
-//Will output : HelloGoodbye
+☝️	Will output : HelloGoodbye
 ~~~
 
 Using add with _slice_, will append one or more values to an array/slice.
 
-~~~go
+~~~go-html-template
 {{ .Scratch.Add "greetings" (slice "Hello") }}
 {{ .Scratch.Add "greetings" (slice "Goodbye") }}
 {{ .Scratch.Add "greetings" (slice "Aloha" "Buenos dias") }}
@@ -90,7 +89,7 @@ Using add with _slice_, will append one or more values to an array/slice.
 
 Now to get it.
 
-~~~go
+~~~go-html-template
 //With range
 {{ range .Scratch.Get "greetings" }}
 <ol>
@@ -155,7 +154,7 @@ I could do that work once, in the partial or template which includes the opening
 
 How do I build this list, modify it if I'm on the home page, and store it to my .Page object for future use ? We'll store our classes in a array for convenience.
 
-~~~go
+~~~go-html-template
 //Before my body tag I can store my first and universal class.
 {{ .Scratch.Add "classes" (slice "rp-body") }}
 
@@ -178,7 +177,7 @@ We could perform a lot more checking and scratching but eventually, in our layou
 
 And for javascript we can create our object anywhere needed.
 
-~~~go
+~~~go-html-template
 <script>
 	let bodyClasses = [{{ range .Scratch.Get "classes" }}"{{ . }}", {{end}}];
 </script>
@@ -207,7 +206,7 @@ The page's .Scratch has been passed along to the partial with its context, so yo
 ### *.Scratch* from inside a partial from inside a range 🤯
 Once your inside a range, you cannot, as with partials, pass on a defined context, you end up with the context of the range, which is the behaviour you want.
 
-~~~go
+~~~go-html-template
 	{{ .Scratch.Set "section_color" }}
 	{{ range where .Data.Pages}}
 	    <h2>{{ .Title }}</h2>
@@ -228,28 +227,28 @@ That is because the context you passed along the partial is the range context, t
 OK! But I still need to use the root page's .Scratch. from whithin this partial...
 
 Well, you could pass along the root page's .Scratch after having stored it in a variable.
-~~~go
+~~~go-html-template
 	{{ $indexScratch := .Scratch }}
 	{{ range where .Data.Pages }}
 	    {{ partial "child.html" $indexScratch }}
 	{{ end }}
 ~~~
 And inside that partial
-~~~go
+~~~go-html-template
     <div class="Child Child--{{ .Get "section_color" }}">
     [...]
     <div>
 ~~~
 
 And if you also need the context of the page you are rangeing on, then use dict
-~~~go
+~~~go-html-template
 	{{ $indexScratch := .Scratch }}
 	{{ range where .Data.Pages }}
-	    {{ partial "child.html" (dict "indexScratch" $indexScratch "page" . }}
+	    {{ partial "child.html" (dict "indexScratch" $indexScratch "page" .) }}
 	{{ end }}
 ~~~
 And inside that partial
-~~~go
+~~~go-html-template
     <div class="Child Child--{{ .indexScratch.Get section_color}}">
     	{{ .page.Content }}
     <div>
