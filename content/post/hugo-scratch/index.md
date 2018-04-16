@@ -91,7 +91,7 @@ Now to get it.
 
 ~~~go-html-template
 //With range
-{{ range .Scratch.Get "greetings" }}
+{{ range where .Scratch.Get "greetings" }}
 <ol>
 	<li>
 		{{ . }}
@@ -110,7 +110,7 @@ Now to get it.
 
 When using `.Scratch.Add` from within in a loop, `.Scratch.Delete` comes handy to reset a value.
 
-~~~go
+~~~go-html-template
 {{ .Scratch.Delete "greetings" }}
 ~~~
 
@@ -122,7 +122,7 @@ This one allows to target a key from inside an array and assign it a new value. 
 
 <small>If you don't know about [dict](https://gohugo.io/functions/dict/#readout) I explain about it [here]({{< ref "post/hugo-translator/index.md#associative-arrays" >}})</small>
 
-~~~go
+~~~go-html-template
 {{ .Scratch.Add "greetings" (dict "english" "Hello" "french" "Bonjour") }}
 
 {{ .Scratch.SetInMap "greetings" "english" "Howdy 🤠" }}
@@ -171,7 +171,7 @@ How do I build this list, modify it if I'm on the home page, and store it to my 
 {{ end }}
 ~~~
 We could perform a lot more checking and scratching but eventually, in our layout we drop that beauty:
-~~~go
+~~~go-html-template
 <body class='{{ delimit (.Scratch.Get "classes") " " }}'>
 ~~~
 
@@ -189,13 +189,13 @@ Good use case, let's keep walking.
 
 As I explained earlier, because .Scratch is part of the page object usually passed on as context to partials (yeah that dot), you could, for readability/refactoring purposes, decide to wrap all the classname scratching from above inside a partial like so:
 
-~~~go
+~~~go-html-template
 // partials/scratching/body_classes.html
 {{ .Scratch.Add "classes" (slice "rp-body") }}
 [... blah blah blah same as above ...]
 ~~~
 And in my layout file:
-~~~go
+~~~go-html-template
 {{ partial "scratching/body_classes.html" . }}
 <body class='{{ delimit (.Scratch.Get "classes") " " }}'>
 [...]
@@ -207,19 +207,19 @@ The page's .Scratch has been passed along to the partial with its context, so yo
 Once your inside a range, you cannot, as with partials, pass on a defined context, you end up with the context of the range, which is the behaviour you want.
 
 ~~~go-html-template
-	{{ .Scratch.Set "section_color" }}
-	{{ range where .Data.Pages}}
-	    <h2>{{ .Title }}</h2>
-	    <div class="Child Child--{{ $.Scratch.Get section_color}}">
-	    [...]
-	    <div>
-	{{ end }}
-	// Will  display that section_color.
-	// But...
-	{{ range where .Data.Pages }}
-	    {{ partial "child.html" . }}
-	{{ end }}
-	// The child.html partial won't be able to retrieve the index page .Scratch even though the . was passed along...
+{{ .Scratch.Set "section_color" }}
+{{ range where .Data.Pages}}
+    <h2>{{ .Title }}</h2>
+    <div class="Child Child--{{ $.Scratch.Get section_color}}">
+    [...]
+    <div>
+{{ end }}
+// Will  display that section_color.
+// But...
+{{ range where .Data.Pages }}
+    {{ partial "child.html" . }}
+{{ end }}
+// The child.html partial won't be able to retrieve the index page .Scratch even though the . was passed along...
 ~~~
 
 That is because the context you passed along the partial is the range context, the page your cursor is currently at, and not, as you could expect the archive page whose template your are coding on.
@@ -228,36 +228,36 @@ OK! But I still need to use the root page's .Scratch. from whithin this partial.
 
 Well, you could pass along the root page's .Scratch after having stored it in a variable.
 ~~~go-html-template
-	{{ $indexScratch := .Scratch }}
-	{{ range where .Data.Pages }}
-	    {{ partial "child.html" $indexScratch }}
-	{{ end }}
+{{ $indexScratch := .Scratch }}
+{{ range where .Data.Pages }}
+    {{ partial "child.html" $indexScratch }}
+{{ end }}
 ~~~
 And inside that partial
 ~~~go-html-template
-    <div class="Child Child--{{ .Get "section_color" }}">
-    [...]
-    <div>
+<div class="Child Child--{{ .Get "section_color" }}">
+[...]
+<div>
 ~~~
 
 And if you also need the context of the page you are rangeing on, then use dict
 ~~~go-html-template
-	{{ $indexScratch := .Scratch }}
-	{{ range where .Data.Pages }}
-	    {{ partial "child.html" (dict "indexScratch" $indexScratch "page" .) }}
-	{{ end }}
+{{ $indexScratch := .Scratch }}
+{{ range where .Data.Pages }}
+    {{ partial "child.html" (dict "indexScratch" $indexScratch "page" .) }}
+{{ end }}
 ~~~
 And inside that partial
 ~~~go-html-template
-    <div class="Child Child--{{ .indexScratch.Get section_color}}">
-    	{{ .page.Content }}
-    <div>
+<div class="Child Child--{{ .indexScratch.Get section_color}}">
+	{{ .page.Content }}
+<div>
 ~~~
 
 ## .Scratch after Go 1.11 
 Yes, the Golang team will eventually roll out version 11 and we'll be able to natively override variables in Go Template;
 
-~~~go
+~~~go-html-template
 // Allas!
 {{ $greetings := "Good Morning" }}
 {{ if eq $sky "dark" }}
@@ -269,7 +269,7 @@ Yes, the Golang team will eventually roll out version 11 and we'll be able to na
 But .Scratch will still be needed to attach key/values to a page or shortcode context. Without it, you'll be left with a lot of context meddling.
 
 ### Without .Scratch (Go v11)
-~~~go
+~~~go-html-template
 {{ $mood := "Happy" }}
 {{ if $rain }}
 	{{ $mood = "Grumpy" }}
@@ -278,7 +278,7 @@ But .Scratch will still be needed to attach key/values to a page or shortcode co
 ~~~
 
 ### With .Scratch (right now)
-~~~go
+~~~go-html-template
 {{ .Scratch.Set "mood" "Happy" }}
 {{ if $rain }}
 	{{ .Scratch.Set "mood" "Grumpy" }}
