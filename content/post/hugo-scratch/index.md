@@ -51,6 +51,10 @@ At least until [this Golang issue](https://github.com/golang/go/issues/10608) ge
 .Scratch was initially added to fight the Go Template limitation mentionned above but ended up doing much more. 
 It comes with several methods.
 
+{{< notice >}}
+To improve readability, the following snippets' show comments uncomplient with Go Template. See the [doc](http://gohugo.io/templates/introduction/#comments) for proper commenting in Hugo.
+{{</ notice >}}
+
 ### .Scratch.Set
 
 You use *Set* to store a value and maybe later perform a simple override. 
@@ -74,7 +78,7 @@ This will deal with adding or pushing mutliple values to the same variable or ke
 {{ .Scratch.Add "greetings" "Goodbye" }}
 
 {{ .Scratch.Get "greetings" }}
-☝️	Will output : HelloGoodbye
+// ☝️ Will output : HelloGoodbye
 ~~~
 
 Using add with _slice_, will append one or more values to an array/slice.
@@ -90,7 +94,7 @@ Using add with _slice_, will append one or more values to an array/slice.
 Now to get it.
 
 ~~~go-html-template
-//With range
+// With range
 {{ range where .Scratch.Get "greetings" }}
 <ol>
 	<li>
@@ -98,11 +102,11 @@ Now to get it.
 	</li>
 </ol>
 {{ end }}
-//Will output that ordered list with our 4 greetings.
+// ☝️  Will output that ordered list with our 4 greetings.
 
-//Or with delimit
-//Will output Hello, Goodbye, Aloha, Buenos dias
+// Using delimit
 {{ delimit (.Scratch.Get "greetings"), ", " }}
+// ☝️  Will output Hello, Goodbye, Aloha, Buenos dias
 
 ~~~ 
 
@@ -127,7 +131,7 @@ This one allows to target a key from inside an array and assign it a new value. 
 
 {{ .Scratch.SetInMap "greetings" "english" "Howdy 🤠" }}
 
-//We changed the english greeting from Hello to Howdy 🤠!
+// We changed the english greeting from Hello to Howdy 🤠!
   
 ~~~
 
@@ -155,22 +159,23 @@ I could do that work once, in the partial or template which includes the opening
 How do I build this list, modify it if I'm on the home page, and store it to my .Page object for future use ? We'll store our classes in a array for convenience.
 
 ~~~go-html-template
-//Before my body tag I can store my first and universal class.
+// Before my body tag I can store my first and universal class.
 {{ .Scratch.Add "classes" (slice "rp-body") }}
 
-//Then my section. That printf allows me to to prepend the .Section Value with my prefix.
+// Then my section. That printf allows me to to prepend the .Section Value with my prefix.
 {{ .Scratch.Add "classes" (slice (printf "rp-%s" .Section))) }}
 
 // Now is this the home page ?
 {{ if .IsHome }}
 	{{ .Scratch.Add "classes" (slice "rp-home") }}
 {{end}}
+
 // Is this a holyday? 🎄
 {{ if isset .Site.Params "season" }}
 	{{ .Scratch.Add "classes" (slice (printf "rp-body--%s" .Site.Params.season))) }}
 {{ end }}
 ~~~
-We could perform a lot more checking and scratching but eventually, in our layout we drop that beauty:
+We could perform a lot more checking and scratching but eventually, in our layout we drop this beauty:
 ~~~go-html-template
 <body class='{{ delimit (.Scratch.Get "classes") " " }}'>
 ~~~
@@ -187,7 +192,7 @@ Good use case, let's keep walking.
 
 ### *.Scratch* from within a partial
 
-As I explained earlier, because .Scratch is part of the page object usually passed on as context to partials (yeah that dot), you could, for readability/refactoring purposes, decide to wrap all the classname scratching from above inside a partial like so:
+As I explained earlier, because .Scratch is part of the page object usually passed on as context to partials ([yeah that dot]({{< ref "hugo-context" >}})), you could, for readability/refactoring purposes, decide to wrap all the classname scratching from above inside a partial like so:
 
 ~~~go-html-template
 // partials/scratching/body_classes.html
@@ -222,7 +227,7 @@ Once your inside a range, you cannot, as with partials, pass on a defined contex
 // The child.html partial won't be able to retrieve the index page .Scratch even though the . was passed along...
 ~~~
 
-That is because the context you passed along the partial is the range context, the page your cursor is currently at, and not, as you could expect the archive page whose template your are coding on.
+That is because the context you passed along the partial is the range context, the page your cursor is currently at, and not, as you could expect the __list__ page whose template your are coding on.
 
 OK! But I still need to use the root page's .Scratch. from whithin this partial...
 
@@ -254,11 +259,14 @@ And inside that partial
 <div>
 ~~~
 
+{{< notice >}}
+For a more indepth look at handling __Context__ and __partials__ in  Go Template see [this piece]({{< ref "hugo-context" >}}).
+{{</ notice >}}
 ## .Scratch after Go 1.11 
 Yes, the Golang team will eventually roll out version 11 and we'll be able to natively override variables in Go Template;
 
 ~~~go-html-template
-// Allas!
+// 🎉 Tada!
 {{ $greetings := "Good Morning" }}
 {{ if eq $sky "dark" }}
 	{{ $greetings = "Good Night" }}
