@@ -4,7 +4,7 @@ tags: ["css", "masonry", "cssgrid", "columns", "flexbox"]
 draft: false
 title: 'Pure CSS Masonry in 2018?'
 slug: pure-css-masonry-layout-with-flexbox-grid-columns-in-2018
-description: "With those awesome css layout systems now available (Flexbox, Mutli-column, Grid), one must wonder if they cannot help us build the masonry grid every client has been asking for the last couple of years. Let's review what a masonry layout is and how those modern options could help us build it"
+description: "With those awesome css layout systems now available (Flexbox, Multi-column, Grid), one must wonder if they cannot help us build the masonry grid every client has been asking for the last couple of years. Let's review what a masonry layout is and how those modern options could help us build it"
 featured: small
 ---
 
@@ -87,15 +87,15 @@ In Firefox you can use __page-break-before: always;__ and set it on every nth el
 
 {{% orange %}}Flexbox is out.{{% /orange %}}
 
-## With Mutli-column?
-*Mutli-column * seems to be the perfect tool to build a masonry. You can set the number of columns (or just their width), every element has its own height etc… You cannot for now have an item span more than 1 column (it is either 1 or all), but it is not in our requirement so we can move on to our main problem : 
+## With Multi-column?
+*Multi-column * seems to be the perfect tool to build a masonry. You can set the number of columns (or just their width), every element has its own height etc… You cannot for now have an item span more than 1 column (it is either 1 or all), but it is not in our requirement so we can move on to our main problem : 
 The content flows in one direction only, vertically.
 
 Multi-column spec has not been drafted to build a grid, but columns of text much as in a newspaper. This is designed to contain flowing elements inside one common parent.
 
 You have your perfect masonry except requirement n°2 is undeniably flunked. That 4th cupcake is going to live below the fold, less visible than its older brothers…
 
-{{< figure src="/posts/columns.png" caption="Everything looks great but for the ordering of the elements. I can see brick 15 and 21 but not 4. This is not good." title="Using Mutli-column" >}}
+{{< figure src="/posts/columns.png" caption="Everything looks great but for the ordering of the elements. I can see brick 15 and 21 but not 4. This is not good." title="Using Multi-column" >}}
 
 To counter this issue you would have to either :
 
@@ -125,6 +125,6 @@ And all it would take is this :
 }
 ~~~
 
-For the rest, and until someone builds a lighter JavaScript library which relies on Mutli-column rather than absolute positioning, you can still use [David DeSandro](https://desandro.com/)'s [Masonry.js](https://masonry.desandro.com/) or its filtering silbing [Isotope.js](https://isotope.metafizzy.co/)
+For the rest, and until someone builds a lighter JavaScript library which relies on Multi-column rather than absolute positioning, you can still use [David DeSandro](https://desandro.com/)'s [Masonry.js](https://masonry.desandro.com/) or its filtering silbing [Isotope.js](https://isotope.metafizzy.co/)
 
 Happy bricklaying!

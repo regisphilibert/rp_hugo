@@ -71,7 +71,7 @@ Taking our PHP exemple above, we'd have something like that:
 
 ### .Scratch.Add
 
-This will deal with adding or pushing mutliple values to the same variable or key.
+This will deal with adding or pushing multiple values to the same variable or key.
 
 ~~~go-html-template
 {{ .Scratch.Add "greetings" "Hello" }}

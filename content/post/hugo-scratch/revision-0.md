@@ -58,7 +58,7 @@ Taking our PHP exemple above, we'd have something like that:
 
 ### .Scratch.Add
 
-This will deal with adding or pushing mutliple value to the same variable or key.
+This will deal with adding or pushing multiple value to the same variable or key.
 
 ~~~go
 //For strings.
