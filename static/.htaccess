@@ -12,3 +12,18 @@ AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css a
   ExpiresByType text/css                  "access plus 1 year"
   ExpiresByType application/javascript    "access plus 1 year"
 </IfModule>
+<ifModule mod_headers.c>
+  <filesMatch ".(ico|jpe?g|png|gif|swf)$">
+    Header set Cache-Control "max-age=172800"
+  </filesMatch>
+  <filesMatch ".(css)$">
+    Header set Cache-Control "max-age=172800"
+  </filesMatch>
+  <filesMatch ".(js)$">
+# was private  
+    Header set Cache-Control "max-age=172800"
+  </filesMatch>
+  <filesMatch ".(x?html?|php)$">
+    Header set Cache-Control "private, must-revalidate"
+  </filesMatch>
+</ifModule>
