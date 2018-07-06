@@ -340,7 +340,7 @@ Let's go back to our structure example and focus on a Bundle for a section conta
 Want to learn more about Leaf Bundle vs. Branch Bundle in Hugo? You should start by the [doc](https://gohugo.io/content-management/page-bundles/#readout) and keep on reeding this thorough [piece](https://scripter.co/hugo-leaf-and-branch-bundles/) by [@kaushalmodi](https://github.com/kaushalmodi)
 {{< /notice >}}
 
-## Pratcice: Page manifest using Resources and Metadata
+## Practice: Page manifest using Resources and Metadata
 
 Let's try and put in action what we learned. We'll build a page that lists important files to download and print. Each file will of course be Resources from the page's Bundle.
 
