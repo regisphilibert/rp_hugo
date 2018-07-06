@@ -291,7 +291,7 @@ More like `.Title`, it holds the same default value as name, now you can overwri
 This is an object for you to store anything you want, like for Page params, you retrieve them like so:
 
 ~~~go
-{{ range .Resources.Match "**.jpg" }}
+{{ range $.Page.Resources.Match "**.jpg" }}
 <figure class="Figure">
 	<img src="{{ .Permalink }}" alt="{{ .Title }}">
 	{{ with .Params.credits }}
