@@ -132,9 +132,16 @@ This one allows to target a key from inside an array and assign it a new value. 
 {{ .Scratch.SetInMap "greetings" "english" "Howdy 🤠" }}
 
 // We changed the english greeting from Hello to Howdy 🤠!
-  
 ~~~
 
+### newScratch[^2]
+
+This is not a Scratch method but a template function which allows for the creation of a local Scratch instance.
+
+~~~go-html-template
+{{ $headerScratch := newScratch }}
+{{ $headerScratch.Add "brand_image" .Params.image }}
+~~~
 
 ## Watch out for scope and context...
 
@@ -259,9 +266,31 @@ And inside that partial
 <div>
 ~~~
 
+
 {{< notice >}}
 For a more indepth look at handling __Context__ and __partials__ in  Go Template see [this piece]({{< ref "hugo-context" >}}).
 {{</ notice >}}
+
+### *.Scratch* within a partial without a Page context 
+
+All of the above is important shall you need to access a Scratch instance attached to your page context, but with the addition of `newScratch`[^2], you can now use Scratch from anywhere, including a partial without a Page context.
+
+Let's call a partial. Notice we don't pass any Page context, just a map from the Front Matter which holds `class`, `alt` and a potential `image_src` to overwhite our default.
+~~~go-html-template
+{{ partial "brand" .Params.brand }}
+~~~
+From within our partial, we can still use Scratch:
+~~~go-html-template
+{{ $brandScratch := newScratch }}
+{{ $brandScratch.Set "brand_image" "default.jpg" }}
+{{ with .image_src }}
+	{{ $brandScratch.Set "brand_image" "." }}
+{{ end }}
+<div class="brand {{ .class }}">
+	<img src="{{ $brandScratch.Get "brand_image" }}" alt="{{ .alt }}" />
+</div>
+~~~
+
 ## .Scratch after Go 1.11 
 Yes, the Golang team will eventually roll out version 11 and we'll be able to natively override variables in Go Template;
 
@@ -297,3 +326,4 @@ But .Scratch will still be needed to attach key/values to a page or shortcode co
 Beside, I don't think meddling with complex maps could be as convenient as it currently is with __.Scratch.SetInMap__!
 
 [^1]: Since [Hugo 0.38](https://gohugo.io/news/0.38-relnotes/)
+[^2]: Since [Hugo 0.43](https://gohugo.io/news/0.43-relnotes/)
