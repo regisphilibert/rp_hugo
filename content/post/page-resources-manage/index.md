@@ -273,7 +273,7 @@ I write it in lowercase, for this is the way in you Front Matter but you should 
 
 We already reviewed its [default](#name-string), now you can overwrite it.
 
-Now remember those functions `.Match` and `.ByMatch`? This is what they use, the `.Name`. So once we apply a custom `name` to yummy-cupcake.jpg, you will have to .Match this new name and not the filename. In our case, trying to match yummy-cupcake.jpg:
+Now remember those functions `.Match` and `.GetMatch`? This is what they use, the `.Name`. So once we apply a custom `name` to yummy-cupcake.jpg, you will have to .Match this new name and not the filename. In our case, trying to match yummy-cupcake.jpg:
 ```
 {{ .Resources.Match "*/yummy-*" }} 🚫
 {{ .Resources.Match "*/cupcake-*" }} ✅
@@ -456,10 +456,6 @@ Of course a __gallery__ comes to mind or a __carousel__, using the Front Matter 
 Another use case could be to add rich full width __sections__ to a page. Big title, big background images, critical CTA, all modern websites need those sectionned pages. Before Page Resources you had to use complicated attributes overstuffed "section" shortcodes in the single `index.md` file or worse too many ocean deep Front Matter objects. But now, all you have to do is drop some cleverly named `.md` files in your bundle with the minimum Front Matter and Markdown content. Then loop on them in your template, and voilà! You build your sections!
 
 Feel free to suggest improvements, use cases or your own discoveries in the comments! 
-
-~~~
-
-
 
 [^1]: Special thanks to [@bep](https://github.com/bep) for being patient with my pestering in the [Hugo Discource](https://discourse.gohugo.io/) and giving the `strings.Contains` and his amazing work on improving the already impressive Hugo.
 

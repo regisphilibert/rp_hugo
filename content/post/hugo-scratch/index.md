@@ -118,6 +118,15 @@ When using `.Scratch.Add` from within in a loop, `.Scratch.Delete` comes handy t
 {{ .Scratch.Delete "greetings" }}
 ~~~
 
+### newScratch[^2]
+
+This is not a Scratch method but a template function which allows for the creation of a local Scratch instance.
+
+~~~go-html-template
+{{ $headerScratch := newScratch }}
+{{ $headerScratch.Add "brand_image" .Params.image }}
+~~~
+
 ## Working with arrays or maps
 
 ### .Scratch.SetInMap
@@ -134,14 +143,6 @@ This one allows to target a key from inside an array and assign it a new value. 
 // We changed the english greeting from Hello to Howdy 🤠!
 ~~~
 
-### newScratch[^2]
-
-This is not a Scratch method but a template function which allows for the creation of a local Scratch instance.
-
-~~~go-html-template
-{{ $headerScratch := newScratch }}
-{{ $headerScratch.Add "brand_image" .Params.image }}
-~~~
 
 ## Watch out for scope and context...
 
