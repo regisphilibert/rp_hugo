@@ -24,7 +24,7 @@ Let’s pause for a minute to process the changes brought by .43 and how they’
 I’m using version control and I want to keep my processed sources (distributed) out of my repository! 
 
 This means I have to fill my `README.md` with instructions on how to `npm install`, `npm run dev`, `grunt watch` etc… I have to educate collaborators and content editors alike on command line and nodejs install, risking much frustration on the other side.
-This may also lead to that dreaded [Git Security Alerts](https://blog.github.com/2017-11-16-introducing-security-alerts-on-github/) rabbit hole, the worst place for my theme users or collaborators to spend their afternoon…
+This may also lead to that dreaded [security alerts](https://blog.github.com/2017-11-16-introducing-security-alerts-on-github/) rabbit hole, the worst place for my theme users or collaborators to spend their afternoon…
 
 Also, I’m a CI newbie, which means I don’t know how to easily set up a deployment process which would ensure my host doesn’t spend too much time installing Ruby (for SASS), node, and whatever my `packages.json` points to for every build. I know there are solutions out there, but not an « out of the box » one that I know of.
 
@@ -104,7 +104,7 @@ For now, yes and I believe it was an easy pick. Ask around, look up for user sha
 {{% /notice %}}
 
 ### Autoprefixing with .PostCSS
-`resources.PostCSS` does require nodeJS to run. But shall you be ok with a touch of `node_modules` and `npm` in your Hugo project, you should definitely give it a spin. I’ll let go of my good-riddance-npm smirk and use it in this project so we can « autoprefix » our `style.css`.
+`resources.PostCSS` does require nodeJS to run. But shall you be ok with a touch `npm` in your Hugo project, you should definitely give it a spin. I’ll let go of my good-riddance-npm smirk and use it in this project so we can « autoprefix » our `style.css`.
   
 Hugo will look for this config file at the root of our theme or project under the name `postcss.config.js`. Ours will look like this:
 
@@ -305,7 +305,7 @@ We want to inject those variables in a separate script tag to make sure it is av
 ```go-html-template
 {{ $string := (printf "var cloudinary_url = '%v'; var weather_location = '%v';" (.Param "cloudinary") (.Param "weather_location") ) }}
 
-{{ $filePath := printf "vars.%x.scss" (.Param "weather_location") }}
+{{ $filePath := printf "vars.%x.js" (.Param "weather_location") }}
 {{ $vars := $string | resources.FromString $filePath }}
 
 <script type="text/javascript" src="{{ $vars.Permalink }}"></script>
@@ -322,7 +322,7 @@ What we do above is hard to read but easy to explain.
 First we use `printf` to build a string which will replace every `%v` verb with our properties’ respective value. This produces a nice looking list of javascript variables declaration.
 
 ```go-html-template
-{{ $filePath := printf "vars.%x.scss" (.Param "weather_location") }}
+{{ $filePath := printf "vars.%x.js" (.Param "weather_location") }}
 ```
 
 Then we define its filepath.
