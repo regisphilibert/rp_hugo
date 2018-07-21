@@ -36,27 +36,30 @@ Turns out Hugo just did, and I’m psyched!
 
 Enough about me, let’s talk about Hugo’s newly introduced Asset Processing set of methods! It’s been the on the #ssg news cycle for more than a week now so it’s time to get acquainted!
 
-### Asset is the new static (not really)
+### Asset is the new static (no, no, not at all!)
 
-First thing of note, these methods will only be available on files living in the `assets` directory, think of it as a `static` directory on steroids.
+First thing of note, these methods will only be available on files living in the `assets` directory, think of it as a `static` directory except the files will never be published as is.
 
 Much like its `static` counterpart:
 
 - Its location is configurable with the `assetDir` key of your `config.yaml`. (will default to `assets`)
 - It follows the Hugo’s file unison logic. Meaning, anything in your `project/assets` will override homonymous files of `your-theme/assets`. 
 
-Unlike `static` though, and as of yet, you can only define one `assets` directory.
+The big difference with `static` is that the files contained in `assets` will not be published unless the `.Permalink` of their resource object is used.
+
+As of yet, and unlike `static`, you can only define one `assets` directory.
 
 ### Hugo Pipes vs Go Pipes
-We’ll be using [Go Template Pipes](https://gohugo.io/templates/introduction/#pipes) a lot in this article. The are not to be confused with the topic at hands but in a few words, they allow to chain several template functions together using the output of the former as the input of the latter.   
+We’ll be using [Go Template Pipes](https://gohugo.io/templates/introduction/#pipes) a lot in this article. They are not to be confused with the topic at hands but in a few words, they allow to chain several template functions together using the output of the former as the input of the latter.   
 
 Turning this:
 ```go-html-template
-{{ delimit .Params.tags ", " }}
+{{ $tags:= delimit .Params.tags ", " }}
+<span>{{ lower $tags }}</span>
 ```
 Into that:
 ```go-html-template
-{{ .Params.tags | delimit ", " }}
+<span>{{ .Params.tags | delimit ", " | lower }}</span>
 ```
 
 ## Let's dive in!
@@ -74,18 +77,18 @@ This is how you grab that asset file and turn it into a processable resource. On
 
 `.Get` looks in the `assets` directory of your project, so its second parameter is our filepath relative to that directory.
 
-Let’s start with our style file and just grab it like that.
+Let’s start with our style file and go `.Get` it.
 
 ```go-html-template
-{{ $style := resources.Get "style/main.scss" }}
+{{ $styleSass := resources.Get "style/main.scss" }}
 ```
 
 ### Sass to CSS with .toCSS
-`.toCSS`! The name is pretty intuitive as this will turn our `sass` or `scss` file into a `css` file!
+`.toCSS`! The name is pretty intuitive as this will compile our `sass` or `scss` file into a `css` file!
 
 Here we go:
 ```go-html-template
-{{ $styleSass := $style | resources.ToCSS }}
+{{ $styleCSS := $styleSass | resources.ToCSS }}
 ```
 
 What we just did is use the resource we created from our asset file above and used `resources.ToCSS` on its piped in input.
@@ -94,19 +97,19 @@ Just like most of the following methods, you can pass a `dict` of [options](http
 We want to specify the output path and add a source map, so we’ll use the following bit instead:
 
 ```go-html-template
-{{ $styleSass := $style | resources.toCSS (dict "targetPath" "custom/style.css" "enableSourceMap" true)
+{{ $styleCSS := $styleSass | resources.toCSS (dict "targetPath" "custom/style.css" "enableSourceMap" true)
 ```
 
 
 {{% notice %}}
 __Only SASS?__
-For now, yes and I believe it was an easy pick. Ask around, look up for user share, Sass is number one, also Sass requires Ruby, so having Hugo Pipes process it removes the need of installing Ruby and the SASS Ruby gem on your environment.
+For now, yes and I believe it was an easy pick. Ask around, look up for user share, Sass is number one, also RubySass requires Ruby, so having Hugo Pipes process it removes the need of installing Ruby and the SASS Ruby gem on your environment.
 {{% /notice %}}
 
 ### Autoprefixing with .PostCSS
-`resources.PostCSS` does require nodeJS to run. But shall you be ok with a touch `npm` in your Hugo project, you should definitely give it a spin. I’ll let go of my good-riddance-npm smirk and use it in this project so we can « autoprefix » our `style.css`.
+`resources.PostCSS` does require nodeJS to run. But shall you be ok with a touch of `npm` in your environement, you should definitely give it a spin. I’ll let go of my good-riddance-npm smirk and use it in this project so we can « autoprefix » our `style.css`.
   
-Hugo will look for this config file at the root of our theme or project under the name `postcss.config.js`. Ours will look like this:
+Hugo will look for a PostCSS config file at the root of our theme or project under the name `postcss.config.js`. Ours is pretty straight forward and look like this:
 
 ```javascript
 module.exports = {
@@ -125,17 +128,17 @@ Hugo needs `postcss-cli` to process `PostCSS` so we should install it along our 
 Once we have happily run `npm install`, we can safely use PostCSS on our style file:
 
 ```go-html-template
-{{ $styleAutoprefixed := $styleSass | resources.PostCSS
+{{ $styleAutoprefixed := $styleCSS | resources.PostCSS
 ```
 
 Shall we need our PostCSS config file to live elsewhere, we could have set its path in the `.PostCSS` method’s [options](https://gohugo.io/hugo-pipes/postcss/#options)’ dict:
  
 ```go-html-template
-{{ $styleAutoprefixed := $styleSass | resources.PostCSS (dict "config" "config/postcss.js")
+{{ $styleAutoprefixed := $styleCSS | resources.PostCSS (dict "config" "config/postcss.js")
 ```
 
 ### Minifying with .Minify
-We can’t let this as is! Let’s turn hundreds of lines of readable code into a wall of glyphs and save some precious bandwidth in the process…
+We're way past 2010 these days so we obviously can’t serve our CSS file as is! Let’s turn hundreds of lines of readable code into a wall of glyphs and save some precious bandwidth in the process…
 
 ```go-html-template
 {{ $styleMinified := $styleAutoprefixed | resources.Minify
@@ -152,8 +155,8 @@ Now, we’d usually add some sort of hash after our stylesheet url for some good
 ### What a style!
 We’re currently done with our style file and ready to drop that `<link>`.
 
-Before we do, let's thank those many lines of variable declarations for pacing our walkthrough and, using Go Pipes, squash them into one happy line!
-And because each Hugo Pipes transformation method uses a camel-cased alias, we can end up with this beauty:
+But before we do, let's get rid of those many lines of variable declarations. They really helped pacing our walkthrough here but they're an eye sore. Using Go Pipes we'll squash them into one happy line!
+And because each Hugo Pipes transformation method uses a camel-cased alias, we can even go furter and write this beauty:
 
 ```go-html-template
 {{ $style := resources.Get "sass/main.scss" | toCSS | postCSS | minify | fingerprint }} 
@@ -180,23 +183,23 @@ For most of our pages, we’ll use `resources.Concat` to bundle `$plugins` and `
 ```
 
 For most of the transformation methods we used with our style, the resulting filepath was guessed by Hugo Pipes. 
-It usually does so by taking the original asset filepath and modifying its extension when needed. But here, we’ve got several files and filepaths and Hugo won’t take any guess so we need to set a desired filepath as argument.
+It usually does so by taking the original asset filepath and modifying its extension when needed. But here, we’ve got several files and filepaths and Hugo won’t take any guess so we need to our desired filepath as argument.
 
 Great, we have a bundled `js/global.js` for most of our pages.
 
 Now for our portfolio section, it is a bit more complex as we need both `jQuery` and the carousel thingy.
 
 ```go-html-template
-{{ $homeJS := (slice $plugins $main $jQuery $carousel) |resources.Concat "js/global-carousel.js" }}
+{{ $portfolioJS := (slice $plugins $main $jQuery $carousel) |resources.Concat "js/global-carousel.js" }}
 ```
 Now we have two bundles to chose from: `js/global.js` and `js/global-carousel.js`.
 
 Assuming we’re in the near future where Go Template allows variable overwrite, this would be our code:
 
 ```go-html-template
-{{ $script := $default }}
+{{ $script := $defaultJS }}
 {{ if eq .Section "portfolio" }}
-	{{ $script := $home }}
+	{{ $script = $portfolioJS }}
 {{ end }}
 {{ $globalJS := $script | resources.Minify | resources.Fingerprint
 <script src="{{ $globalJS.Permalink" }}></script>
@@ -229,7 +232,6 @@ If we wanted to use integrity without a Fingerprinted `.Permalink` we’d have t
 {{ $fpJS := $script | resources.Fingerprint }}
 <script src="{{ $script.Permalink }}" integrity="{{ $fpJS.Data.Integrity" }}></script>
 ```
-
 
 ### Customizing our sass variables with .ExecuteAsTemplate
 
@@ -279,7 +281,7 @@ We'll be able compile it to CSS, minify it, fingerprint it and drop its `.Permal
 
 ### Customizing our JS variables with .FromString
 
-Back to our javascript. Some `.Site.Params` and Front Matter param needs to be exploitable from our javascript file because:  
+Back to our javascript. Some `.Site.Params` and Front Matter needs to be exploitable from our javascript file because:  
 
 - Our carousel lazyloads cloudinary images, we need the project’s cloudinary root url. 
 - A component in our script uses a weather API to display a travel post’s city temperature. So we either need the page’s `weather_location` Front Matter, or our project’s default `.Site.Params.weather_location`.
@@ -306,6 +308,7 @@ We want to inject those variables in a separate script tag to make sure it is av
 {{ $string := (printf "var cloudinary_url = '%v'; var weather_location = '%v';" (.Param "cloudinary") (.Param "weather_location") ) }}
 
 {{ $filePath := printf "vars.%x.js" (.Param "weather_location") }}
+
 {{ $vars := $string | resources.FromString $filePath }}
 
 <script type="text/javascript" src="{{ $vars.Permalink }}"></script>
@@ -319,7 +322,7 @@ What we do above is hard to read but easy to explain.
 {{ $string := (printf "var cloudinary_url = '%v'; var weather_location = '%v';" (.Param "cloudinary") (.Param "weather_location") ) }}
 ```
 
-First we use `printf` to build a string which will replace every `%v` verb with our properties’ respective value. This produces a nice looking list of javascript variables declaration.
+First we use [`printf`](https://gohugo.io/functions/printf/) to build a string which will replace every `%v` [verb](https://golang.org/pkg/fmt/#hdr-Printing) with our properties’ respective value. This produces a nice looking list of javascript variable declarations.
 
 ```go-html-template
 {{ $filePath := printf "vars.%x.js" (.Param "weather_location") }}
@@ -329,7 +332,7 @@ Then we define its filepath.
 Every resource sharing the same filepath will inevitably overwrites each other. And because, here, we will have several variations of our `vars.js` throughout our site, we need to specify a unique file path for every version of it.   
 We choose to use its only changing factor, `weather_location`, to ensure Hugo only builds one variation of `vars.js` per existing location. 
 
-To make this unique string safely useable as filename, we use `printf` with the verb `%x`. This will wedge a base 64 representation of our `weather_location` between our file’s basename and extension.
+To make this unique string safely useable as filename, we use `printf` again but this time with the verb `%x`. This will wedge a base 64 representation of our `weather_location` between our file’s basename and extension.
 
 From now on if two pages uses our default beautiful `Montréal, CA`, they’ll use the same resource, while this other page written from New York will use it’s own Manhattan style `vars.n3wy0rkc1ty.js`!
 
