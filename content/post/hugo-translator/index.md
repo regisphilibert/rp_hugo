@@ -191,7 +191,7 @@ to
 
 ## Variables
 
-Variables in Hugo's Go Template can be useful but carries a major caveat. There is no way to simply override a variable value other than using .Scratch as explained [here]({{< ref "post/hugo-scratch/index.md" >}})
+Variables in Hugo's Go Template can be useful but carries a major caveat. There is no way to simply override a variable value other than using .Scratch as explained [here]({{< ref "hugo-scratch/index.md" >}})
 
 For clarity I prefixed my variables with the old fashioned **$** but you don't have to.
 

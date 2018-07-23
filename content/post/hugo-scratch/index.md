@@ -133,7 +133,7 @@ This is not a Scratch method but a template function which allows for the creati
 
 This one allows to target a key from inside an array and assign it a new value. First parameter is your .Scratch key, second parameter is the key from within the array or map and the third one is your value.
 
-<small>If you don't know about [dict](https://gohugo.io/functions/dict/#readout) I explain about it [here]({{< ref "post/hugo-translator/index.md#associative-arrays" >}})</small>
+<small>If you don't know about [dict](https://gohugo.io/functions/dict/#readout) I explain about it [here]({{< ref "hugo-translator/index.md#associative-arrays" >}})</small>
 
 ~~~go-html-template
 {{ .Scratch.Add "greetings" (dict "english" "Hello" "french" "Bonjour") }}

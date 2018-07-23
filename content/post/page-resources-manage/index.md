@@ -421,7 +421,7 @@ All its needs to do is to `range` on the resources stored in the document direct
 ~~~
 
 
-And voilà! The result is [here]({{< ref "bogus/application/index.md" >}})
+And voilà! The result is [here]({{< ref "/bogus/application/index.md" >}})
 
 We could improve the shortcode with some parameters, but for the sake of this article, we'll keep it simple.
 

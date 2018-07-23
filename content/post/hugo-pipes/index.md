@@ -13,9 +13,9 @@ toc: true
 twitter_card: summary_large_image
 ---
 
-Hugo just released its latest and one of brightest feature. A set of resource processing methods which will take care of your Sass, your Minifying, Fingerprinting and more! All of this without any external build tools!
+Hugo just released its latest and one of brightest feature. A set of resource processing methods which will take care of our Sass, our Minifying, Fingerprinting and more! All of this without any external build tools!
 
-In this post we’ll see how to quickly implement a basic Hugo Pipes asset pipeline and eventually turn to some more advanced usage and techniques.
+In this post we’ll see how to quickly implement a basic Hugo Pipes asset pipeline and eventually add a more complex layer of Asset customization.
 
 ## What does it change?
 
@@ -36,7 +36,7 @@ Turns out Hugo just did, and I’m psyched!
 
 Enough about me, let’s talk about Hugo’s newly introduced Asset Processing set of methods! It’s been the on the #ssg news cycle for more than a week now so it’s time to get acquainted!
 
-### Asset is the new static (no, no, not at all!)
+### Assets/ is the new static/ (no, no, not at all!)
 
 First thing of note, these methods will only be available on files living in the `assets` directory, think of it as a `static` directory except the files will never be published as is.
 
@@ -45,21 +45,21 @@ Much like its `static` counterpart:
 - Its location is configurable with the `assetDir` key of your `config.yaml`. (will default to `assets`)
 - It follows the Hugo’s file unison logic. Meaning, anything in your `project/assets` will override homonymous files of `your-theme/assets`. 
 
-The big difference with `static` is that the files contained in `assets` will not be published unless the `.Permalink` of their resource object is used.
+The big difference with `static` is that the files contained in `assets` will not be published unless the `.Permalink` or `.RelPermalink` of their resource object is used.
 
-As of yet, and unlike `static`, you can only define one `assets` directory.
+As of yet you can only define one `assets` directory.
 
 ### Hugo Pipes vs Go Pipes
 We’ll be using [Go Template Pipes](https://gohugo.io/templates/introduction/#pipes) a lot in this article. They are not to be confused with the topic at hands but in a few words, they allow to chain several template functions together using the output of the former as the input of the latter.   
 
 Turning this:
 ```go-html-template
-{{ $tags:= delimit .Params.tags ", " }}
-<span>{{ lower $tags }}</span>
+{{ $teaser := markdownify (index .Params "teaser") }}
+{{ safeHTML $teaser }}
 ```
 Into that:
 ```go-html-template
-<span>{{ .Params.tags | delimit ", " | lower }}</span>
+{{ index .Params "subtitle" | mardkownify | safeHTML  }}
 ```
 
 ## Let's dive in!
@@ -179,7 +179,7 @@ Let’s start by storing all our script files as independent resources.
 For most of our pages, we’ll use `resources.Concat` to bundle `$plugins` and `$main`, in that order!
 
 ```go-html-template
-{{ $defaultJS := (slice $plugins $main) | resources.Concat "js/global.js" }}
+{{ $defaultJS := slice $plugins $main | resources.Concat "js/global.js" }}
 ```
 
 For most of the transformation methods we used with our style, the resulting filepath was guessed by Hugo Pipes. 
@@ -190,7 +190,7 @@ Great, we have a bundled `js/global.js` for most of our pages.
 Now for our portfolio section, it is a bit more complex as we need both `jQuery` and the carousel thingy.
 
 ```go-html-template
-{{ $portfolioJS := (slice $plugins $main $jQuery $carousel) |resources.Concat "js/global-carousel.js" }}
+{{ $portfolioJS := slice $plugins $main $jQuery $carousel |resources.Concat "js/global-carousel.js" }}
 ```
 Now we have two bundles to chose from: `js/global.js` and `js/global-carousel.js`.
 
