@@ -3,7 +3,7 @@ title: "Hugo Pipes' Revolution"
 date: 2018-07-19T17:28:14-04:00
 subtitle: A Hugo built-in asset pipeline
 slug: hugo-pipes-and-asset-processing-pipeline
-description: Hugo's roadmap got itself a built-in set of asset processing methods. From now on, Hugo will take care of bundling, minifying, fingerprinting our assets and even compiling our sass files! All of this without any external build tools 🤩. In this post we’ll cover how easy it is to implement a basic Hugo Pipes asset pipeline and finally turn to more advanced useage, involving relenting Sass and JS variables to our editors.
+description: Hugo's just got itself a built-in set of asset processing methods. From now on, Hugo will take care of bundling, minifying, fingerprinting our assets and even compiling our sass files! All of this without any external build tools 🤩. In this post we’ll cover how easy it is to implement a basic Hugo Pipes asset pipeline and finally turn to more advanced useage, involving relinquishing some Sass and JS variables to our editors.
 tags:
  - Hugo
  - Sass
@@ -23,7 +23,7 @@ Hugo's roadmap got itself a new milestone when .43 delivered Hugo Pipes, a built
 
 From now on, Hugo will take care of bundling, minifying, fingerprinting our assets and even compiling our sass files! All of this without any external build tools.
 
-In this post we’ll go through Hugo Pipes methods to cover how easy it is to implement a basic Hugo Pipes asset pipeline before turning to more advanced use cases, involving relenting Sass and JS variables to our editors.
+In this post we’ll go through Hugo Pipes methods to cover how easy it is to implement a basic Hugo Pipes asset pipeline before turning to more advanced use cases, involving relinquishing some Sass and JS variables to our editors.
 
 <!--more-->
 
@@ -46,7 +46,7 @@ Turns out Hugo just did, and I’m psyched! 😇
 ## Enters Hugo Pipes🚰
 
 Enough about me, let’s talk about Hugo’s newly introduced Asset Processing set of methods! 
-It’s been the on the #ssg news cycle for more than a week now so it’s time to get acquainted!
+It’s been the on the #staticgen news cycle for more than a week now so it’s time to get acquainted!
 
 ### Assets is the new static (wait... no!)
 
