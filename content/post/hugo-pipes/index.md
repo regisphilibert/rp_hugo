@@ -29,7 +29,7 @@ In this post we’ll go through Hugo Pipes methods to cover how easy it is to im
 
 ## What does it change?
 
-Let’s pause for a minute to process the changes brought by .43 and how they’ll impact me, and hopefully you too.
+Let’s pause for a minute to process the changes brought by Hugo Pipes and how they’ll impact me, and hopefully you too.
 
 I’m using version control and I want to keep my processed sources (distributed) out of my repository! 
 
@@ -120,7 +120,7 @@ For now, yes and I believe it was an easy pick. Ask around, look up for user sha
 {{% /notice %}}
 
 ### Autoprefixing with .PostCSS
-`resources.PostCSS` does require nodeJS to run. But shall you be ok with a touch of `npm` in your environement, you should definitely give it a spin. I’ll let go of my good-riddance-npm smirk and use it in this project so we can « autoprefix » our `style.css`.
+`resources.PostCSS` does require nodeJS to run. But shall you be ok with a touch of `npm` in your environment, you should definitely give it a spin. I’ll let go of my good-riddance-npm smirk and use it in this project so we can « autoprefix » our `style.css`.
   
 Hugo will look for a PostCSS config file at the root of our theme or project under the name `postcss.config.js`. Ours is pretty straight forward and look like this:
 
@@ -215,7 +215,7 @@ Assuming we’re in the near future where Go Template allows variable overwrite,
 	{{ $script = $portfolioJS }}
 {{ end }}
 {{ $globalJS := $script | resources.Minify | resources.Fingerprint }}
-<script src="{{ $globalJS.Permalink" }}></script>
+<script src="{{ $globalJS.Permalink }}"></script>
 ```
 
 ### Securing our script!
