@@ -1,0 +1,5 @@
+baseURL: https://staging.regisphilibert.com/
+disqusShortname: regisphilibert
+googleAnalytics: UA-24416415-1
+params:
+  contactFormApi: 'https://api.regisphilibert.com/mail/'

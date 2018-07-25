@@ -1,0 +1,60 @@
+baseURL: 'http://philibert.hugo'
+DefaultContentLanguage: en
+MetaDataFormat: yaml
+title: Regis Philibert
+theme: regisphilibert
+enableRobotsTXT: true
+buildDrafts: false
+pygmentsCodefences: true
+pygmentsUseClasses: true
+pygmentsCodefencesGuessSyntax: true
+
+related:
+  includeNewer: true
+  indices:
+    - name: tags
+      weight: 1
+
+blackfriday:
+  extensions:
+    - hardLineBreak
+  hrefTargetBlank: true
+
+outputs:
+  section:
+    - html
+    - json
+    - RSS
+
+taxonomies:
+  tag: tags
+  category: categories
+  project_tag: project_tags
+
+permalinks:
+  post: 'blog/:year/:month/:slug/'
+
+params:
+  description: I'm a front end dev from Montréal specialized in Hugo and Wordpress! How can I help?
+  author: Regis Philibert
+  jobtitle: Front Dev in Montreal
+  twitter_handle: regisphilibert
+  ajax: false
+  env: local
+  less: false
+  sass: true
+  contactFormApi: 'https://api.regisphilibert.com/mail/'
+  prism: false
+  imagesizes:
+    '500': small
+    '750': medium
+languages:
+  en:
+    weight: 1
+  fr:
+    weight: 2
+    description: Je suis un dev front end de Montréal spécialisé dans Hugo et Wordpress! Je peux vous aider?
+    jobtitle: Dev Front à Montréal
+imaging:
+  resampleFilter: box
+  quality: 80
