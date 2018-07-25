@@ -9,6 +9,7 @@ twitter_card: summary_large_image
 tags:
  - Hugo
  - Variables
+ - Scratch
  - Dot
  - Scope
  - Go Template
