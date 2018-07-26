@@ -374,7 +374,7 @@ We could even improve this by directly outputting the content of our resource in
 <script type="text/javascript">{{ $vars.Content | safeJS }}</script>
 ```
 {{% notice type="warning" %}}
-Even though in this last improvement we didn’t use the resource's `.Permalink, we still need to define a unique filepath for Hugo to correctly tell the two resource variations appart.
+Even though in this last improvement we didn’t use the resource's `.Permalink`, we still need to define a unique filepath for Hugo to correctly tell the two resource variations appart.
 {{% /notice %}}
 ## Conclusion 🏁
 

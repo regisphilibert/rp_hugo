@@ -179,8 +179,7 @@ And what did we gain beside a cleaner code ?
 
 Build time is now at less than 1.5s. 
 
-{{< notice >}}
-<i class="fab fa-github"></i> 
+{{< notice icon="github" title="Can I see?">}}
 If you're curious you can fork the [repo](https://github.com/regisphilibert/rougon) and `hugo --templateMetrics` to your heart content. You can even checkout the branch [`oldRelationship`](https://github.com/regisphilibert/rougon/tree/oldRelationships) and <span style="font-style:normal">🙄</span> while it builds.
 {{</ notice >}}
 
