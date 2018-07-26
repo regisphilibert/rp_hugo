@@ -114,9 +114,8 @@ Here we want to specify the output path and add a source map, so we’ll use the
 ```
 
 
-{{% notice %}}
-__Only SASS?__
-For now, yes and I believe it was an easy pick. Ask around, look up for user share, Sass is number one. `.ToCSS` may one day support other preprocessors.
+{{% notice title="Only Sass ? 🤔" %}}
+For now, yes and I believe it was an easy pick. Ask around, look up for user share, Sass is number one. `.ToCSS` may one day support other preprocessors, but until then it's only __Sass__ or __Scss__.
 {{% /notice %}}
 
 ### Autoprefixing with .PostCSS
@@ -374,8 +373,8 @@ We could even improve this by directly outputting the content of our resource in
 ```go-html-template
 <script type="text/javascript">{{ $vars.Content | safeJS }}</script>
 ```
-{{% notice %}}
-Even though in this last improvement we didn’t use the resource's .Permalink, we still need to define a unique filepath for Hugo to correctly tell the two resource variations appart.
+{{% notice type="warning" %}}
+Even though in this last improvement we didn’t use the resource's `.Permalink, we still need to define a unique filepath for Hugo to correctly tell the two resource variations appart.
 {{% /notice %}}
 ## Conclusion 🏁
 
