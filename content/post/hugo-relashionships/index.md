@@ -83,13 +83,13 @@ We could choose an existing identifier like the filename, but a unique easy to r
 #### Relationships in our templates
 From [Eugène's landing page](http://rougon-macquart.com/personnage/2010-03-15-rougon-eugene/) we'll need to output the novels he appears in. We can use `where` and `intersect` to build our list:
 
-```go
+```go-html-template
 {{ $characters := where .Site.Pages.ByTitle ".Params.novel" "intersect" (slice .Params.id)}}
 ```
 
 From the novel [Son Excellence Eugène Rougon](http://rougon-macquart.com/roman/1876-son-excellence-eugene-rougon/), as we need to ouput its characters, we use `where` and `in`:
 
-```go
+```go-html-template
 {{ $novels := where .Site.Pages.ByTitle ".Params.id" "in" .Params.novel }}
 ```
 
@@ -159,14 +159,14 @@ From our single templates, we will use the `.RelatedIndices` method to fetch our
 
 From a novel’s single template, like _Son Excellence Eugène Rougon_, we can now list all its, forgive my french, « personnages » like so:
 
-```go
+```go-html-template
 {{ $characters := where (.Site.RegularPages.RelatedIndices . "novel" ) "Type" "personnage" }}
 ```
 _First param is our page context, the given page, second is our familiar index._
 
 And from a character’s single, like _Eugène_, all its « romans » :
 
-```go
+```go-html-template
 {{ $novels := where (.Site.RegularPages.RelatedIndices . "novel" ) "Type" "roman" }}
 ```
 

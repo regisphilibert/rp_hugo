@@ -78,7 +78,7 @@ You need to add Resources to a page of Kind `section` or `taxonomy`? Go on and h
 #### .Resources.ByType (func)
 
 Allow to retrieve all the page resources by type.
-~~~go
+```go-html-template
 {{ with .Resources.ByType "image" }}
 	<div class="Image">
 	{{ range . }}
@@ -86,14 +86,14 @@ Allow to retrieve all the page resources by type.
 	{{ end }}
 	</div>
 {{ end }}
-~~~
+```
 
 
 #### .Resources.Match (func)
 
 Introduced in 0.34 `.Match` allows you to retrieve resources by [Glob matching](https://en.wikipedia.org/wiki/Glob_(programming))
 Along the lines of our example above, it would go this way.
-~~~go
+```go-html-template
 {{ with .Resources.Match "images/carousel/*" }}
 	<div class="Carousel__slide">
 	{{ range . }}
@@ -101,18 +101,17 @@ Along the lines of our example above, it would go this way.
 	{{ end }}
 	</div>
 {{ end }}
-~~~
+```
 
 ##### Glob matching?
-To illustrate Glob let's say you are looking for that sweet letter you got last year. Let's see which glob would find this letter for you:
-~~~go
-// Looking for letters/DearJohn.doc ?
-.Resources.Match "letters/Dear*" ✅ 
-.Resources.Match "letters/*.doc" ✅
-.Resources.Match "**.doc" ✅ 
-.Resources.Match "**/dearjohn.doc" 🚫
-.Resources.Match "*.doc" 🚫
-~~~
+To illustrate Glob let's say you are looking for that sweet letter you got last year. Let's see which glob would find this prose stored as `letters/DearJohn.doc`:
+
+- `.Resources.Match "letters/Dear*"` ✅ 
+- `.Resources.Match "letters/*.doc"` ✅
+- `.Resources.Match "**.doc"` ✅ 
+- `.Resources.Match "**/dearjohn.doc"` 🚫
+- `.Resources.Match "*.doc"` 🚫
+
 
 #### .Resources.GetMatch (func)
 
@@ -152,7 +151,7 @@ Now. How can it benefit my coding?
 ### In my templates?
 Well from your template you can now easily retrieve the resources bundled with a post to say create a gallery in your single.html:
 
-~~~go
+```go-html-template
 {{ with .Resources.ByType "image" }}
 	<div class="Gallery">
 		{{ range . }}
@@ -162,8 +161,7 @@ Well from your template you can now easily retrieve the resources bundled with a
 		{{ end }}
 	</div>
 {{ end }}
-
-~~~
+```
 
 Now all you will have to do is drop your images in the post bundle directory and _voilà_!
 
@@ -173,14 +171,14 @@ Metadata offer a simpler way, which we will cover later.
 
 You can also create a __shortcode__ which will retrieve a particuliar resource by its matching filename.
 
-~~~go
-//shortcodes/img.html
+```go-html-template
+# shortcodes/img.html
 {{ $img := $.Page.Resources.GetMatch (.Get 0)}}
 <figure>
 	<img src="{{ $img.RelPermalink }}" alt="(.Get 1)" />
 	<figcaption>(.Get 1)</figcaption>
 </figure>
-~~~
+```
 
 And in your markdown:
 
@@ -196,7 +194,7 @@ You can use any file type, but knowing what you're dealing with is important. Tr
 
 Because `.ResourceType` will only give you the main type of your file, if you need to know if this resource of type application is a ZIP or a PDF file, for now, you'll need to use `strings.Contains` on `.RelPermalink`  as illustrated below[^1].
 
-~~~go
+```go-html-template
 {{ with .Resources.ByType "application" }}
 	<ul>
 	{{ range . }}
@@ -214,7 +212,7 @@ Because `.ResourceType` will only give you the main type of your file, if you ne
 	{{ end }}
 	</ul>
 {{ end }}
-~~~
+```
 
 Or you could just use Page Resources Metadata which leads us to...
 
@@ -274,10 +272,9 @@ I write it in lowercase, for this is the way in you Front Matter but you should 
 We already reviewed its [default](#name-string), now you can overwrite it.
 
 Now remember those functions `.Match` and `.GetMatch`? This is what they use, the `.Name`. So once we apply a custom `name` to yummy-cupcake.jpg, you will have to .Match this new name and not the filename. In our case, trying to match yummy-cupcake.jpg:
-```
-{{ .Resources.Match "*/yummy-*" }} 🚫
-{{ .Resources.Match "*/cupcake-*" }} ✅
-```
+
+- `.Resources.Match "*/yummy-*"` 🚫
+- `.Resources.Match "*/cupcake-*"` ✅
 
 Using Front Matter resources metadata we changed the name of yummy-cupcake, it is now called `cupcake-1` and will only respond when called by its new name even by `.Match`.
 
@@ -290,7 +287,7 @@ More like `.Title`, it holds the same default value as name, now you can overwri
 
 This is an object for you to store anything you want, like for Page params, you retrieve them like so:
 
-~~~go
+```go-html-template
 {{ range $.Page.Resources.Match "**.jpg" }}
 <figure class="Figure">
 	<img src="{{ .Permalink }}" alt="{{ .Title }}">
@@ -300,14 +297,14 @@ This is an object for you to store anything you want, like for Page params, you 
 	</div>
 	{{ end }}
 </figure>
-~~~
+```
 
 ### More on metadata.
 Obviously there are plenty use cases for them. Already I can think of adding a draft param to some files I want to exclude from a particular range.
 
-~~~go
+```go-html-template
 {{ if not (.Params.draft) }} // Check that the Resource is not marked as draft
-~~~
+```
 
 Another use case is the building of a manifest shortcode to list certain files from your bundle right in your content.
 
@@ -336,7 +333,7 @@ Let's go back to our structure example and focus on a Bundle for a section conta
         └── header.jpg
 ~~~
 
-{{< notice >}}
+{{< notice icon="external-link-square-alt" title="More on Section Bundles">}}
 Want to learn more about Leaf Bundle vs. Branch Bundle in Hugo? You should start by the [doc](https://gohugo.io/content-management/page-bundles/#readout) and keep on reeding this thorough [piece](https://scripter.co/hugo-leaf-and-branch-bundles/) by [@kaushalmodi](https://github.com/kaushalmodi)
 {{< /notice >}}
 
@@ -407,7 +404,7 @@ Then we create a shortcode so we can add the file list anywhere in your content.
 
 All its needs to do is to `range` on the resources stored in the document directory.
 
-~~~go
+```go-html-template
 // shortcodes/manifest.html
 <ul>
 	{{ range .Resources.Match "documents/*" }}
@@ -418,7 +415,7 @@ All its needs to do is to `range` on the resources stored in the document direct
 	</li>
 	{{ end }}
 </ul>
-~~~
+```
 
 
 And voilà! The result is [here]({{< ref "/bogus/application/index.md" >}})
