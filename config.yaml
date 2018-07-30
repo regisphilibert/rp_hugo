@@ -59,19 +59,8 @@ languages:
     weight: 2
     description: Je suis un dev front end de Montréal spécialisé dans Hugo et Wordpress! Je peux vous aider?
     jobtitle: Dev Front à Montréalà
-    menu:
-      main:
-        - identifier: home
-          name: Accueil
-          url: "/"
-          weight: 1
 imaging:
   resampleFilter: box
   quality: 80
 
-menu:
-  main:
-    - identifier: home
-      name: Home
-      url: "/"
-      weight: 1
+
