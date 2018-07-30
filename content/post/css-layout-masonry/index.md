@@ -111,7 +111,7 @@ That being said, beside the obvious order problem, *Multi-column* solves most of
 
 You can set a gutter and a rule and style their respective colors.
 You can define the column number or just set a width and let them adjust.  
-And who knows ? You may be part of the lucky few who don't have requirement n°2 in your project, and in this case, your champion is undeniably Multi-column and its impressive {{% a_blank "browser compatibility" "https://caniuse.com/#feat=multicolumn" %}}. 
+And who knows ? You may be part of the lucky few who don't have requirement n°2 in your project, and in this case, your champion is undeniably Multi-column and its impressive [browser compatibility](https://caniuse.com/#feat=multicolumn). 
 And all it would take is this :
 ~~~css
 .wall{

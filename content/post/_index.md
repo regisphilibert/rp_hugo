@@ -5,7 +5,8 @@ url: /blog
 aliases:
  - /post
 
-menu: "main"
+menu:
+  main:
+    weight: 4
+    name: Blog
 ---
-
-bonjour

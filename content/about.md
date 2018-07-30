@@ -3,6 +3,10 @@ title: "Bonjour Hi"
 date: 2017-11-23T14:44:35-05:00
 draft: false
 layout: about
+menu:
+  main:
+    weight: 2
+    name: About
 ---
 
 I build websites from and occasionally [**for**](/project_tags/mtl/) Montréal 🇨🇦.
@@ -15,7 +19,7 @@ I am __front end__ first and foremost, the view is what I love best. That being 
 
 My most outstanding works are listed [here](/).
 
-I'm on <span class="black-color">{{% a_blank "__GitHub__" "https://github.com/regisphilibert" %}}</span>, <span class="twitter-color">{{% a_blank "🐦__Twitter__" "https://twitter.com/regisphilibert" %}}</span> and <span class="black-color">{{% a_blank "__LinkedIn__🚾" "https://www.linkedin.com/in/regisphilibert" %}}[^2]</span>, 
+I'm on <span class="black-color">[__GitHub__](https://github.com/regisphilibert)</span>, <span class="twitter-color">[🐦__Twitter__](https://twitter.com/regisphilibert)</span> and <span class="black-color">[__LinkedIn__🚾](https://www.linkedin.com/in/regisphilibert)</span>[^2].
 
 As many of my clients I'm afraid no one sees what's below the fold. Have you seen the skill grid below ? Down there, one or two scroll away.
 
