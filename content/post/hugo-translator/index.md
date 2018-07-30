@@ -72,85 +72,46 @@ To
 
 Conventional templating languages systematically offer an intuitive syntax for conditions. Go Template does not. It gives you some bool functions to use in place of conditions.
 
+
 ### bool (the simple one)
-<div class="row">
-    <div class="col-md-6">from
-        {{< highlight twig >}}{% if firstname %}{{< / highlight >}}
-    </div>
-    <div class="col-md-6">to
-        {{< highlight go >}}{{ if $firstname  }}{{< / highlight >}}
-    </div>
-</div>
+| from | to |
+|:------|:-----|
+|{{< highlight twig >}}{% if firstname %}{{< / highlight >}} |{{< highlight go >}}{{ if $firstname  }}{{< / highlight >}}|
 
 ### !bool
-<div class="row">
-    <div class="col-md-6">from
-        {{< highlight twig >}}{% if !firstname %}{{< / highlight >}}
-    </div>
-    <div class="col-md-6">to
-        {{< highlight go >}}{{ if not $firstname  }}{{< / highlight >}}
-    </div>
-</div>
+ from | to 
+:------|:-----
+{{< highlight twig >}}{% if !firstname %}{{< / highlight >}}|{{< highlight go >}}{{ if not $firstname  }}{{< / highlight >}}
 
 ### ==
-<div class="row">
-    <div class="col-md-6">from
-        {{< highlight twig >}}{% if firstname == "Fabien" %}{{< / highlight >}}
-    </div>
-    <div class="col-md-6">to
-        {{< highlight go >}}{{ if eq $firstname "Fabien" }}{{< / highlight >}}
-    </div>
-</div>
+ from | to 
+:------|:-----
+{{< highlight twig >}}{% if firstname == "Fabien" %}{{< / highlight >}}|{{< highlight go >}}{{ if eq $firstname "Fabien" }}{{< / highlight >}}
 
 ### !=
-<div class="row">
-    <div class="col-md-6">from
-        {{< highlight twig >}}{% if firstname != "Fabien" %}{{< / highlight >}}
-    </div>
-    <div class="col-md-6">to
-        {{< highlight go >}}{{ if ne $firstname "Fabien" }}{{< / highlight >}}
-    </div>
-</div>
+ from | to 
+:------|:-----
+{{< highlight twig >}}{% if firstname != "Fabien" %}{{< / highlight >}}|{{< highlight go >}}{{ if ne $firstname "Fabien" }}{{< / highlight >}}
 
 ### >
-<div class="row">
-    <div class="col-md-6">from
-        {{< highlight twig >}}{% if value > 3 %}{{< / highlight >}}
-    </div>
-    <div class="col-md-6">to
-        {{< highlight go >}}{{ if gt $value 3 }}{{< / highlight >}}
-    </div>
-</div>
+ from | to 
+:------|:-----
+{{< highlight twig >}}{% if value > 3 %}{{< / highlight >}}|{{< highlight go >}}{{ if gt $value 3 }}{{< / highlight >}}
 
 ### >=
-<div class="row">
-    <div class="col-md-6">from
-        {{< highlight twig >}}{% if value >= 3 %}{{< / highlight >}}
-    </div>
-    <div class="col-md-6">to
-        {{< highlight go >}}{{ if ge $value 3 }}{{< / highlight >}}
-    </div>
-</div>
+ from | to 
+:------|:-----
+{{< highlight twig >}}{% if value >= 3 %}{{< / highlight >}}|{{< highlight go >}}{{ if ge $value 3 }}{{< / highlight >}}
 
 ### <
-<div class="row">
-    <div class="col-md-6">from
-        {{< highlight twig >}}{% if value > 3 %}{{< / highlight >}}
-    </div>
-    <div class="col-md-6">to
-        {{< highlight go >}}{{ if lt $value 3 }}{{< / highlight >}}
-    </div>
-</div>
+ from | to 
+:------|:-----
+{{< highlight twig >}}{% if value > 3 %}{{< / highlight >}}|{{< highlight go >}}{{ if lt $value 3 }}{{< / highlight >}}
 
 ### <=
-<div class="row">
-    <div class="col-md-6">from
-        {{< highlight twig >}}{% if value >= 3 %}{{< / highlight >}}
-    </div>
-    <div class="col-md-6">to
-        {{< highlight go >}}{{ if le $value 3 }}{{< / highlight >}}
-    </div>
-</div>
+ from | to 
+:------|:-----
+{{< highlight twig >}}{% if value >= 3 %}{{< / highlight >}}|{{< highlight go >}}{{ if le $value 3 }}{{< / highlight >}}
 
 ### What about OR, AND ? 
 
