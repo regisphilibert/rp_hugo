@@ -3,6 +3,7 @@ title: "Multilingual in Hugo Part 1: Content translation"
 date: 2018-06-29T17:24:56-04:00
 draft: true
 slug: mutlilingual-in-hugo-part-1-translating-your-content
+toc: true
 ---
 
 # Multilingual in Hugo Part 1: Content translation
@@ -21,7 +22,7 @@ When undertaking a multilingual project in Hugo, the first thing to do would be 
 
 So we add the following params to our config file.
 
-```html
+```yaml
 # config.yaml
 languages:
   en:
@@ -89,7 +90,7 @@ languages:
 The parameter takes a relative path to your project, or an absolute path. Using an absolute path means the content directories don’t necessarily need to live inside your project, they can be anywhere on your computer.
 
 Going back to our about pages, this is how our content directories would look like:
-```html
+```
 content
     ├── english
     │   └── about.md
@@ -101,7 +102,7 @@ content
 
 Now, Hugo will assign a language to each of the about pages by looking at which directory they live in.
 
-## Translation linking 🔗
+## Linking our pages 🔗
 
 Translation linking is important, because we usually want to advertise the available translations of a page to our users in the form of a language menu, or to Google in the form of an alternate meta tag.
 
@@ -109,29 +110,28 @@ We’ve seen how Hugo assign a language to a particular page, but how will it be
 
 For both systems, Hugo will look at the filename and its location relative to its content directory. So depending on your translation management system, we can check those linkings:
 
-__By Filename:__
-
- | |Link
----|---|---
+{{% fullwidth %}}
+ By Filename | | 
+:---|---|---
 `content/about.md`|`content/about.fr.md`| ✅
 `content/about.fr.md`|`content/about.es.md`|✅
 `content/about/index.md`| `content/about/index.fr.md` |✅
 `content/about.md`|`content/a-propos.fr.md`|🚫
 `content/company/about.md`|`content/about.fr.md`|🚫
+{{%/ fullwidth %}}
 
-
-__By Placement:__
-
- | |Link
----|---|---
+{{% fullwidth %}}
+By Placement | | 
+:---|---|---
 `content/english/about.md`|`content/french/about.md`|✅
 `content/english/about/index.md`|`content/french/about/index.md`|✅
 `content/english/about.md`|`content/french/a-propos.md`|🚫
 `content/english/company/about.md`|`content/english/about.md`|🚫
+{{%/ fullwidth %}}
 
 Note that you can fight the behaviour above by forcing a link even if default linking factors don’t match.
 All you’d have to do is add to your pages a `translationKey` Front Matter param which share the same value. 
-```html
+```markdown
 # inside about.md, a-propos.fr.md, acerda.es.md
 ---
 translationKey: about
@@ -145,12 +145,14 @@ Now, even though their names won’t match, Hugo will gladly link those pages fo
 Now, how can we benefit from this linking in our template?
 
 Hugo stores the linked translations in two Page variables:
+
 * `.Translations`, the linked pages.
 * `.AllTranslations`, the linked pages including the current one. 
+
 The collections are sorted by language `Weight` as defined in our configuration file.
 
 So in order to build our alternate meta tags, we would just add this in our `single.html`’s `<head>`:
-```html
+```go-html-template
 {{ if .IsTranslated }}
 	{{ range .Translations }}
 	<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
@@ -161,7 +163,7 @@ So in order to build our alternate meta tags, we would just add this in our `sin
 Some may argue the current translation should also be added as an alternate, in this case, we could use `.AllTranslations`.
 
 This also works perfectly to build a language menu which will only show up if one or more translations are available.
-```html
+```go-html-template
 {{ if .IsTranslated }}
 	<nav class="LangNav">
 	{{ range .Translations }}
@@ -177,7 +179,7 @@ Not only does Hugo make it possible to share resources among translations, it al
 
 Let’s go back to our about pages and turn them into Bundles. For clarity we’ll use the « directory » management system.
 
-```html
+```
 content
     ├── english
     │   └── about
@@ -192,7 +194,7 @@ content
 ```
 
 
-```html
+```
 content
     ├── english
     │   └── about
@@ -215,7 +217,7 @@ How to add a dedicated `header.jpg` for the Spanish page?
   
 By doing exactly that!
 
-```html
+```
 content
     ├── english
     │   └── about
@@ -238,7 +240,7 @@ They don’t have a `header.jpg`. So which header will be returned from their «
 Well here, Hugo will look at the languages `Weight`, and return the winners’s file. If we look at our initial configuration file, the French should get the English header.
 
 You should know that any file, content or not, can be renamed to match a language. For this Page Bundle localization, we chose to manage our translations by content directory but had we chosen to manage them by filename, this is how our  About page ’s Bundle would have looked like:
-```html
+```
 content
 	└── about
 		├── index.md
