@@ -1,5 +1,5 @@
 ---
-title: "Hugo Pipes' Revolution"
+title: "Hugo Pipes Revolution"
 date: 2018-07-19T17:28:14-04:00
 subtitle: A Hugo built-in asset pipeline
 slug: hugo-pipes-and-asset-processing-pipeline
