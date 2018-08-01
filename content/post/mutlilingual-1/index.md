@@ -177,7 +177,7 @@ This also works perfectly to build a language menu which will only show up if on
 
 Not only does Hugo make it possible to share resources among translations, it also lets you localize a resource!
 
-Let’s go back to our about pages and turn them into Bundles. For clarity we’ll use the « directory » management system.
+Let’s go back to our about pages and turn them into Bundles. For clarity we’ll use the "_per directory_" management system.
 
 ```
 content
@@ -212,7 +212,8 @@ For now, every pages share the same `header.jpg`, the one in the English transla
  
 Hugo help save on duplicates here by making any ressource available to every linked translations. Meaning we can access this header image regardless of the current language using our favorite `.Resources` method, say `.Resources.GetMatch "headers.jpg"`
 
-This is very convenient! But what if we want a header image better aligned with our Spanish audience.
+This is very convenient.
+But what if we want a header image better aligned with our Spanish audience.
 How to add a dedicated `header.jpg` for the Spanish page?   
   
 By doing exactly that!
@@ -235,11 +236,11 @@ content
 That’s it, when building the Spanish translation of the about page our `.Resources` method will return the Spanish bundle’s very own `header.jpg`.
 
 Now what about the French? 
-They don’t have a `header.jpg`. So which header will be returned from their « headerless » page? The Spanish one? The English one?
+There is no `header.jpg` kin that bundle, so which header will be returned for the french translation? The Spanish one? The English one?
 
 Well here, Hugo will look at the languages `Weight`, and return the winners’s file. If we look at our initial configuration file, the French should get the English header.
 
-You should know that any file, content or not, can be renamed to match a language. For this Page Bundle localization, we chose to manage our translations by content directory but had we chosen to manage them by filename, this is how our  About page ’s Bundle would have looked like:
+You should know that any file, content or not, can be renamed to match a language. For this Page Bundle localization, we chose to manage our translations by __content directory__ but had we chosen to manage them by __filename__, this is how our About page's Bundle would have looked like:
 ```
 content
 	└── about
@@ -249,18 +250,19 @@ content
 		├── header.jpg
 		└── header.es.jpg
 ```
-
-Because `.GetMatch` test on a Resource’s `.Title` which default to its filename (language included), always try to make your resource call language agnostic. Like so: `.Resources.GetMatch "header*.jpg"`
-
-## Where we’re going we do need route
-What about your pages’s URLs ? We already mentioned how you can overwrite the slug from the Front Param but what about the root url of your languages?
+{{< notice >}}
+Because `.GetMatch` test on a Resource’s `.Title` which default to its filename (language included), always try to make your resource call language agnostic, like so: `.Resources.GetMatch "header*.jpg"`
+{{< /notice >}}
+## Setting our URLs
+What about your pages’s URLs ? We already mentioned how you can overwrite the slug from the Front Matter but what about the root url of your languages?
 
 By default, Hugo will store your default language pages at the root of your `public` directory and the other languages’ pages below their respective directories.
 
 So quiet logically our About pages would en up at:
-about/index.html :english
-fr/about/index.html :french
-es/about/index.html
+
+- `about/index.html` 🇬🇧
+- `fr/about/index.html` 🇫🇷
+- `es/about/index.html` 🇪🇸
 
 We could have the default language also live below a directory though by simply setting `defaultContentLanguageInSubdir`to `true` in our `config.yaml`
 
