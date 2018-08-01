@@ -1,24 +1,25 @@
 - Name: Hugo
   Big: true
-  Text: This is the best static generator out there. I code my website with it, I
-    [write about it](https://regisphilibert.com/tags/hugo/), I'm eager to work with
+  Text: This is the best static generator out there. I code my websites with it, I
+    [write about it](https://regisphilibert.com/tags/hugo/), I'm always eager to work with
     it! Go [Hugo](https://gohugo.io/)!
-- Icon: npm
-  Name: npm
-  Text: Duh. I use Yarn for package managing though (cuz I like emoji).
 - Icon: laravel
+  Guess: true
   Name: Laravel
   Text: My PHP framework of choice. I build the 375mtl API with it plus a bunch of
     personnal projects.
+- Icon: git
+  Name: GIT
+  Text: Yes! And before you ask, I take it neat, straight from the terminal.
 - Name: PHP
   Text: My native language!
+- Icon: npm
+  Name: npm
+  Text: Duh. I use Yarn for package managing though because... emojis 🤩.
 - Icon: wordpress
   Big: true
   Name: Wordpress
   Text: Yep, it takes up most of my projects. Seven years working with it really build up your expertise. Handsdown it's the best CMS Backoffice out there and the world knows it. Beside with a little help of Rest API its backoffice is all you need.
-- Icon: git
-  Name: GIT
-  Text: Duh again. I'm a bitbucket dude, but hey, whatever your prefer.
 - Icon: codepen
   Name: Codepen
   Text: Oh yeah [here](https://codepen.io/regisphilibert/pens/popular/). Not too much over there though.
@@ -42,8 +43,8 @@
 - Name: MYSQL
   Text: Of course, but I usually let the framework handles it.
 - Icon: angular
-  Name: AngularJS
-  Text: Can't wait for an opportunity to really dig in this one. I built many personnal projects with it and low level internal job as well
+  Name: Angular
+  Text: I'm very familiar with our old friend [AngularJS](https://angularjs.org/), I built many personnal projects with it and low level internal job as well! I'm really having fun exploring its powerful [younger self](https://angular.io/) though.
 - Icon: react
   Name: React
   Text: Trained myself on serveral tutorials out there. Can't wait to go pro though.
@@ -52,9 +53,9 @@
   Text: Trained myself on serveral tutorials out there. Can't wait to go pro though.
 - Icon: github
   Name: GitHub
-  Text: Sure, use it for my public repos [here](https://github.com/regisphilibert).
+  Text: Sure, all my public repos are [there](https://github.com/regisphilibert)! My private ones as well 🤫.
 - Name: "🤡"
-  Text: I'm afraid of clowns. Yeah. Look a those creeps.
+  Text: I'm afraid of clowns... Look a this creep!
 - Icon: cpanel
   Name: cPanel
   Text: Damn! Those are fun.

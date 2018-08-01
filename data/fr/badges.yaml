@@ -3,10 +3,10 @@
   Text: Le meilleur générateur de site static 🚀. Je code mes sites web avec, [j'écris dessus](https://regisphilibert.com/tags/hugo/), et je chéris les projets montés avec! Go [Hugo](https://gohugo.io/)!
 - Icon: npm
   Name: npm
-  Text: Duh. J'utilise Yarn pour manager les packages (J'aime les emojis).
+  Text: Duh. En revanche j'utilise Yarn pour manager les packages parce que... emojis 🤩
 - Icon: git
   Name: GIT
-  Text: Ben là. Je suis plutôt bitbucket mais c'est vous qui voyez.
+  Text: Oui et en ligne de commande svp!
 - Icon: grunt
   Name: Grunt
   Text: J'utilise Grunt pour les tâches front-end.
