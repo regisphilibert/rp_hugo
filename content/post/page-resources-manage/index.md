@@ -123,23 +123,22 @@ Those 2 are deprecated (yep Hugo moves fast). But if you really still have to us
 ### Available properties for one resource.
 What to do when I found it?
 
-### .ResourceType / .MediaType (string)[^1]
+### .ResourceType / .MediaType[^1]
 
-You have serveral optoin to retrieve the [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types) of the resource, but it also comes with two methods to pinpoint what you really need. If our resource was a PDF this is what you could get using `.MediaType`
+You have serveral option to retrieve the [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types) of the resource, but it also comes with a few methods to pinpoint what you really need. 
+
+If our resource was a PDF this is what you could get using `.MediaType`
 
 - `.ResourceType` 👉 `pdf`
 - `.MediaType` 👉 `application/pdf`
 - `.MediaType.MainType` 👉 `application`
 - `.MediaType.SubType` 👉 `pdf`
-- `.MediaType.Suffixes` 👉 `[pdf]`
+- `.MediaType.Suffixes` 👉 `[pdf]` (a slice of suffixes)
 
-{{< notice type="warning" >}}
-Do not get fooled by the extension looking subtype. A `docx`file's `.SubType` will output _vnd.openxmlformats-officedocument.wordprocessingml.document_. Be cautious of what you test!
+{{< notice type="warning" title="Be cautious of what you test!" >}}
+Do not get fooled by this extension looking subtype. A `docx`file's `.SubType` will output _vnd.openxmlformats-officedocument.wordprocessingml.document_.
 {{</ notice >}}
 
-{{< notice >}}
-Prior to [Hugo Pipes]({{< ref "hugo-pipes" >}}) and its better handling of resources, `.ResourceType` outputed the full MIME Type as a string.
-{{</ notice >}}
 ### .Name (string)
 By default this is the base filename (including the extension).
 It can be overriden with the resource's Front Matter metadata.
