@@ -2,7 +2,6 @@
 	{{ range $.Page.Resources.Match "documents/*" }}
 
 		<li>
-			<div>{{ .MediaType }} | {{ delimit .MediaType.Suffixes ", " }}</div>
 			<a target="_blank" href="{{ .Permalink }}">
 				<i class="far fa-file-{{ .Params.icon }}"></i> {{ .Title }} <small>{{ with .Params.ref }}(Ref.{{ . }}) {{ end }}</small>
 			</a>
