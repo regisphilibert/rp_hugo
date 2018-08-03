@@ -7,7 +7,7 @@ resources:
     title: Instruction Guide
     params:
       ref: '90564568'
-  - src: documents/checklist.pdf
+  - src: documents/checklist.old.pdf
     title: Document Checklist
     params:
       ref: '90564572'

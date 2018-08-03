@@ -123,13 +123,23 @@ Those 2 are deprecated (yep Hugo moves fast). But if you really still have to us
 ### Available properties for one resource.
 What to do when I found it?
 
-### .ResourceType (string)
-The type of the resource.
+### .ResourceType / .MediaType (string)[^1]
 
-Now, it is based on MIME type, but will only hand out the main type. So when MIME type will give you `application/pdf`, .ResourceType will only give you `application`. See the full list of existing MIME type [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types).
+You have serveral optoin to retrieve the [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types) of the resource, but it also comes with two methods to pinpoint what you really need. If our resource was a PDF this is what you could get using `.MediaType`
 
-Then how do I make the difference between a ZIP and a PDF, both sharing the main type `application`? We'll cover this further down.
+- `.ResourceType` 👉 `pdf`
+- `.MediaType` 👉 `application/pdf`
+- `.MediaType.MainType` 👉 `application`
+- `.MediaType.SubType` 👉 `pdf`
+- `.MediaType.Suffixes` 👉 `[pdf]`
 
+{{< notice type="warning" >}}
+Do not get fooled by the extension looking subtype. A `docx`file's `.SubType` will output _vnd.openxmlformats-officedocument.wordprocessingml.document_. Be cautious of what you test!
+{{</ notice >}}
+
+{{< notice >}}
+Prior to [Hugo Pipes]({{< ref "hugo-pipes" >}}) and its better handling of resources, `.ResourceType` outputed the full MIME Type as a string.
+{{</ notice >}}
 ### .Name (string)
 By default this is the base filename (including the extension).
 It can be overriden with the resource's Front Matter metadata.
@@ -453,6 +463,8 @@ Of course a __gallery__ comes to mind or a __carousel__, using the Front Matter 
 Another use case could be to add rich full width __sections__ to a page. Big title, big background images, critical CTA, all modern websites need those sectionned pages. Before Page Resources you had to use complicated attributes overstuffed "section" shortcodes in the single `index.md` file or worse too many ocean deep Front Matter objects. But now, all you have to do is drop some cleverly named `.md` files in your bundle with the minimum Front Matter and Markdown content. Then loop on them in your template, and voilà! You build your sections!
 
 Feel free to suggest improvements, use cases or your own discoveries in the comments! 
+
+[^1]: Since [Hugo .46](https://github.com/gohugoio/hugo/commit/dea71670c059ab4d5a42bd22503f18c087dd22d4) and Hugo Pipe's improving of site wide resources.
 
 [^1]: Special thanks to [@bep](https://github.com/bep) for being patient with my pestering in the [Hugo Discource](https://discourse.gohugo.io/) and giving the `strings.Contains` and his amazing work on improving the already impressive Hugo.
 
