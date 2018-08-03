@@ -136,7 +136,7 @@ If our resource was a PDF this is what you could get using `.MediaType`
 - `.MediaType.Suffixes` 👉 `[pdf]` (a slice of suffixes)
 
 {{< notice type="warning" title="Be cautious of what you test!" >}}
-Do not get fooled by this extension looking subtype. A `docx`file's `.SubType` will output _vnd.openxmlformats-officedocument.wordprocessingml.document_.
+Do not get fooled by this extension looking subtype, it does not return the file extension. When trying to identify a file type you should get extra cautious as explained below.
 {{</ notice >}}
 
 ### .Name (string)
@@ -201,33 +201,37 @@ This is a pretty simple shortcode we'll get deeper into the possibilites in anot
 
 You can use any file type, but knowing what you're dealing with is important. Trying to retrieve .Width of a PDF will result in an error.
 
-Because `.ResourceType` will only give you the main type of your file, if you need to know if this resource of type application is a ZIP or a PDF file, for now, you'll need to use `strings.Contains` on `.RelPermalink`  as illustrated below[^1].
+Don't be fooled `.MediaType.SubType` it does not hold a file extension. 
+For exemple, a `docx` file will return a `.SubType` of `vnd.openxmlformats-officedocument.wordprocessingml.document` making it impossible to safely test it.
+
+Depending on why you are testing the file type for, I find the most simple and safest way to tell what is what is to use `in` or `intersect` in conjunction with `.MediaType.Suffixes` as illustraded below:
 
 ```go-html-template
 {{ with .Resources.ByType "application" }}
-	<ul>
-	{{ range . }}
-		<li>
-			<a href="{{ .RelPermalink }}">
-				{{ if (strings.Contains .RelPermalink ".pdf") }}
-					Check out this PDF!
-				{{ else if (or (strings.Contains .RelPermalink ".doc") (strings.Contains .RelPermalink ".docx")) }}
-					Check out this Word Document!
-				{{ else }}
-					Check out this... Thing!
-				{{ end }}
-			</a>
-		</li>
-	{{ end }}
-	</ul>
+  <ul>
+  {{ range . }}
+    <li>
+      <a href="{{ .RelPermalink }}">
+        {{ if (in .MediaType.Suffixes "pdf") }}
+          Check out this PDF!
+        {{ else if (intersect .MediaType.Suffixes (slice "docx" "docm")) }}
+          Check out this Wordish Document!
+        {{ else }}
+          Check out this... Thing!
+        {{ end }}
+      </a>
+    </li>
+  {{ end }}
+  </ul>
 {{ end }}
 ```
 
-Or you could just use Page Resources Metadata which leads us to...
+- For PDFs, we only have one possible extension, so using [`in`](https://gohugo.io/functions/in/#readout), we just check if the `pdf` string is in the slice returned by `.MediaType.Suffixes`.
+- Word documents can either be `docx` or `docm` so we use [`intersect`](https://gohugo.io/functions/intersect/#readout) to check if any of the two is included in the suffixes slice.
 
 ## Page Resources Metadata
 
-[@bep](https://github.com/bep) has worked hard so we can manage metadata for our resources[^2].
+[@bep](https://github.com/bep) has worked hard so we can manage metadata for our resources[^2][^3].
 
 Since Hugo 0.33, you can assign metadata directly from the bundle's `index.md` Front Matter.
 You will add an array called `resources`
@@ -463,8 +467,9 @@ Another use case could be to add rich full width __sections__ to a page. Big tit
 
 Feel free to suggest improvements, use cases or your own discoveries in the comments! 
 
-[^1]: Since [Hugo .46](https://github.com/gohugoio/hugo/commit/dea71670c059ab4d5a42bd22503f18c087dd22d4) and Hugo Pipe's improving of site wide resources.
-
-[^1]: Special thanks to [@bep](https://github.com/bep) for being patient with my pestering in the [Hugo Discource](https://discourse.gohugo.io/) and giving the `strings.Contains` and his amazing work on improving the already impressive Hugo.
+[^1]: Since [Hugo .46](https://github.com/gohugoio/hugo/commit/dea71670c059ab4d5a42bd22503f18c087dd22d4) and Hugo Pipe's overall files improvements in Hugo.
 
 [^2]: As of Hugo 0.34
+
+[^3]: Special thanks to [@bep](https://github.com/bep) for being patient with my pestering in the [Hugo Discource](https://discourse.gohugo.io/) and his amazing work on improving the already impressive Hugo.
+
