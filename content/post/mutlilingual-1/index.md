@@ -1,12 +1,10 @@
 ---
-title: "Multilingual in Hugo Part 1: Content translation"
+title: "Hugo Multilingual Part 1: Content translation"
 date: 2018-06-29T17:24:56-04:00
 draft: true
-slug: mutlilingual-in-hugo-part-1-translating-your-content
+slug: hugo-multilingual-part-1-managing-content-translation
 toc: true
 ---
-
-# Multilingual in Hugo Part 1: Content translation
 
 Hugo handles multilingual perfectly from you content translation to your string localization, everything is simplified so coders and editors alike can focus on the rest.
 
