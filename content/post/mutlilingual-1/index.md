@@ -1,7 +1,6 @@
 ---
 title: "Hugo Multilingual Part 1: Content translation"
-date: 2018-06-29T17:24:56-04:00
-draft: true
+date: 2018-08-10T11:24:56-04:00
 slug: hugo-multilingual-part-1-managing-content-translation
 toc: true
 ---
@@ -9,6 +8,8 @@ toc: true
 Hugo handles multilingual perfectly from you content translation to your string localization, everything is simplified so coders and editors alike can focus on the rest.
 
 In this first part, we’ll see how set up your multilingual Hugo project and translate your content!
+
+ <!--more-->
 
 ## Declaring our languages
 
@@ -249,7 +250,7 @@ content
 		└── header.es.jpg
 ```
 {{< notice >}}
-Because `.GetMatch` test on a Resource’s `.Title` which default to its filename (language included), always try to make your resource call language agnostic, like so: `.Resources.GetMatch "header*.jpg"`
+Because `.GetMatch` tests on a Resource’s `.Title` which defaults to its filename (language included), always try to make your resource call _language-agnostic_, like so: `.Resources.GetMatch "header*.jpg"`
 {{< /notice >}}
 ## Setting our URLs
 What about your pages’s URLs ? We already mentioned how you can overwrite the slug from the Front Matter but what about the root url of your languages?
