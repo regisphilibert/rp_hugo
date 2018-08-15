@@ -3,13 +3,16 @@ title: "Hugo Multilingual Part 1: Content translation"
 date: 2018-08-10T11:24:56-04:00
 slug: hugo-multilingual-part-1-managing-content-translation
 toc: true
+tags:
+  - Multilingual
+  - Hugo
 twitter_card: summary_large_image
-description: "Hugo handles multilingual perfectly from you content translation to your string localization. In this first part, we’ll see how set up your multilingual Hugo project and translate your content."
+description: "Hugo handles multilingual perfectly from you content translation to your string localization. In this first part, we’ll see how to set up your multilingual Hugo project and translate your content."
 ---
 
 Hugo handles multilingual perfectly from you content translation to your string localization, everything is simplified so coders and editors alike can focus on the rest.
 
-In this first part, we’ll see how set up your multilingual Hugo project and translate your content!
+In this first part, we’ll see how to set up your multilingual Hugo project and translate your content!
 
  <!--more-->
 
