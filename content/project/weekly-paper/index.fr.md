@@ -1,6 +1,7 @@
 ---
 date: 2016-02-02T20:39:16-04:00
 title: Journal Français
+id: paper
 project_tags:  ["backend:75%", "frondend:100%", "confidentel:100% :("]
 weight: 1
 ---
