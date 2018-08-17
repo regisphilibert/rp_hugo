@@ -3,6 +3,10 @@ title: "Hugo Multilingual Part 1: Content translation"
 date: 2018-08-10T11:24:56-04:00
 slug: hugo-multilingual-part-1-managing-content-translation
 toc: true
+tags:
+ - Hugo
+ - Multilingual
+ - i18n
 twitter_card: summary_large_image
 description: "Hugo handles multilingual perfectly from you content translation to your string localization. In this first part, we’ll see how set up your multilingual Hugo project and translate your content."
 ---
@@ -154,7 +158,7 @@ For both systems, Hugo will look at the filename and its location relative to it
 {{%/ fullwidth %}}
 
 {{% fullwidth %}}
-By Placement | | 
+By Directory | | 
 :---|---|---
 `content/english/about.md`|`content/french/about.md`|✅
 `content/english/about/index.md`|`content/french/about/index.md`|✅
@@ -163,13 +167,15 @@ By Placement | |
 {{%/ fullwidth %}}
 
 Note that you can force a linking even if default linking factors don’t match.
-All you’d have to do is add to your pages a `translationKey` Front Matter param which share the same value. 
+All you’d have to do is add to your pages a `translationKey` Front Matter param which share the same value.
+
 ```markdown
 # From all three pages: about.md, a-propos.fr.md, acerda.es.md
 ---
 translationKey: about
 ---
 ```
+
 Now, even though their names won’t match, Hugo will gladly link those pages for you.
 
 
@@ -230,20 +236,6 @@ content
 ```
 
 
-```
-content
-    ├── english
-    │   └── about
-    │       ├── index.md
-	│		└── header.jpg
-	├── spanish
-	│	└── about
-	│		└── index.md
-	└── french
-	    └── about
-	        └── index.md
-```
-
 For now, every pages share the same `header.jpg`, the one in the English translation. This has nothing to do with it being the default language though.  
  
 Hugo help save on duplicates here by making any ressource available to every linked translations. Meaning we can access this header image regardless of the current language using our favorite `.Resources` method, say `.Resources.GetMatch "headers.jpg"`
@@ -276,7 +268,7 @@ There is no `header.jpg` in that bundle, so which header will be returned for th
 
 Well here, Hugo will look at the languages respective `Weight` and return the winners’s file. If we look at our initial configuration file, the French should get the English header.
 
-You should know that any file, content or not, can be renamed to match a language. For this Page Bundle localization, we chose to manage our translations by __content directory__ but had we chosen to manage them by __filename__, this is how our About page's Bundle would have looked like:
+You should know that any file, content or not, can be renamed to match a language. For this Page Bundle localization, we chose to manage our translations by __directory__ but had we chosen to manage them by __filename__, this is how our About page's Bundle would have looked like:
 ```
 content
 	└── about
@@ -286,13 +278,13 @@ content
 		├── header.jpg
 		└── header.es.jpg
 ```
-{{< notice >}}
+{{< notice type="warning" >}}
 Because `.GetMatch` tests on a Resource’s `.Title` which defaults to its filename (language included), always try, with a _By Filemane_ bundle, to make your resource call _language-agnostic_, like so: `.Resources.GetMatch "header*.jpg"`
 {{< /notice >}}
 ## Setting our URLs
-What about your pages’s URLs ? We already mentioned how you can overwrite the slug from the Front Matter but what about the root url of your languages?
+What about your pages’ URLs ?
 
-By default, Hugo will store your default language pages at the root of your `public` directory and the other languages’ pages below their respective directories.
+By default, Hugo will store your default language pages at the root of your `public` directory and the other languages’ pages below their respective directories. It will generate their URL like any page using their filename.
 
 So quiet logically our About pages would en up at:
 
@@ -300,8 +292,26 @@ So quiet logically our About pages would en up at:
 - `fr/about/index.html` 🇫🇷
 - `es/about/index.html` 🇪🇸
 
-We could have the default language also live below a directory though by simply setting `defaultContentLanguageInSubdir`to `true` in our `config.yaml`
+That looks okay though I doubt the SEO team agrees. To make sure the pages's url mathes their title, we have to update the slug param like the following:
 
+```yaml
+# about.fr.md
+title: À Propos
+slug: a-propos
+```
+
+```yaml
+# acerda.es.md
+title: Acerda
+slug: acerda
+```
+
+Now we end up with the better looking:
+
+- `fr/a-propos/index.html` 🇫🇷 👌
+- `es/acerda/index.html` 🇪🇸 👌
+
+We could have the default language also live below a directory by simply setting `defaultContentLanguageInSubdir`to `true` in our `config.yaml`
 
 ## Conclusion
 We covered the different ways you could manage the translation of your content in Hugo. Next week, we’ll see how easy it is, once you’ve translated your page, to do the same with your theme’s strings! In other words.
