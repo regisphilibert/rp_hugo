@@ -1,5 +1,6 @@
 ---
 title: Art Public Montréal
+id: art-public
 author: regis
 type: project
 date: 2015-06-10T13:36:29+00:00
