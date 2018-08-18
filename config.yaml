@@ -24,12 +24,6 @@ blackfriday:
     - hardLineBreak
   hrefTargetBlank: true
 
-outputs:
-  section:
-    - html
-    - json
-    - RSS
-
 taxonomies:
   tag: tags
   category: categories
@@ -58,7 +52,7 @@ languages:
   fr:
     weight: 2
     description: Je suis un dev front end de Montréal spécialisé dans Hugo et Wordpress! Je peux vous aider?
-    jobtitle: Dev Front à Montréalà
+    jobtitle: Dev Front à Montréal
 imaging:
   resampleFilter: box
   quality: 80
