@@ -5,9 +5,12 @@ draft: false
 layout: about
 slug: a-propos
 menu:
-  main:
+  mobile:
     weight: 2
     name: À Propos
+  desktop: 
+    weight: 1
+    name: Bonjour, moi c'est Régis
 ---
 
 Je code des sites web depuis mais aussi [**pour**](/fr/project_tags/mtl/) Montréal 🇨🇦

@@ -5,6 +5,9 @@ url: /blog
 aliases:
  - /post
 menu:
-  main:
+  mobile:
     weight: 4
+  desktop:
+    weight: 3
+    name: and I blog about it.
 ---

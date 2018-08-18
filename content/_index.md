@@ -8,8 +8,11 @@ projects:
   - paper
   - fm
 menu:
-  main:
+  mobile:
     identifier: home
     weight: 1
     name: Portfolio
+  desktop:
+    weight: 2
+    name: I code websites
 ---

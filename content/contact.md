@@ -4,7 +4,10 @@ tags: []
 title: Contact
 layout: contact
 menu:
-  main:
+  mobile:
     weight: 3
+  desktop:
+    weight: 4
+    name: Shall we talk?
 ---
 

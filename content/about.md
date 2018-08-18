@@ -4,9 +4,12 @@ date: 2017-11-23T14:44:35-05:00
 draft: false
 layout: about
 menu:
-  main:
+  mobile:
     weight: 2
     name: About
+  desktop: 
+    weight: 1
+    name: Hi, I'm Régis
 ---
 
 I build websites from but also [**for**](/project_tags/mtl/) Montréal 🇨🇦.

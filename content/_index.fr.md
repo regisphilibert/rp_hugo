@@ -8,8 +8,11 @@ projects:
   - art-public
   - fm
 menu:
-  main:
+  mobile:
     identifier: home
     weight: 1
     name: Portfolio
+  desktop:
+    weight: 2
+    name: Je code des sites web.
 ---
