@@ -7,6 +7,7 @@ projects:
   - 375mtl
   - art-public
   - fm
+  - pm2
 menu:
   mobile:
     identifier: home

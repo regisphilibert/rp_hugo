@@ -7,6 +7,7 @@ projects:
   - art-public
   - paper
   - fm
+  - pm2
 menu:
   mobile:
     identifier: home

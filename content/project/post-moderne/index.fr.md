@@ -4,9 +4,8 @@ stats:
   backend: 100
   frontend: 100
 project_tags:  ["responsive", "wordpress"]
-title: Post Moderne
+title: Post Moderne 2013
 id: pm
-ext_url: http://post-moderne.com
 weight: 4
 
 ---
