@@ -2,7 +2,10 @@
 date: 2015-06-11T17:15:29-04:00
 title: france mutuelle
 id: fm
-project_tags:  ["backend:70%" , "frontend:100%" , "jquery" , "responsive", "wordpress"]
+stats:
+  backend: 70
+  frontend: 100
+project_tags:  ["jquery" , "responsive", "wordpress", "france"]
 ext_url: https://francemutuelle.fr
 weight: 4
 

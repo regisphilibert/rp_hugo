@@ -2,8 +2,12 @@
 title: "ToxQuebec"
 date: 2018-07-27T15:16:19-04:00
 id: tox
+stats:
+  backend: 100
+  frontend: 100
 draft: true
-tags: []
+tags:
+  - wordpress
 weight: 1
 ---
 

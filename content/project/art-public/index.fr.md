@@ -5,7 +5,10 @@ id: art-public
 type: project
 date: 2015-06-10T13:36:29+00:00
 slug: art-public-montreal
-project_tags:  ["backend:95%" , "frontend:100%" , "google map api" , "wordpress", "mtl"]
+stats:
+  backend: 95
+  frontend: 100
+project_tags:  ["google map api" , "wordpress", "mtl"]
 ext_url: https://artpublicmontreal.ca
 weight: 2
 
