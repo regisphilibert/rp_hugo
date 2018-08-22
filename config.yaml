@@ -24,6 +24,11 @@ blackfriday:
     - hardLineBreak
   hrefTargetBlank: true
 
+outputFormats:
+  markdown:
+    baseName: markdown
+    mediaType: "text/html"
+    
 taxonomies:
   tag: tags
   category: categories
