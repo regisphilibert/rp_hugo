@@ -313,7 +313,7 @@ Now we end up with the better looking:
 
 We could have the default language also live below a directory by simply setting `defaultContentLanguageInSubdir`to `true` in our `config.yaml`
 
-## Conclusion
+## Conclusion 🏁
 We covered the different ways you could manage the translation of your content in Hugo. Next week, we’ll see how easy it is, once you’ve translated your page, to do the same with your theme’s strings! In other words.
 
 __From__
