@@ -1,5 +1,5 @@
 ---
-title: "Multilingual in Hugo Part 2: String Localization"
+title: "Multilingual in Hugo Part 2: Strings Localization"
 date: 2018-08-23T14:38:22-04:00
 slug: hugo-multilingual-part-2-i18n-string-localization
 toc: true
@@ -12,7 +12,7 @@ twitter_card: summary_large_image
 ---
 
 
-In the first part of this Hugo’s Multilingual series, we covered how to manage our content translations in Hugo and use those in our templates.
+In the [first part]({{< ref "multilingual-1" >}}) of this Hugo’s Multilingual series, we covered how to manage our content translations in Hugo and use those in our templates.
   
 But what about translating strings for your project or your theme?
 
@@ -20,7 +20,12 @@ In this second part, we’ll see how Hugo, using its familiar data structure and
 
 ## Localizing our strings
 When translating strings, Hugo uses a management system in the like of php’s `.po` files. 
-Each language’s strings are stored in a file named after its language’s code and dropped in a `i18n/` directory. It can either live at the root of your project or theme.
+Each language’s strings are stored in a file named after its language’s code and dropped in a `i18n/` directory. 
+
+They can either live at the root of our project or at the root of a theme.
+
+- `i18n/en.yaml` ✅
+- `themes/academic/i18n/en.yaml` ✅
 
 Following our three languages from part one, they would look like the following
 
@@ -53,6 +58,10 @@ As seen above all we need for each translated phrase is a `key` string and  a `t
 
 Afterwards from our templates, Hugo’s [`i18n`](https://gohugo.io/functions/i18n/#readout) function does the localization job.
 
+1. It will try and match the the passed key to the corresponding localized phrase return it on success.
+2. If the key does not exist in the current language's `i18n` file, it will look for it in the default language.
+3. If not found in the default language, an empty string is returned.
+
 ```go-html-template
 <header>
 	{{ i18n "hello" }}
@@ -60,8 +69,6 @@ Afterwards from our templates, Hugo’s [`i18n`](https://gohugo.io/functions/i18
 	{{ i18n "how_are_you" }}
 </header>
 ```
-
-`i18n` will match the corresponding localized phrase to the string id passed as parameter:
 
 
 ```html
@@ -82,8 +89,13 @@ Afterwards from our templates, Hugo’s [`i18n`](https://gohugo.io/functions/i18
 </header>
 ```
 
-## Pluralizing strings
-Strings won’t always refer to lonely entities. Sometimes they qualify one thing, sometime more. So how can we make sure this phrase is always faithfully localized, single or plural? 
+{{% notice %}}
+The `i18n` function is aliased as `T`. So if typing `i18n` seems like a <del>mouthfull</del> keyboardfull, feel free to use the following syntax:
+ `{{ T "how_are_you" }}`.
+{{% /notice %}}
+
+## Pluralizing our strings
+Strings won’t always refer to lonely entities. Sometimes they qualify one thing, sometimes more. So how can we make sure this phrase is always faithfully localized, single or plural? 
 
 There is  the [`pluralize`](https://gohugo.io/functions/pluralize/#readout) template function but it only works in english. 
 
@@ -162,8 +174,10 @@ You can even include the number right in your translated string using `.Count`: 
 
 From now on, as the number of mice will be included in the `i18n` returned output, we can drop its mention from our code:
 
-<del>`This story has {{ . }} {{ i18n "mouse" . }}`</del>
-`This story has {{ i18n "mouse" . }}`
+```diff
+- This story has {{ . }} {{ i18n "mouse" . }}
++ This story has {{ i18n "mouse" . }
+```
 
 Our new compiled HTML would now output:
 
@@ -177,17 +191,41 @@ This story has only one Mouse.
 ```
 
 {{% notice type="warning" %}}
-Thinking about _This story has no Mouse_ when the number is `0`? 
+Thinking about "_This story has no Mouse_" when the count is `0`? 
 As [explained further down](#hugo-filesystem-and-string-localization), it's a no go 🙅‍♂️.
 {{% /notice %}}
 ### Including a context in the translation
 
-Instead of an `int` you can also pass a context as a second argument to `i18n`. 
+Instead of an `int` you can also pass a context as a second argument to `i18n`. It can save us from splitting an interpolating sentence into different strings.
 
-It kind of works like the `partial` argument, but bear in mind the following while doing it:
+```yaml
+# i18n/en.yaml
+- id: intro
+  translation:  "This is the story of {{ .Params.lead }}{{ with .Params.location }} which takes place in {{ . }}{{ end }}"
+```
+
+```yaml
+# i18n/en.yaml
+- id: intro
+  translation:  "Voici l'histoire de {{ .Params.main_char }}{{ with .Params.location }} qui se déroule à {{ . }}{{ end }}"
+```
+
+It works like a `partial` context.
+
+```go-html-template
+<h3>{{ .Title }}</h3>
+<div class="intro">{{ i18n "intro" . }}</div>
+```
+
+```html
+<h3>The Great Mouse Detective</h3>
+<div class="intro">This is the story of Basil which takes place in London</div>
+```
+
+When passing a `context` as `i18n` argument, we should bear in mind the following:
 
 1. `i18n` won’t be able to evaluate the argument as a number (because it’s not), so forget pluralizing this string with `one` and `other`.
-2. If calling this string in more than one place, you should make sure to always pass the same context (the page or otherwise) because if the key called from within your `i18n` file does not exist, you will end up with an ugly `can't evaluate field` error.
+2. If calling this string in more than one place, you should make sure to always pass the same context or use `with` as we did above otherwise you'll risk ending up with an ugly `can't evaluate field` error.
 
 ### Hugo filesystem and string localization
 Remember that your `i18n` files are part of the global Hugo filesystem. Every `en.yaml` files present in Hugo’s file hierarchy will be merged.
@@ -232,6 +270,10 @@ Here is the list of the supported plural tags across every languages:
 Again, this does not mean you can use those in english. 
 
 If the current language is English, and you set the `zero` plural tag to `none`, you’ll only see the value of `other` even if the `i18n` second argument equals to zero. 
-For the `zero` value to show, the current language would have to be Arabic or any other which supports the `zero` plural tag.
+For the `zero` value to show, the current language would have to be Arabic or any other one which supports the `zero` plural tag.
+
+## Conclusion
+
+or if you were able to factcheck the number of mice in Cinderella, please share it all in the comments!
 
 [^1]: http://www.unicode.org/cldr/charts/33/supplemental/language\_plural\_rules.html
