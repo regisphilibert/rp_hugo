@@ -3,6 +3,7 @@ title: "Hugo Multilingual Part 1: Content translation"
 date: 2018-08-10T11:24:56-04:00
 slug: hugo-multilingual-part-1-managing-content-translation
 toc: true
+serie: multilingual
 tags:
  - Hugo
  - Multilingual

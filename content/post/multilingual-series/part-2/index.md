@@ -1,8 +1,9 @@
 ---
-title: "Multilingual in Hugo Part 2: Strings Localization"
+title: "Hugo Multilingual Part 2: Strings localization"
 date: 2018-08-23T14:38:22-04:00
 slug: hugo-multilingual-part-2-i18n-string-localization
 toc: true
+serie: multilingual
 tags:
  - Hugo
  - Multilingual
@@ -11,9 +12,9 @@ tags:
 twitter_card: summary_large_image
 ---
 
-In the [first part]({{< ref "multilingual-1" >}}) of this Hugo’s Multilingual series, we covered how to manage our content translations in Hugo and use those in our templates.
+In the [first part]({{< ref "part-1" >}}) of this Hugo’s Multilingual series, we covered how to manage our content translations and use those in our templates.
   
-But what about translating strings for your project or your theme?
+But what about translating strings for our project or our theme?
 
 In this second part, we’ll see how Hugo, using its familiar data structure and configuration file, allows us to localize strings in any number of languages with minimum hassle.
 
