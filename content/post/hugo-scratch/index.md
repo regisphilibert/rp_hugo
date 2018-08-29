@@ -29,7 +29,7 @@ Excited yet? Let's dive in!
 
 ## What is Scratch?
 
-Scratch was initially added as a workardound to fight a Go Template [limitation](https://github.com/golang/go/issues/10608) which prevented variable overwrites. It quickly turned into a full fledge Hugo feature which comes with serveral methods
+Scratch was initially added as a workardound to fight a Go Template [limitation](https://github.com/golang/go/issues/10608) which prevented variable overwrites. It quickly turned into a full fledge Hugo feature which comes with serveral methods.
 
 {{< notice >}}
 To improve readability, the following snippets show comments uncomplient with Go Template. See the [doc](http://gohugo.io/templates/introduction/#comments) for proper commenting in Hugo.
@@ -92,7 +92,7 @@ Now to get it.
 ### .Scratch.Delete[^1]
 
 
-This removes the key/value pair form the context.
+This removes the key/value pair from the context.
 When using `.Scratch.Add` from within in a loop, `.Scratch.Delete` comes handy to reset a value.
 
 ~~~go-html-template
@@ -135,15 +135,15 @@ Also remember that you can attach a key/value to .Scratch from anywhere, even wh
 
 ### .Scratch with class, a use case.
 
-I find it convenient to attach classes to my body element (You from Wordpress?) to allow css/javascript adjustments according to which page we're on.
+I find it convenient to attach classes to my body element (You from Wordpress?) to allow CSS/JavaScript adjustments according to which page we're on.
 
 I found this to be very tedious to achieve with Hugo until I understood .Scratch.
 
-What I want to do is add "rp-body" css class to all my pages as well as the .Section value to my classes.
+What I want to do is add "rp-body" CSS class to all my pages as well as the .Section value to my classes.
 
 Also only the home page should have the "rp-home" class. 
 
-I could do that work once, in the partial or template which includes the opening body tag but... I may need that list of classes elsewhere in my code for some ajax magic. Say as a javascript object. 
+I could do that work once, in the partial or template which includes the opening body tag but... I may need that list of classes elsewhere in my code for some ajax magic. Say as a JavaScript object. 
 
 How do I build this list, modify it if I'm on the home page, and store it to my .Page object for future use ? We'll store our classes in a array for convenience.
 
@@ -169,7 +169,7 @@ We could perform a lot more checking and scratching but eventually, in our layou
 <body class='{{ delimit (.Scratch.Get "classes") " " }}'>
 ~~~
 
-And for javascript we can create our object anywhere needed.
+And for JavaScript we can create our object anywhere needed.
 
 ~~~go-html-template
 <script>
@@ -257,7 +257,7 @@ For a more indepth look at handling __Context__ and __partials__ in  Go Template
 
 All of the above is important shall you need to access a Scratch instance attached to your page context, but with the addition of `newScratch`[^2], you can now use Scratch from anywhere, including a partial without a Page context.
 
-Let's call a partial. Notice we don't pass any Page context, just a map from the Front Matter which holds `class`, `alt` and a potential `image_src` to overwhite our default.
+Let's call a partial. Notice we don't pass any Page context, just a map from the Front Matter which holds `class`, `alt` and a potential `image_src` to overwrite our default.
 ~~~go-html-template
 {{ partial "brand" .Params.brand }}
 ~~~
