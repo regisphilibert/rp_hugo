@@ -18,6 +18,8 @@ But what about translating strings for our project or our theme?
 
 In this second part, we’ll see how Hugo, using its familiar data structure and configuration file, allows us to localize strings in any number of languages with minimum hassle.
 
+<!--more-->
+
 ## Localizing our strings
 When translating strings, Hugo uses a management system in the like of php’s `.po` files. 
 Each language’s strings are stored in a file named after its language’s code and dropped in a `i18n/` directory. 
