@@ -1,6 +1,6 @@
 ---
 date: 2017-04-03T10:13:39-05:00
-lastmod: 2018-01-19T10:11:00-05:00
+lastmod: 2018-08-29T10:09:47-05:00
 aliases:
  - /2017/04/hugo-scratch-explained-variable
 tags:
@@ -10,55 +10,34 @@ tags:
  - Go Template
 title: Hugo .Scratch explained
 slug: hugo-scratch-explained-variable
-description: Working variables in Hugo can be complicated when coming from classic languages. The only way to override variables or attach any kind of value to a .Page object is to use .Scratch.
+description: Working variables in Hugo can be complicated when coming from classic languages. For a long time, Scratch was the only way to overwrite template variables. Now it is the best way to enrich your Page or Shortcode context!
 ---
 
-Working variables in Hugo can be complicated when coming from classic languages.
+{{% notice %}}
+Here because you need to overwrite a template variable? Rejoice, as of this day (or [Hugo .48](https://gohugo.io/news/0.48-relnotes/)), you don't need `.Scratch` for that. 
+__You need it for so much more though!__
+{{% /notice %}}
 
-What you usually do :
+Hugo Page's context is not only the most important source of information for your pages, it is the main data soure for all of your templates. More often than not, you will need to add a layer of custom variables to the built in set!
 
-~~~php
-<?php
-$greetings = "Good Morning";
-if($sky == "dark"){
-	$greetings = "Good Night";
-}
-// Or even better:
-$greetings = $sky == "dark" ? "Good Night : Good Morning";
+With Hugo's __.Scratch__, any Page or Shortcode can be complemented with as many variables as needed on top of the default [Page](https://gohugo.io/variables/page/#readout) or [Shortcode](https://gohugo.io/variables/shortcodes/#readout) Variables.
 
-~~~
 
-That next bit of code would be tempting :
-~~~go-html-template
-{{ $greetings := "Good Morning" }}
-{{ if eq $sky "dark" }}
-	{{ $greetings = "Good Night" }}
-{{ end }}
-{{ $greetings }}
-~~~
+Excited yet? Let's dive in!
 
-But that won't happen 😞
-
-To achieve this, you need __.Scratch__ so let's dive in!
 <!--more-->
 
-At least until [this Golang issue](https://github.com/golang/go/issues/10608) gets fixed with Go 1.11 in july, the only way to override variables or attach any kind of custom value to a *.Page* object is to use *.Scratch* 
+## What is Scratch?
 
-*.Scratch* is a life saver but its [documentation](https://gohugo.io/extras/scratch/) is a bit light if, like me, you are not comfortable with the Go language.
-
-## We need .Scratch!
-
-.Scratch was initially added to fight the Go Template limitation mentionned above but ended up doing much more. 
-It comes with several methods.
+Scratch was initially added as a workardound to fight a Go Template [limitation](https://github.com/golang/go/issues/10608) which prevented variable overwrites. It quickly turned into a full fledge Hugo feature which comes with serveral methods
 
 {{< notice >}}
-To improve readability, the following snippets' show comments uncomplient with Go Template. See the [doc](http://gohugo.io/templates/introduction/#comments) for proper commenting in Hugo.
+To improve readability, the following snippets show comments uncomplient with Go Template. See the [doc](http://gohugo.io/templates/introduction/#comments) for proper commenting in Hugo.
 {{</ notice >}}
 
 ### .Scratch.Set
 
-You use *Set* to store a value and maybe later perform a simple override. 
-Taking our PHP exemple above, we'd have something like that:
+You use *Set* to store a value and maybe later perform a simple overwrite. 
 
 ~~~go-html-template
 {{ .Scratch.Set "greetings" "Good Morning" }}
@@ -112,6 +91,8 @@ Now to get it.
 
 ### .Scratch.Delete[^1]
 
+
+This removes the key/value pair form the context.
 When using `.Scratch.Add` from within in a loop, `.Scratch.Delete` comes handy to reset a value.
 
 ~~~go-html-template
@@ -293,20 +274,12 @@ From within our partial, we can still use Scratch:
 ~~~
 
 ## .Scratch after Go 1.11 
-Yes, the Golang team will eventually roll out version 11 and we'll be able to natively override variables in Go Template;
+Yes, the Golang did roll out version 11 and we are now able to natively overwrite variables in Go Template but...
 
-~~~go-html-template
-// 🎉 Tada!
-{{ $greetings := "Good Morning" }}
-{{ if eq $sky "dark" }}
-	{{ $greetings = "Good Night" }}
-{{ end }}
-{{ $greetings }}
-~~~
+In many use case, I find storing a value in the Page context more helpful than not. 
+For example, when using a `partial` in need of the Page Variables plus other informations, if you were to forego of `.Scratch`, you'd get stuck with a lengthy `dict` as context...
 
-But .Scratch will still be needed to attach key/values to a page or shortcode context. Without it, you'll be left with a lot of context meddling.
-
-### Without .Scratch (Go v11)
+### Without .Scratch
 ~~~go-html-template
 {{ $mood := "Happy" }}
 {{ if $rain }}
@@ -315,7 +288,9 @@ But .Scratch will still be needed to attach key/values to a page or shortcode co
 {{ partial "snowwhite/dwarf.html" (dict "mood" $mood "page" . ) }}
 ~~~
 
-### With .Scratch (right now)
+Using `.Scratch` to store your variable in the Page object, maintain both cleanlyness and reusability.
+
+### With .Scratch
 ~~~go-html-template
 {{ .Scratch.Set "mood" "Happy" }}
 {{ if $rain }}
@@ -325,6 +300,7 @@ But .Scratch will still be needed to attach key/values to a page or shortcode co
 ~~~
 
 Beside, I don't think meddling with complex maps could be as convenient as it currently is with __.Scratch.SetInMap__!
+
 
 [^1]: Since [Hugo 0.38](https://gohugo.io/news/0.38-relnotes/)
 [^2]: Since [Hugo 0.43](https://gohugo.io/news/0.43-relnotes/)
