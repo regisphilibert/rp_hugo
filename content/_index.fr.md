@@ -14,5 +14,5 @@ menu:
     name: Portfolio
   desktop:
     weight: 2
-    name: Je code des sites web.
+    name: Voilà mon Portfolio
 ---
