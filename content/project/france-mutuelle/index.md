@@ -11,5 +11,5 @@ weight: 4
 
 ---
 
-An amazing french insurance group with the oh awesome [Aristote Agency](http://www.aristote-agency.com/).
+An amazing french insurance group with the oh awesome [Aristote Agency](https://www.akoa.fr/).
 

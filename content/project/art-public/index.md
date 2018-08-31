@@ -8,7 +8,7 @@ stats:
   backend: 95
   frontend: 100
 slug: art-public-montreal
-project_tags:  ["google map api" , "wordpress", "mtl"]
+project_tags:  ["google map api" , "wordpress", "mtl", "public"]
 ext_url: https://artpublicmontreal.ca
 weight: 2
 

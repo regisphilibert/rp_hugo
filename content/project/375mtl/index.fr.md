@@ -5,7 +5,7 @@ id: 375mtl
 stats:
   backend: 95
   frontend: 100
-project_tags:  ["api" , "laravel", "wordpress", "mtl"]
+project_tags:  ["api" , "laravel", "wordpress", "mtl", "public"]
 weight: 2
 
 ---

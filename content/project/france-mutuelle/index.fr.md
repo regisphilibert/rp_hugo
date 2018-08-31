@@ -10,5 +10,5 @@ ext_url: https://www.francemutuelle.fr/
 weight: 3
 ---
 
-Un superbe projet de la oh combien géniale [Agence Aristote](http://agence-aristote.fr/).
+Un superbe projet de la oh combien géniale [Agence Aristote](https://www.akoa.fr/).
 
