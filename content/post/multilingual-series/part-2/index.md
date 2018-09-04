@@ -142,12 +142,11 @@ Because the French word `Souris` is the same in both its singular and plural for
 The template function `i18n` takes a second parameter, an `int`, which will let Hugo know how many items your string is referring to and pluralize it if needed. 
 
 
-
 ```go-html-template
 {{ range .Pages }}
 	<h3>{{ $.Title }}</h3>
 	{{ with .Params.mice }}
-		This story has {{ . }} {{ i18n "mouse" . }}.
+		{{ i18n "this_story_has" }} {{ . }} {{ i18n "mouse" . }}.
 	{{ end }}
 	<hr>
 {{ end }}
@@ -166,20 +165,20 @@ This story has 1 Mouse.
 
 ### Including the number in the translation
 
-You can even include the number right in your translated string using `.Count`: (Mind the double quotes)
+You can even include the number right in your translated string using `.Count`. This avoids comp: (Mind the double quotes)
 
 ```html
-- id: mouse
+- id: story_mice
   translation:
-    other: "{{ .Count }} Mice"
-    one: only one Mouse
+    other: This story has "{{ .Count }} Mice"
+    one: This story has only one Mouse
 ```
 
-From now on, as the number of mice will be included in the `i18n` returned output, we can drop its mention from our code:
+From now on, as the number of mice will be included in the `i18n` returned output, we can update ou code with this one localized string:
 
 ```diff
-- This story has {{ . }} {{ i18n "mouse" . }}
-+ This story has {{ i18n "mouse" . }
+- {{ i18n "this_story_has" }} {{ . }} {{ i18n "mouse" . }}
++ {{ i18n "story_mice" . }}
 ```
 
 Our new compiled HTML would now output:
