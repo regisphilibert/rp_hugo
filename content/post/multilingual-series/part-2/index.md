@@ -165,12 +165,12 @@ This story has 1 Mouse.
 
 ### Including the number in the translation
 
-You can even include the number right in your translated string using `.Count`. This avoids comp: (Mind the double quotes)
+You can even include the number right in your translated string using `.Count` and get and merge those two strings into one: (Mind the double quotes)
 
 ```html
 - id: story_mice
   translation:
-    other: This story has "{{ .Count }} Mice"
+    other: "This story has {{ .Count }} Mice"
     one: This story has only one Mouse
 ```
 
@@ -198,7 +198,7 @@ As [explained further down](#hugo-filesystem-and-string-localization), it's a no
 {{% /notice %}}
 ### Including a context in the translation
 
-Instead of an `int` you can also pass a context as a second argument to `i18n`. Here it could save us from splitting an interpolating sentence into serveral localized strings whose order might change in some languages.
+Instead of an `int` you can also pass a context as a second argument to `i18n`. Again this could save us from splitting an interpolating sentence into serveral localized strings even when we need more than `.Count`.
 
 ```yaml
 # i18n/en.yaml
