@@ -4,6 +4,7 @@ date: 2018-08-23T14:38:22-04:00
 slug: hugo-multilingual-part-2-i18n-string-localization
 toc: true
 serie: multilingual
+description: In this second part of Hugo Multilingual series, we see how Hugo, using its familiar data structure and configuration file, allows us to localize strings in any number of languages with minimum hassle.
 tags:
  - Hugo
  - Multilingual
