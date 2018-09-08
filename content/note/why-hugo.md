@@ -57,13 +57,14 @@ A database free CMS? Yes can do!
 
 ![Forestry](../forestry.png)
 
-[Forestry.io](https://forestry.io/#/) offers a reliable CMS solution for static website.
+[Forestry.io](https://forestry.io/#/) is a Canadian company (🇨🇦❣️) which offers a reliable CMS solution for static website!
 
 ### 👉 Forestry.io Demo
 
 1. Add/Edit page
 1. Add a media
 1. Add blocks
+1. Preview unpublished changes
 1. Shortcode/Snippet
 
 ## Why Hugo rather than other static gen out there?

@@ -56,13 +56,14 @@ Un CMS sans base de donnée ? C’est possible!
 
 ![Forestry](../forestry.png)
 
-[Forestry.io](https://forestry.io/#/) présente une solution de CMS pour site statique plus qu'adéquate.
+[Forestry.io](https://forestry.io/#/) est une compagnie Canadienne (🇨🇦❣️) qui présente une solution de CMS pour site statique plus qu'adéquate.
 
 ### 👉 Démo Forestry.io
 
 1. Ajout/Édition de page
 1. Ajout de média
 1. Ajout de bloque dans une page
+1. Aperçu avant publication
 1. Shortcode/Snippet
 
 ## Pourquoi Hugo plutôt qu’un autre générateur de sites statiques ?
