@@ -2,12 +2,12 @@
 title: "Home"
 date: 2018-07-30T14:44:35-05:00
 projects:
-  - paper
-  - tox
+  - weekly-paper
   - 375mtl
+  - cinemamoderne
   - art-public
-  - fm
-  - pm2
+  - post-moderne-2018
+  - france-mutuelle
 menu:
   mobile:
     identifier: home
