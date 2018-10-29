@@ -4,6 +4,7 @@ date: 2017-11-23T14:44:35-05:00
 draft: false
 layout: about
 slug: a-propos
+description: Je suis un dev front end de Montréal spécialisé dans Hugo et Wordpress! Je peux vous aider?
 menu:
   mobile:
     weight: 2

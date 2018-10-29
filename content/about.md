@@ -3,6 +3,7 @@ title: "Bonjour, Hi"
 date: 2017-11-23T14:44:35-05:00
 draft: false
 layout: about
+description: I'm a front end dev from Montréal specialized in Hugo and Wordpress! How can I help?
 menu:
   mobile:
     weight: 2
