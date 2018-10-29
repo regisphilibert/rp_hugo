@@ -71,6 +71,21 @@ languages:
           name: et mon blogue.
           weight: 3
           url: "/blog"
+  jp:
+    weight: 3
+    flag: "🇯🇵"
+    description: 私はモントリオールのウェブプログラマー。特化にわワードプレス(Wordpress)とヒューゴ(Hugo). よろしく！
+    menu:
+      mobile:
+        - identifier: blog
+          name: ブログ
+          weight: 4
+          url: "/blog"
+      desktop:
+        - identifier: blog
+          name: それについてのブログ
+          weight: 3
+          url: "/blog"
 
 imaging:
   resampleFilter: box
