@@ -2,6 +2,7 @@
 title: "Home"
 date: 2018-07-30T14:44:35-05:00
 projects:
+  - boralex-france
   - weekly-paper
   - 375mtl
   - cinemamoderne
