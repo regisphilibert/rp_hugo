@@ -55,7 +55,7 @@ __Static site__
 
 A database free CMS? Yes can do!
 
-![Forestry](../forestry.png)
+![Forestry](https://regisphilibert.com/note/forestry.png)
 
 [Forestry.io](https://forestry.io/#/) is a Canadian company (🇨🇦❣️) which offers a reliable CMS solution for static website!
 
@@ -92,10 +92,16 @@ Jekyll 🐌  | 18.42s | 218s (> 3 minutes)
 [^2]: https://forestry.io/blog/hugo-vs-jekyll-benchmark/
 [^3]: https://github.com/gatsbyjs/gatsby/pull/6226/
 
+__Think about that for your editors 🤔__
+
+
+Within the 5 long seconds it usually takes WordPress to reload the page after hitting "save", Hugo will have rebuilt the website and deployed the thousands newly generated files live! And all of that while allowing the editor to keep on queuing new changes!
+
+Or... you could just programmatically set automatic builds every 5 minutes without a sweat.
+
 {{% notice %}}
 You don't need 1000 posts or pages in your content to end up with 1000 HTML files. An average numbers of categories, assigned to an average number of posts and your StaticGen will need to build many category archives, with several pages each (Page 1, Page 2 etc…)
 {{% /notice %}}
-
 
 ##  Technically... How does that work? 🤓
 

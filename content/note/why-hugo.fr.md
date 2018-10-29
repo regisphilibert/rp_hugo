@@ -54,7 +54,7 @@ __Site statique__
 
 Un CMS sans base de donnée ? C’est possible!
 
-![Forestry](../forestry.png)
+![Forestry](https://regisphilibert.com/note/forestry.png)
 
 [Forestry.io](https://forestry.io/#/) est une compagnie Canadienne (🇨🇦❣️) qui présente une solution de CMS pour site statique plus qu'adéquate.
 
