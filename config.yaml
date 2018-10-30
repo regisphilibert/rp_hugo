@@ -75,6 +75,7 @@ languages:
     weight: 3
     flag: "🇯🇵"
     description: 私はモントリオールのウェブプログラマー。特化にわワードプレス(Wordpress)とヒューゴ(Hugo). よろしく！
+    jobtitle: フロントエンドプログラマー
     menu:
       mobile:
         - identifier: blog
@@ -83,7 +84,7 @@ languages:
           url: "/blog"
       desktop:
         - identifier: blog
-          name: それについてのブログ
+          name: ブログしています。
           weight: 3
           url: "/blog"
 

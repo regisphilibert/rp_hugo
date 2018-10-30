@@ -8,6 +8,6 @@ menu:
     weight: 3
   desktop:
     weight: 4
-    name: 話をしましょう
+    name: 連絡しましょう
 ---
 

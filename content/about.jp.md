@@ -9,7 +9,7 @@ menu:
     name: ついて
   desktop: 
     weight: 1
-    name: レジスです
+    name: 私はレジスです。
 ---
 
 I build websites from but also [**for**](/project_tags/mtl/) Montréal 🇨🇦.

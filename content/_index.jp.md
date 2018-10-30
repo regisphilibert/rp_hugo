@@ -2,12 +2,9 @@
 title: "Home"
 date: 2018-07-30T14:44:35-05:00
 projects:
-  - tox
+  - boralex-france
   - 375mtl
-  - art-public
-  - paper
-  - fm
-  - pm2
+  - weekly-paper
 menu:
   mobile:
     identifier: home
@@ -15,5 +12,5 @@ menu:
     name: ポートフォリオ
   desktop:
     weight: 2
-    name: ホムペじを作って
+    name: ウェブサイトを作って、
 ---
