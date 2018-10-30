@@ -53,9 +53,11 @@ params:
     '750': medium
 languages:
   en:
+    languageName: English
     weight: 1
     flag: "🇬🇧"
   fr:
+    languageName: Français
     weight: 2
     flag: "🇫🇷"
     description: Je suis un dev front end de Montréal spécialisé dans Hugo et Wordpress! Je peux vous aider?
@@ -71,7 +73,8 @@ languages:
           name: et mon blogue.
           weight: 3
           url: "/blog"
-  jp:
+  ja:
+    languageName: 日本語
     weight: 3
     flag: "🇯🇵"
     description: 私はモントリオールのウェブプログラマー。特化にわワードプレス(Wordpress)とヒューゴ(Hugo). よろしく！
