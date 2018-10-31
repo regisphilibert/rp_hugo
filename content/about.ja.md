@@ -10,9 +10,17 @@ menu:
   desktop: 
     weight: 1
     name: 私はレジスです。
+    pre: ついて
 ---
 
-I build websites from but also [**for**](/project_tags/mtl/) Montréal 🇨🇦.
+
+🇫🇷・私はカナダに住むフランス人です・🇨🇦
+
+[モントレアル](/ja/project_tags/mtl/)にウェブサイトを作っている。
+
+私の名前は<span class="desktop-inline">サイドバー</span><span class="mobile-inline tablet-inline">ヘッダー</span>にあります。
+
+2010年以来ウェブサイトのビジネスに携わっています。あの古い[ウェブサイト](https://regisphilibert.com/2011/)は証拠があります！🔎
 
 My name is mentioned in the <span class="desktop-inline">sidebar (twice)</span><span class="mobile-inline tablet-inline">header (biggly)</span>, I've been in the business since 2010 and I have this [old thing](https://regisphilibert.com/2011/) to prove it.
 

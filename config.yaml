@@ -91,6 +91,7 @@ languages:
           name: ブログしています。
           weight: 3
           url: "/blog"
+          pre: ブログ
 
 imaging:
   resampleFilter: box

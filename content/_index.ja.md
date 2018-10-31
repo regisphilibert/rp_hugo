@@ -13,4 +13,5 @@ menu:
   desktop:
     weight: 2
     name: ウェブサイトを作って、
+    pre: ポートフォリオ
 ---
