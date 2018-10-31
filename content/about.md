@@ -11,6 +11,7 @@ menu:
   desktop: 
     weight: 1
     name: Hi, I'm Régis
+    pre: About
 ---
 
 I build websites from but also [**for**](/project_tags/mtl/) Montréal 🇨🇦.

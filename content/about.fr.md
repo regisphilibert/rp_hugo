@@ -12,6 +12,7 @@ menu:
   desktop: 
     weight: 1
     name: Bonjour, moi c'est Régis
+    pre: À Propos
 ---
 
 Je code des sites web depuis mais aussi [**pour**](/fr/project_tags/mtl/) Montréal 🇨🇦
