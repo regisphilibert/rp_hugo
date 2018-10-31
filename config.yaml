@@ -73,6 +73,7 @@ languages:
           name: et mon blogue.
           weight: 3
           url: "/blog"
+          pre: Blogue
   ja:
     languageName: 日本語
     weight: 3
