@@ -9,6 +9,6 @@ weight: 3
 project_tags:
   - france
 ---
-フランスの最高の風刺漫画の新聞！やった！
-これを信じてくれてありがとう、[AKOA](https://www.akoa.fr/)
+フランスで知らない人はいない週間風刺新聞! 
+[AKOA](https://www.akoa.fr/)が任せてくれたおかげです!
 

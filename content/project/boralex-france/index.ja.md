@@ -6,7 +6,8 @@ ext_url: https://france.boralex.com
 weight: 5
 ---
 
-あの会社は新しいことを試したい。素晴らしい！SSGについて説明しましょう!
+BORALEXは最新のローカルウェブサイトをWordPress以外の手法で構築することを望んでいました。
+なるほど、では静的サイトジェネレーターについてご説明しましょう。
 
 <span style="margin-left:1.5em;"></span>[Hugo](https://gohugo.io) (SSG) 
 ➕ [Forestry](https://forestry.io) (CMS) 

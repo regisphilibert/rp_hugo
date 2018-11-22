@@ -9,7 +9,7 @@ menu:
     name: ついて
   desktop: 
     weight: 1
-    name: 私はレジスです。
+    name: レジスです。
     pre: ついて
 ---
 
@@ -18,7 +18,7 @@ menu:
 
 [モントレアル](/ja/project_tags/mtl/)にウェブサイトを作っている。
 
-私の名前は<span class="desktop-inline">サイドバー</span><span class="mobile-inline tablet-inline">ヘッダー</span>にあります。
+私の名前は<span class="desktop-inline">サイドバー</span><span class="mobile-inline tablet-inline">ヘッダー</span>に載っています。
 
 2010年以来ウェブサイトのビジネスに携わっています。あの古い[ウェブサイト](https://2011.regisphilibert.com/)は証拠があります！🔎
 

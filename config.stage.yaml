@@ -1,4 +1,4 @@
 baseURL: https://staging.regisphilibert.com/
 googleAnalytics: false
 params:
-  contactFormApi: 'https://api.regisphilibert.com/mail/'
+  contactFormApi: 'https://staging.api.regisphilibert.com/mail/'

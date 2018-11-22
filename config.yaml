@@ -88,7 +88,7 @@ languages:
           url: "/blog"
       desktop:
         - identifier: blog
-          name: ブログしています。
+          name: ブログを書いています。
           weight: 3
           url: "/blog"
           pre: ブログ
