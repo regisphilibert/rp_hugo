@@ -40,18 +40,18 @@ So you end up using the properties of this object like so:
 
 ## The Page dot.
 
-The root context, the one available to you in your `baseof.html` and layouts will always be the Page context. Basically everything you need to display this page is in that dot. 
-.Title, .Permalink, .Resources, you name it.
+The root context, the one available to you in your `baseof.html` and layouts will always be the Page context. Basically everything you need to build this page is in that dot. 
+`.Title`, `.Permalink`, `.Resources`, you name it.
 
 Even your site’s informations is stored in the page context with `.Site` ready for the taking. 
 
-But in Go Template the minute you step into a function you lose that context and your precious dot or context is replaced by the function's own... dot. 
+But in Go Template the minute you step into a function you lose that context as your precious dot or context is replaced by the function's own... dot. 
 
-So for exemple in my template 
+Let's dive into a template file!
 
 ### With
 
-~~~go
+~~~go-html-template
 {{ with .Title }}
  	{{/* Here the dot is now .Title */}} 
 	<h1>{{ . }}</h1>
@@ -63,7 +63,7 @@ From within this `with` you’ve lost your page context. The context, the dot, i
 
 Same goes here, once you’ve opened an iteration with range the context is the whatever item the cursor is pointing to at the moment. You will lose your page context in favor of the the range context.
 
-~~~go
+~~~go-html-template
 {{ range .Data.Pages }}
 	{{/* Here the dot is that one page 'at cursor'. */}} 
 	{{ .Permalink }}
@@ -71,26 +71,26 @@ Same goes here, once you’ve opened an iteration with range the context is the 
 ~~~
 
 
-~~~go
+~~~go-html-template
 {{ range .Resources.Match "gallery/*" }}
 	{{/* Here the dot is that one image. */}} 
 	{{ .Permalink }}
 {{ end }}
 ~~~
 
-~~~go
+~~~go-html-template
 {{ range (slice "Hello" "Bonjour" "Gutten Tag") }}
 	{{/* Here the dot is that one string. */}} 
 	{{ . }}
 {{ end }}
 ~~~
 
-### The top level page context 💲
+### The top level context 💲
 
-Luckily Hugo stores the root page context in a `$` so no matter how deeply nested you are within `with` or `range`, you can always retrieve the top page context.
+Luckily Hugo stores the root context of a template file in a `$` so no matter how deeply nested you are within `with` or `range`, you can always retrieve the top page context.
 
 #### One level nesting
-~~~go
+~~~go-html-template
 {{ with .Title }}
 	{{/* Dot is .Title */}} 
 	<h1>{{ . }}</h1>
@@ -100,7 +100,7 @@ Luckily Hugo stores the root page context in a `$` so no matter how deeply neste
 ~~~
 
 #### Three level nesting
-~~~go
+~~~go-html-template
 {{/* 1. Dot is the top level (list) page */}} 
 <h1>{{ .Title }}</h1>
 {{ range .Data.Pages }}
@@ -127,13 +127,13 @@ But it takes one parameter just for that. This object will be available within t
 
 So for simple partials you will only need your page context. Your page’s __dot__. 
 
-~~~go
+~~~go-html-template
 	{{ partial "page/head" . }}
 ~~~
 
 The partial function here has for parameter your context, most probably your Page’s if you're not in a `range` or a `with` or another partial.
 
-~~~go
+~~~go-html-template
 	<h1>
 		{{ .Title }}
 	</h1>
@@ -143,13 +143,13 @@ The partial function here has for parameter your context, most probably your Pag
 
 Now, let's say you build a partial to render your fancy framed image, you only need its path so that would be your context.
 
-~~~go
+~~~go-html-template
 {{ partial "img" $path }}
 ~~~
 
 And in your partials/img.html
 
-~~~go
+~~~go-html-template
 <figure class="Figure Figure--framed">
 	<img src="{{ . }}" alt="">
 </figure>
@@ -162,13 +162,13 @@ That is a simple case though. Most of the time, we'll need more values than that
 It's ok, we can use the `dict` function to pass an object as parameter. `dict` creates a map or as I more commonly know it, an associative array.
 See the [doc](https://gohugo.io/functions/dict) or my own take on it [here]({{< ref hugo-translator >}}#associative-arrays).
 
-~~~go
+~~~go-html-template
 {{ partial "img" (dict "path" $path "alt" "Nice blue sky") }}
 ~~~
 
 From within the partial the dot will hold that object, so we prefix our keys with `.`
 
-~~~go
+~~~go-html-template
 <figure class="Figure Figure--framed">
 	<img src="{{ .path }}" alt="{{ .alt }}">
 </figure>
@@ -178,27 +178,76 @@ You can choose to .Capitalize your keys so they look more "Hugo", but I like hav
 
 ### Top level $ from partial
 
-Contrary to `range` and `with`, your page context will not be available in `$`
+Contrary to `range` and `with`, your page context will not be available in `$`, `$` will simply hold your partial's context.
 
 No fret, we'll just add the page context to our `dict`.
 
 You can use any name for that important key, a lot of people use "Page" resulting in `.Page.Title`. Whatever suits you, but try to be consistent with it.
 
-~~~go
-{{ partial "img" (dict "Page" . "path" $path "alt" "Nice blue sky") }}
+~~~go-html-template
+{{ partial "img" (dict "Page" . "path" $path "caption" "Nice blue sky") }}
 ~~~
 
-~~~go
+~~~go-html-template
 <figure class="Figure Figure--framed">
 	<img src="{{ .path }}" alt="{{ .alt }} from {{ .Page.Title }}">
 </figure>
 ~~~
 
-## Conclusion
+Now, if we were to excercise some caution by wrapping our `alt` code in a `with` statement, we would need `$` to invoke the partial's top level context from inside that `with`!
 
-That dot becomes super friendly and convenient once you know how to juggle with it. It makes the code easy to read but can sometime have us lost in its depth. 
+~~~go-html-template
+<figure class="Figure Figure--framed">
+	<img src="{{ .path }}"
+		{{ with .alt }}
+			alt="{{ . }} from {{ $.Page.Title }}"
+		{{ end }}
+	>
+</figure>
+~~~
 
-For other context taking function, you should look for `block` and `template`.
+## Final <del>point</del> dot!
 
-Happy dotting!
+That dot becomes super friendly and convenient once you know how to juggle with it! And to prove it, I leave you with a comparison between two code blocks.
 
+The first shows how readable and easily maintainable Go Template code is since the context can happily shift from one dot to another. 
+The one on the right, attempts to show what your code would look like if the context could did not shift. 
+
+__Shifting Context VS Unshifting Context__
+
+{{< grid >}}
+	{{% grid_item %}}
+~~~go-html-template
+{{ with .Params.author }}
+	<h3>{{ .firstname }} {{ .surname }}</h3>
+	<p>{{ .bio }}</p>
+	{{ with .posts }}
+		<ul>
+			{{ range . }}
+				<li>
+					<a href="{{ .Permalink }}">{{ .Title }}</a>
+				</li>
+			{{ end }}
+		</ul>
+	{{ end }}
+{{ end }}
+~~~
+	{{% /grid_item %}}
+	{{% grid_item %}}
+~~~go-html-template
+{{ with .Params.author }}
+	<h3>{{ .Params.author.firstname }} {{ .Params.author.surname }}</h3>
+	<p>{{ .Params.author.bio }}</p>
+	{{ with .Params.author.posts }}
+		<ul>
+			{{ range .Params.author.posts as post }}
+				<li>
+					<a href="{{ post.Permalink }}">{{ post.Title }}</a>
+				</li>
+			{{ end }}
+		</ul>
+	{{ end }}
+{{ end }}
+~~~
+	{{% /grid_item %}}
+{{< /grid >}}
