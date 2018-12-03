@@ -1,4 +1,1 @@
 baseURL = "https://sleepy-currie.netlify.com"
-
-[outputs]
-  section = ["html", "json"]

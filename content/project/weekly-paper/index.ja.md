@@ -10,5 +10,5 @@ project_tags:
   - france
 ---
 フランスで知らない人はいない週間風刺新聞! 
-[AKOA](https://www.akoa.fr/)が任せてくれたおかげです!
+[AKOA](https://www.akoa.fr/)さんのおかげです!
 
