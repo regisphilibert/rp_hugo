@@ -1,0 +1,11 @@
+mobile:
+  - identifier: blog
+    name: Blogue
+    weight: 4
+    url: "/blog"
+desktop:
+  - identifier: blog
+    name: et mon blogue.
+    weight: 3
+    url: "/blog"
+    pre: Blogue

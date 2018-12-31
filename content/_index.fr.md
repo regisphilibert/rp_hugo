@@ -17,4 +17,5 @@ menu:
   desktop:
     weight: 2
     name: Voilà mon Portfolio
+    pre: Portfolio
 ---

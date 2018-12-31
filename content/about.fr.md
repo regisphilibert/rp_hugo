@@ -12,11 +12,12 @@ menu:
   desktop: 
     weight: 1
     name: Bonjour, moi c'est Régis
+    pre: À Propos
 ---
 
 Je code des sites web depuis mais aussi [**pour**](/fr/project_tags/mtl/) Montréal 🇨🇦
 
-Mon nom est dans <span class="desktop-inline">la sidebar (2 fois)</span><span class="mobile-inline tablet-inline">le header (en bien gros)</span>, je suis dans le métier depuis 2010. J'en veux pour preuve ce <a target="_blank" class="no-ajax" rel="nofollow" href="https://regisphilibert.com/2011/fr/">vieux machin</a>.
+Mon nom est dans <span class="desktop-inline">la sidebar (2 fois)</span><span class="mobile-inline tablet-inline">le header (en bien gros)</span>, je suis dans le métier depuis 2010. J'en veux pour preuve ce [vieux machin](https://2011.regisphilibert.com/fr).
 
 Je suis __Front End__ avant tout, c'est la vue que je préfère! 🎸
 Cela étant dit, je fais du __Back End__ aussi! Dans ce domaine mon vieil amour c'est [WordPress](/fr/project_tags/wordpress) mais mon nouveau, et je ne cesse d'en parler [ici](/tags/hugo), c'est [Hugo](http://gohugo.io/)![^1]

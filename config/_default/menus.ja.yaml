@@ -1,0 +1,11 @@
+mobile:
+  - identifier: blog
+    name: ブログ
+    weight: 4
+    url: "/blog"
+desktop:
+  - identifier: blog
+    name: 英語でブログを書いています。
+    weight: 3
+    url: "/blog"
+    pre: ブログ
