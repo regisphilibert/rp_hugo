@@ -24,7 +24,7 @@ Cela étant dit, je fais du __Back End__ aussi! Dans ce domaine mon vieil amour 
 
 Mes projets les plus importants sont listés [ici](/fr/).
 
-Je suis très emojis et c'est pas juste une phase. 
+Je suis très emojis et c'est pas juste une phase. ☝️
 
 On peut me trouver sur <span class="black-color">[__GitHub__](https://github.com/regisphilibert)</span>, <span class="twitter-color">[🐦__Twitter__](https://twitter.com/regisphilibert)</span> and <span class="black-color">[__LinkedIn__🚾](https://www.linkedin.com/in/regisphilibert)</span>[^2].
 

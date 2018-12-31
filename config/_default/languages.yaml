@@ -1,6 +1,12 @@
 en:
+  languageName: English
   weight: 1
   flag: "🇬🇧"
 fr:
+  languageName: Français
   weight: 2
   flag: "🇫🇷"
+ja:
+  languageName: 日本語
+  weight: 3
+  flag: "🇯🇵"
