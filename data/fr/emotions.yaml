@@ -1,0 +1,12 @@
+thanksgiving:
+  emoji: "🦃"
+  url: https://fr.wikipedia.org/wiki/Action_de_gr%C3%A2ce_(Canada)
+  title: Go Vegan!
+christmas:
+  emoji: "🦌"
+  title: Joyeuses fêtes!
+newyear:
+  emoji: "🎍"
+  title: Bonne année !
+  url: https://fr.wikipedia.org/wiki/Kadomatsu
+  style: "font-size:2em;"

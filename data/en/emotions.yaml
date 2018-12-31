@@ -1,0 +1,12 @@
+thanksgiving:
+  emoji: "🦃"
+  url: https://en.wikipedia.org/wiki/Thanksgiving
+  title: Go Vegan!
+christmas:
+  emoji: "🦌"
+  title: Happy holydays!
+newyear:
+  emoji: "🎍"
+  title: Happy New Year!
+  url: https://en.wikipedia.org/wiki/Kadomatsu
+  style: "font-size:2em;"
