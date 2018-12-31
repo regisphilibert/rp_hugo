@@ -1,0 +1,14 @@
+description: I'm a front end dev from Montréal specialized in Hugo and Wordpress! How can I help?
+author: Regis Philibert
+jobtitle: Front Dev in Montreal
+twitter_handle: regisphilibert
+emotion: christmas
+ajax: false
+env: local
+less: false
+sass: true
+contactFormApi: 'https://api.regisphilibert.com/mail/'
+prism: false
+imagesizes:
+  '500': small
+  '750': medium
