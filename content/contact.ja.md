@@ -10,4 +10,3 @@ menu:
     weight: 4
     name: 連絡はこちらから
 ---
-
