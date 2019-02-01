@@ -1,15 +1,16 @@
 ---
-title: "From Hugo to WordPress, a mindset transition"
+title: "From WordPress to Hugo, a mindset transition"
 slug: from-wordpress-to-hugo-a-mindset-transition
-date: 2019-01-02T13:44:20-05:00
+date: 2019-01-30T13:44:20-05:00
 draft: false
 toc: true
 tags:
  - Hugo
  - WordPress
-twitter_words: When trying to transition to @GoHugoIO from $WordPress, developers may find ourselves encumbered by the later's logic and concept. In this post, we'll deal with migrating not your website, but your mindset from WordPress' to Hugo's. $JAMStack $SSG"
-
+twitter_words: When trying to transition to @GoHugoIO from $WordPress, developers may find themselves encumbered by the later's logic and concept. In this post, we'll deal with migrating not your website, but your mindset from WordPress' to Hugo's. $JAMStack $SSG"
+twitter_card: summary_large_image
 description: This post is not about migrating your WordPress site to Hugo, it’s about transitioning from your WordPress mindset to Hugo’s so you can quickly grasp this new environment.
+
 ---
 
 This post is not about migrating your WordPress site to Hugo, it’s about transitioning from your WordPress mindset to Hugo’s! 
@@ -18,6 +19,7 @@ By cautiously comparing Hugo's concept and vocabulary to some you’re already f
 
 So let’s bring up the `the_post()`, `the_loop` and the Template Hierarchy in order to better understand Hugo’s own construct!
 
+<!--more-->
 
 ## From WordPress to Hugo
 
@@ -500,13 +502,6 @@ That’s it. If you need to override any of the components' template files, you 
 {{< notice title="📖">}}
 [Tips and tricks for building a theme in Hugo](https://medium.com/@jeffmcmorris/tips-and-tricks-for-building-a-theme-in-hugo-4806bdd747d7) | [Jeff McMorris](https://medium.com/@jeffmcmorris)
 {{</ notice >}}
-## Multilingual
-
-Bye bye WPML! 🥳
-
-Hugo handles [Multilingual](https://gohugo.io/content-management/multilingual/#readout) on its own and out of the box, including `i18n` string localization.
-
-This [post]({{< ref "multilingual-series/part-1" >}}) and its [follow up]({{< ref "multilingual-series/part-2" >}}) get deep into Hugo Multilingual!
 
 ## Are we going to talk about CMS UI?
 
@@ -516,9 +511,17 @@ As you know it’s not happening out of the box with Hugo. But there are tons of
 
 Believe me, any of those are so much faster and better designed than the good old Dashboard.
 
-## Other random features of notes
+## Other random features of note
 
 Before we finish, let's review in no particular order how WordPress and Hugo handle common requested features.
+
+### Multilingual
+
+Bye bye WPML! 🥳
+
+Hugo handles [Multilingual](https://gohugo.io/content-management/multilingual/#readout) on its own and out of the box, including `i18n` string localization.
+
+This [post]({{< ref "multilingual-series/part-1" >}}) and its [follow up]({{< ref "multilingual-series/part-2" >}}) get deep into Hugo Multilingual!
 
 ### Menus
 
@@ -553,13 +556,13 @@ You'll go:
 
 What about those global options unrelated to any particular page?
 
-Well, again, if you're doing WordPress passed 2013, you're most likely relying on ACF to handle that part, because serioulsy, addning option fields ot your own in WordPress is quiet a pain!
+Well, again, if you're doing WordPress passed 2013, you're most likely relying on ACF to handle that part, because serioulsy, adding option fields of your own in WordPress is quiete a pain!
 
 Hugo offers two ways to treat those. You can add custom `.Params` objects to your site's configuration and retrieve them using `.Site.Params.tagline` for example.
 
-Or to handle more complex sets of data, you can add any `yaml|toml|json` files to the `data/` direcotry. Anything in there will be merged into one handy object accessible throughout your templates using `.Site.Data`.
+Or to handle more complex sets of data, you can add any `yaml|toml|json` files to the `data/` directory. Anything in there will be merged into one handy object accessible throughout your templates using `.Site.Data`.
 
-So if you'd need your editors to manage some social links and general options you could drop two files in `data`.
+So if you need your editors to manage some social links and general options you could drop two files in `data`.
 
 ```yaml
 # data/socials.yaml
