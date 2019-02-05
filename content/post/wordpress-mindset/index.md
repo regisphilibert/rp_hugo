@@ -7,7 +7,7 @@ toc: true
 tags:
  - Hugo
  - WordPress
-twitter_words: When trying to transition to @GoHugoIO from $WordPress, developers may find themselves encumbered by the later's logic and concept. In this post, we'll deal with migrating not your website, but your mindset from WordPress' to Hugo's. $JAMStack $SSG"
+ - JAMStack
 twitter_card: summary_large_image
 description: This post is not about migrating your WordPress site to Hugo, it’s about transitioning from your WordPress mindset to Hugo’s so you can quickly grasp this new environment.
 
