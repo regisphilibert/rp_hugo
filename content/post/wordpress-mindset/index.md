@@ -2,6 +2,7 @@
 title: "From WordPress to Hugo, a mindset transition"
 slug: from-wordpress-to-hugo-a-mindset-transition
 date: 2019-01-30T13:44:20-05:00
+lastmod: 2019-02-07T08:40:27-05:00
 draft: false
 toc: true
 tags:
@@ -349,7 +350,7 @@ Exactly, WordPress certainly did not introduce you to those.
 
 Let's say that for every page you have an HTML file at `that-page/index.html` and that’s a given. With Hugo you can make sure every page also has a JSON version and an [AMP](https://www.ampproject.org/docs/) version on top of that. They would live alongside their HTML brother at`that-page/index.json` and `that-page/index.amp.html` respectively. 
 
-All you have to do to make this happen is, through the settings introduced above, tell Hugo to add such formats to the desired __Kinds__ and add the excpected template files.
+All you have to do to make this happen is, through the settings introduced above, tell Hugo to add such formats to the desired __Kinds__ and add the expected template files.
 
 In short:
 
@@ -419,7 +420,7 @@ Hugo on the other hand [processes](https://gohugo.io/content-management/image-pr
 
 
 ```go-html-template
-{{ $img: resources.Get "header.jpg" | .Resize "600x" }}
+{{ $img := resources.Get "header.jpg" | .Resize "600x" }}
 <img src="{{ $img.Permalink }}" alt="">
 ```
 
@@ -525,11 +526,45 @@ This [post]({{< ref "multilingual-series/part-1" >}}) and its [follow up]({{< re
 
 ### Menus
 
-Wordpress Menus are super powerful but are not this easy to tame from a developer standpoint. Their output is managed through a walker function which is not easy to read/understand when diving into multilevel menus. 
+Wordpress Menus are super powerful but are not this easy to tame from a developer standpoint. Their output is managed through a function called a _Walker_ which is not easy to read/understand when diving into multilevel menus. 
 
 Hugo [menu solution](https://gohugo.io/content-management/menus/#readout) lets you assign any page to a menu as well as any external url.
 
-Contrary to WordPress there is no concept of `menu_location`. You call your menu object from wherever from the template using `.Site.Menus.mymenu`.
+In short, assuming you have two menus in your site, you assign a given page to a menu this way:
+
+```
+# /content/about.md
+title: About
+menu:
+  main: 
+    name: Who am I?
+    weight: 2
+  footer:
+    weight: 1
+```
+
+If you need to add a non-content url to the `main` menu, that happens in your site config:
+
+```
+# /config.yaml
+menus:
+  main:
+    - name: Blog
+      url: https://blog.tumblr.com
+      weight:3
+  footer:
+    - name: Blog
+      url: https://blog.tumblr.com
+```
+
+With what's above, your menu item linking to your about page will appear in second position in your `main` menu and read _Who am I?_ It will also appear in your `footer` in first and read the page name: About.
+On top of that, both your `main` and `footer` menus will include an item pointing to your old school tumblr which will read _Blog_.
+
+Contrary to WordPress there is no concept of `menu_location`. You call your menu object from wherever from the template using `.Site.Menus.main`, `.Site.Menus.footer` or `.Site.Menus.whatever` and <del>loop</del> range through its items.
+
+Go check out the [doc](https://gohugo.io/templates/menu-templates/#readout) on writing menus in your templates, it's a big leap from good old _Walkers_ (more like 🏃‍♀️).
+
+
 
 ### Custom Fields
 
