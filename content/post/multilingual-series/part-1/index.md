@@ -1,6 +1,7 @@
 ---
 title: "Hugo Multilingual Part 1: Content translation"
 date: 2018-08-10T11:24:56-04:00
+lastmod: 2019-02-16T11:44:00-05:00
 slug: hugo-multilingual-part-1-managing-content-translation
 toc: true
 serie: multilingual
@@ -216,6 +217,7 @@ This also works perfectly to build a language menu which will only show up if on
 {{< notice >}}
 The `.Language` object is available on every pages. Alongside the main language parameters it holds the custom ones assigned in your language configuration object, here our description and twitter handle.
 {{< /notice >}}
+
 ## Page Bundles
 
 Not only does Hugo make it possible to share resources among translations, it also lets you localize a resource!
@@ -249,9 +251,9 @@ By doing exactly that!
 
 ```
 content
-    ├── english
-    │   └── about
-    │       ├── index.md
+  ├── english
+  │   └── about
+  │       ├── index.md
 	│		└── header.jpg
 	├── spanish
 	│   └── about
@@ -282,6 +284,36 @@ content
 {{< notice type="warning" >}}
 Because `.GetMatch` tests on a Resource’s `.Title` which defaults to its filename (language included), always try, with a _By Filemane_ bundle, to make your resource call _language-agnostic_, like so: `.Resources.GetMatch "header*.jpg"`
 {{< /notice >}}
+
+## Data Files
+
+Contrary to pages resources, Data Files are not language aware. You must therefore create your own minimal solution to store and retrieve localized data files. 
+
+✋ Don't fret, you'll be set in minutes.
+
+Consider the following structure for your data directories where `en` and `fr` are your website's languages' respective codes.
+
+```
+data
+  ├── en
+  │   └── team.yaml
+  └── fr
+      └── team.yaml
+```
+
+Now from your template:
+
+```go-html-template
+{{ $data := index .Site.Data .Site.Language.Lang }}
+{{ range $data.team }}
+  <a href="{{ .url }}">{{ .name }}</a>
+{{ end }}
+```
+
+We use the [index](https://gohugo.io/functions/index-function/#readout) function to find the directory in `.Site.Data` which corresponds to the current language's code. Then we can use `$data` wherever needed in the template file.
+
+{{< notice type="warning">}} You should really improve the above above with the usual precautions and fallbacks (`with`, `if` etc...) {{</ notice >}}
+
 ## Setting our URLs
 What about your pages’ URLs ?
 
