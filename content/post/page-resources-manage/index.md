@@ -123,9 +123,9 @@ Those 2 are deprecated (yep Hugo moves fast). But if you really still have to us
 ### Available properties for one resource.
 What to do when I found it?
 
-### .ResourceType / .MediaType[^1]
+#### .ResourceType / .MediaType 
 
-You have serveral option to retrieve the [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types) of the resource, but it also comes with a few methods to pinpoint what you really need. 
+You have serveral option to retrieve the [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types) of the resource, but it also comes with a few methods to pinpoint what you really need[^1]. 
 
 If our resource was a PDF this is what you could get using `.MediaType`
 
@@ -139,18 +139,18 @@ If our resource was a PDF this is what you could get using `.MediaType`
 Do not get fooled by this extension looking subtype, it does not return the file extension. When trying to identify a file type you should get extra cautious as explained below.
 {{</ notice >}}
 
-### .Name (string)
+#### .Name (string)
 By default this is the base filename (including the extension).
 It can be overriden with the resource's Front Matter metadata.
 
-### .Title (string)
+#### .Title (string)
 Same default as .Name except for Resource of type page you can expect it to return their .Title.
 For resources other than pages, it can be overriden with Resources Metadada covered below.
 
-### .Permalink (string)
+#### .Permalink (string)
 The absolute URL of the resource.
 
-### .RelPermalink (string)
+#### .RelPermalink (string)
 The relative URL of the resource.
 
 ## How to use them?
