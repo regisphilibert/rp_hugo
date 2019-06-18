@@ -39,7 +39,7 @@ languages:
 	languageName: Français
 	weight: 2
   es:
-	languageName: Spanish
+	languageName: Español
 	weight: 3
 ```
 
@@ -63,7 +63,7 @@ languages:
 	description: Tous ce que vous avez toujours voulu savoir sur les trois langues.
 	twitter_handle: 3Languages_france
   es:
-	languageName: Spanish
+	languageName: Español
 	weight: 3
 	description: Todo lo que necesitas saber sobre los tres idiomas.
 	twitter_handle: 3Languages_espana
@@ -119,7 +119,7 @@ languages:
 	weight: 2
 	contentDir: content/french
   es:
-	languageName: Spanish
+	languageName: Español
 	weight: 3
 	contentDir: content/spanish
 ```
