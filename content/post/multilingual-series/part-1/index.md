@@ -240,8 +240,8 @@ content
 
 
 For now, every pages share the same `header.jpg`, the one in the English translation. This has nothing to do with it being the default language though.  
- 
-Hugo help save on duplicates here by making any ressource available to every linked translations. Meaning we can access this header image regardless of the current language using our favorite `.Resources` method, say `.Resources.GetMatch "headers.jpg"`
+
+Hugo help save on duplicates here by making any resource available to every linked translations. Meaning we can access this header image regardless of the current language using our favorite `.Resources` method, say `.Resources.GetMatch "headers.jpg"`
 
 This is very convenient.
 But what if we want a header image better aligned with our Spanish audience.
