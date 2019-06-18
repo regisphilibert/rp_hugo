@@ -23,7 +23,7 @@ In this first part, we’ll see how set up your multilingual Hugo project and tr
 
 When undertaking a multilingual project in Hugo, the first thing to do would be to tell Hugo what our supported languages are. For this project, we’ll have three:
 
-1. English 🇬🇧
+1. English 🇺🇸
 2. French 🇫🇷
 3. Spanish 🇪🇸
 
@@ -321,7 +321,7 @@ By default, Hugo will store your default language pages at the root of your `pub
 
 So quiet logically our About pages would en up at:
 
-- `about/index.html` 🇬🇧
+- `about/index.html` 🇺🇸
 - `fr/about/index.html` 🇫🇷
 - `es/about/index.html` 🇪🇸
 
