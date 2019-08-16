@@ -87,7 +87,7 @@ Same goes here, once you’ve opened an iteration with range the context is the 
 
 ### The top level context 💲
 
-Luckily Hugo stores the root context of a template file in a `$` so no matter how deeply nested you are within `with` or `range`, you can always retrieve the top page context.
+Luckily Hugo stores the root context of a template file in a `$` so no matter how deeply nested you are within `with` or `range`, you can always retrieve the top context. In basic template file, it will generally be your page.
 
 #### One level nesting
 ~~~go-html-template
@@ -205,6 +205,54 @@ Now, if we were to excercise some caution by wrapping our `alt` code in a `with`
 	>
 </figure>
 ~~~
+
+## Shifting to your own level
+
+One drawback of context shifting is that you might often need to do something like this:
+
+```go-html-template
+{{ with .Params.character }}
+  {{ $character := . }}
+  {{ with .city }}
+    {{ $character.name }} is living in {{ . }}
+  {{ end }}
+{{ end }}
+```
+But you can actually store your context at init and gain in readability:
+
+```go-html-template
+{{ with $character := .Params.character }}
+  {{ with .city }}
+    {{ $character.name }} is living in {{ . }}
+  {{ end }}
+{{ end }}
+```
+
+And because this `$character` variable is only available in this `with`'s context, there is no risk of stepping on another homonymous variable being declared outside of it. The following statement:
+
+```go-html-template
+{{ $character := "Hugo Baskerville" }}
+
+{{ with $character := .Params.character }}
+  {{ with .city }}
+    {{ $character.name }} is living in {{ . }}
+  {{ end }}
+{{ end }}
+
+{{ $character }} was living in Devonshire
+```
+
+will print:
+
+```
+Sherlock Holmes is living in London
+
+Hugo Baskerville was living in Devonshire
+``` 
+
+For what it's worth, and only if you don't need the template file's root context in there, you could even use `$` just like Hugo itself!
+
+Elementary! 🕵️‍♂️ 
 
 ## Final <del>point</del> dot!
 
