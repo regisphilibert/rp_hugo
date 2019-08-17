@@ -1,7 +1,7 @@
 ---
 title: "Hugo, the scope, the context and the dot"
 date: 2018-02-05T15:32:27-05:00
-lastmod: 2018-02-07T17:32:27-05:00
+lastmod: 2019-08-16T17:32:27-05:00
 description: Moving from old regular template languages where the scope is rarely an issue, you may have a hard time wrapping your head around Go Template scoping constraints. Why is my variable not available here or there? Let's see how. Let's try and understand the impact of the scope/context within our templates and partials.
 slug: 'hugo-the-scope-the-context-and-the-dot'
 toc: true
