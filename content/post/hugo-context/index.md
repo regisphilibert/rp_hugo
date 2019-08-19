@@ -218,7 +218,7 @@ One drawback of context shifting is that you might often need to do something li
   {{ end }}
 {{ end }}
 ```
-But you can actually store your context at init and gain in readability:
+But you can actually create your variable in the same statement and gain in readability:
 
 ```go-html-template
 {{ with $character := .Params.character }}
@@ -228,7 +228,7 @@ But you can actually store your context at init and gain in readability:
 {{ end }}
 ```
 
-And because this `$character` variable is only available in this `with`'s context, there is no risk of stepping on another homonymous variable being declared outside of it. The following statement:
+And because this `$character` variable is only available as this `with`'s context, there is no risk of stepping on another homonymous variable being declared outside of it. The following:
 
 ```go-html-template
 {{ $character := "Hugo Baskerville" }}
