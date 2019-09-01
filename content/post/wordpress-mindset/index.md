@@ -148,7 +148,7 @@ A partial is called this way:
 
 That dot above .............☝️ is your page. 
 
-The Page context includes all the page variables you'll need to use in your partial and every tempaltes, but more on that later.
+The Page context includes all the page variables you'll need to use in your partial and every templates, but more on that later.
 
 {{< notice type="warning" title="📖" >}}
 Understanding Hugo's Context notion is key. If that's still mysterious to you 👉 [Hugo, the scope, the context and the dot]({{< ref "/post/hugo-context" >}})
@@ -215,17 +215,15 @@ Converted into beautiful Hugo
 
 ```go-html-template
 //layouts/_default/list.html
-{{ with .Pages }}
-  {{ range . }}
-    <h2>
-      <a href="{{ .Permalink }}">{{ .Title }}</a>
-    </h2>
-    <h6>{{ .Date.Format "January, 02 2006" }}</h6>
-    <p>
-      {{ .Summary }}
-    </p>
-    <hr>
-  {{ end }}
+{{ range . }}
+  <h2>
+    <a href="{{ .Permalink }}">{{ .Title }}</a>
+  </h2>
+  <h6>{{ .Date.Format "January, 02 2006" }}</h6>
+  <p>
+    {{ .Summary }}
+  </p>
+  <hr>
 {{ else }}
 <!-- no posts found -->
 {{ end }}
@@ -348,9 +346,11 @@ What’s that ?
 
 Exactly, WordPress certainly did not introduce you to those.
 
-Let's say that for every page you have an HTML file at `that-page/index.html` and that’s a given. With Hugo you can make sure every page also has a JSON version and an [AMP](https://www.ampproject.org/docs/) version on top of that. They would live alongside their HTML brother at`that-page/index.json` and `that-page/index.amp.html` respectively. 
+Let's say that for every page you have an HTML file at `that-page/index.html` and that’s a given. With Hugo you can make sure every page also has a JSON version and an [AMP](https://www.ampproject.org/docs/) version on top of that. They would live alongside their HTML brother at`that-page/index.json` and `that-page/index.amp.html` respectively[^2]. 
 
-All you have to do to make this happen is, through the settings introduced above, tell Hugo to add such formats to the desired __Kinds__ and add the expected template files.
+[^2]: For clarity we ommitted that Hugo will save AMP files at `/amp/that-page/index.html`
+
+To make this happen, all you have to do, through the settings introduced above, is tell Hugo to add such formats to the desired __Kinds__ and add the expected template files.
 
 In short:
 
@@ -591,7 +591,7 @@ You'll go:
 
 What about those global options unrelated to any particular page?
 
-Well, again, if you're doing WordPress passed 2013, you're most likely relying on ACF to handle that part, because serioulsy, adding option fields of your own in WordPress is quiete a pain!
+Well, again, if you're doing WordPress passed 2013, you're most likely relying on ACF to handle that part, because serioulsy, adding option fields of your own in WordPress is quite a pain!
 
 Hugo offers two ways to treat those. You can add custom `.Params` objects to your site's configuration and retrieve them using `.Site.Params.tagline` for example.
 
@@ -619,7 +619,7 @@ And in your partial...
 
 ```go-html-template
 {{/* layouts/partials/socials.html */}}
-{{ if .Site.Data.options.social }}
+{{ if .Site.Data.options.socials }}
 <ul class="socials">
   {{ range .Site.Data.socials }}
     <li>
