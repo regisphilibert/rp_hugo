@@ -215,7 +215,7 @@ Converted into beautiful Hugo
 
 ```go-html-template
 //layouts/_default/list.html
-{{ range . }}
+{{ range .Pages }}
   <h2>
     <a href="{{ .Permalink }}">{{ .Title }}</a>
   </h2>
