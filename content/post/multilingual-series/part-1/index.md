@@ -43,7 +43,7 @@ languages:
 	weight: 3
 ```
 
-Now, our languages will be available using `.Site.Languages` and sorted by `Weight`. The lower the… firster.
+Now, our languages will be available using `.Site.Languages` and sorted by `Weight`. The lower the… firster. As we'll cover later, it is highly recommanded to make the default language come first.
 
 Any custom parameter will be used when calling `.Site.Params` or `.Param` in place of the default site parameter. Se we never have to worry about which parameter to call!
 
@@ -218,6 +218,43 @@ This also works perfectly to build a language menu which will only show up if on
 The `.Language` object is available on every pages. Alongside the main language parameters it holds the custom ones assigned in your language configuration object, here our description and twitter handle.
 {{< /notice >}}
 
+## Crossing the language barrier with .Sites
+
+It is important to note that Hugo will build as many **Sites** as languages are set. And each of those are available through the `.Sites` Page property, or the global `site.Sites` one.
+
+We just covered how you could find any translation of a page, but what about a random page from another language, like the french home for example? Well, we can use a typical `range where` on `.Sites` to isolate the french site like so.
+
+```go-html-template
+{{ $frSite := false}}
+{{ range where .Sites ".Language.Lang" "fr" }}
+	{{ $frSite = . }}
+{{ end }}
+{{/* ⛑️ Safely wrap the result in a with clause and voilà: */}}
+{{ with $frSite }}
+	<a href="{{ .Home.RelPermalink }}">🏠 Accueil</a>
+{{ end }}
+```
+
+### Default at first Site
+
+Often you will need to refer to your default language's Site and for this, with the proper config, `.Sites.First` will be your go-to method.
+
+`.Sites.First` returns the first Site. Note that this will not necessarily be your default language. Hugo's first Site is any Site whose Language has the lower `Weight` value or in absence of any weight set, the one whose language code alphabetically comes first.
+
+To rely on `.Sites.First` to fetch the default language, you should do what is expected on any Hugo Multilingual setup and previously mentionned:
+
+1. Set weights on all your languages.
+2. Make sure your default has the lower value. 
+
+Good! Now you'll have the default language's Site at `.Sites.First`
+
+```go-html-template
+<a href="{{ .Sites.First.Home.RelPermalink }}">🏠 Default Home</a>
+{{ with.Sites.First.GetPage "/in-construction" }}
+	<a href="{{ .RelPermalink }}">🏗️ {{ .Title }}</a>
+{{ end }}
+```
+
 ## Page Bundles
 
 Not only does Hugo make it possible to share resources among translations, it also lets you localize a resource!
@@ -312,7 +349,7 @@ Now from your template:
 
 We use the [index](https://gohugo.io/functions/index-function/#readout) function to find the directory in `.Site.Data` which corresponds to the current language's code. Then we can use `$data` wherever needed in the template file.
 
-{{< notice type="warning">}} You should really improve the above above with the usual precautions and fallbacks (`with`, `if` etc...) {{</ notice >}}
+{{< notice type="warning">}} You should really improve the above with the usual precautions and fallbacks (`with`, `if` etc...) {{</ notice >}}
 
 ## Setting our URLs
 What about your pages’ URLs ?
