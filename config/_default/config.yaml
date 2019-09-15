@@ -8,14 +8,14 @@ pygmentsCodefences: true
 pygmentsUseClasses: true
 pygmentsCodefencesGuessSyntax: true
 theme: github.com/regisphilibert/rp_hugo_theme
-module:
-  imports:
-  - disable: false
-    ignoreConfig: true
-    path: github.com/regisphilibert/mod-content-test
-    mounts:
-    - source: content/test
-      target: content/note
+# module:
+#   imports:
+#   - disable: false
+#     ignoreConfig: true
+#     path: github.com/regisphilibert/mod-content-test
+#     mounts:
+#     - source: content/test
+#       target: content/note
 related:
   includeNewer: true
   indices:
