@@ -2,8 +2,6 @@ baseURL: 'http://philibert.hugo'
 DefaultContentLanguage: en
 MetaDataFormat: yaml
 title: Regis Philibert
-theme: 
-  - github.com/regisphilibert/rp_hugo_theme
 enableRobotsTXT: true
 buildDrafts: false
 pygmentsCodefences: true
@@ -12,6 +10,7 @@ pygmentsCodefencesGuessSyntax: true
 
 module:
   imports:
+  - path: github.com/regisphilibert/rp_hugo_theme
   - disable: false
     ignoreConfig: true
     path: github.com/regisphilibert/mod-content-test
