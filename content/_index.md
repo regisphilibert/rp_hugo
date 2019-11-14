@@ -2,10 +2,11 @@
 title: "Home"
 date: 2018-07-30T14:44:35-05:00
 projects:
-  - boralex-france
   - 375mtl
-  - cinemamoderne
   - art-public
+  - toxquebec
+  - boralex-france
+  - cinemamoderne
   - weekly-paper
   - post-moderne-2018
 menu:

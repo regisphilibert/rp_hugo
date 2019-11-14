@@ -5,7 +5,7 @@ id: tox
 stats:
   backend: 100
   frontend: 100
-draft: true
+draft: false
 tags:
   - wordpress
 weight: 1

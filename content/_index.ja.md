@@ -2,9 +2,11 @@
 title: "Home"
 date: 2018-07-30T14:44:35-05:00
 projects:
-  - boralex-france
-  - 375mtl
   - weekly-paper
+  - 375mtl
+  - toxquebec
+  - boralex-france
+
 menu:
   mobile:
     identifier: home
