@@ -132,7 +132,7 @@ Here, the ideal variant would therefor be our list of authors in a consistent or
 	{{ partialCached "authors-box.html" . .Params.authors }}
 ```
 
-Unfortunately the variant arguments passed to `partialCached` must be __strings__ 🤷. 
+Unfortunately for the time being, variant arguments passed to `partialCached` must be __strings__ 🤷. 
 
 In order to pass this requirement, we need to turn this array into a string before using it, and the safest way to do this is, as often, using [`printf`](https://gohugo.io/functions/printf/#readout) and the right [verb](https://golang.org/pkg/fmt/#hdr-Printing). Personally I like `%x` as it will produce a base-16 string representation of a value, regardless of its type.
 
@@ -150,26 +150,22 @@ authors:
 🖨️👇
 `[4275642050617272 4672616e6b205461696c6c616e64696572 52c3a9676973205068696c6962657274]`
 
-That's an ok looking string, but it could get very long and ugly if too many authors are part of the combination. We should [`sha256`](https://gohugo.io/functions/sha/#readout) it and make sure it does not get out of proportions:
-
-```go-html-template
-{{ $variant := printf "%x" .Params.authors | sha256 }}
-```
-🖨️👇
-`311c40f896d2c150c6881547372288937e022dd22614fa94c2fc7d3f8f89e41f`
-
-This looks sound and can be added to our code:
+Now we have a string we can pass as a partial variant:
 
 ```go-html-template
 {{ with .Params.authors }}
 	{{ $authors := sort . }}
-	{{ $variant := printf "%x" $authors | sha256 }}
+	{{ $variant := printf "%x" $authors }}
 	{{ partialCached "authors-box.html" . $variant }}
 {{ end }}
 ```
 
 {{< notice title="Why sorting the authors?" >}}
  If our partial always lists the authors in the same alphabetical order, we should make sure the random order the editors might have added them in does not create unnecessary cached variants.
+{{< /notice >}}
+
+{{< notice title="warning" >}}
+This variant solution works for simple slices and maps. You should run some tests before using it with more complex data structure.
 {{< /notice >}}
 
 With all of the above, we can be sure that Hugo will only build the author’s box, once per combination of authors. 
