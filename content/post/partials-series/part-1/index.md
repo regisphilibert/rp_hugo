@@ -10,7 +10,10 @@ tags:
  - caching
  - build time
 twitter_card: summary_large_image
-description: "It seems that build time could save you money these days 👛! So how about we speed it up with caching some template files! 
+description: "Partials are very handy to maintain reusable code but can take up on build time if processed by Hugo more than neeeded.
+
+In this article we'll cover how their own caching solution can help reduce the build time!"
+description_twitter: "It seems that build time could save you money these days 👛! So how about we speed it up with caching some template files! 
 
 Today we kickoff a new @GoHugoIO series: The Full Partial Series! Part 1 covers their very own caching solution: partialCached"
 ---
@@ -72,7 +75,7 @@ Now with our current `{{ partialCached "header.html" . }}`, Hugo will run this `
 
 Enter partials' `variants`.
 
-### Partial variants
+## Partial variants
 
 We know that the header is only going to change 5 times, depending on the current page's `.Section`. We therefor need to tell Hugo to cache a different `variant` of the partial depending on this factor.
 
