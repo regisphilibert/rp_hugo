@@ -32,14 +32,14 @@ As you know the purpose of a partial is to wrap frequently addressed template co
 
 If like me you hate `copying/pasting` identical lines of code accross your projects, you must be using partials a lot!
 
-Now the markup rendered by your partial might be the same across all pages or slightly differ. Or it can some be completely different from one page to the next, but the latter will rarely benefit from caching so let's focus on the first two.
+The markup rendered by your partial might be the same on a majority of pages and differ only for a few, or it could be completely different from one page to the next. The latter scenario will rarely benefit from caching so let’s focus on the first one.
 
 Think about your header for example. 
 
 Your header will almost always print the same markup! Same logo, same URL pointing to home, same navigation, same social links.
 It will be printed throughout the site on every single page.
 
-If your hugo project needs to create on thousand HTML files, then, on every build, Hugo will have to look for your menu configuration, your social configuration and process the exact same markup a thousand times.
+If your Hugo project needs to create on thousand HTML files, then, on every build, Hugo will have to look for your menu configuration, your social configuration and process the exact same markup a thousand times.
 
 With a `partialCached` you can inform Hugo that this piece of code will never change, and can therefor be processed once, cached and reused:
 
@@ -68,7 +68,7 @@ Our Hugo menu code might contain something like:
 </nav>
 ```
 
-The above code is pretty straight forward. Our projects bears a simple 5 item menu, each linking to a section of the site. In order to make __Blog__ menu item appear active when visiting a page from the Blog section, we compare the `$currentPage.Section` with the menu item's own `.Page.Section`. 
+The above code is pretty straightforward. Our projects bears a simple five item menu, each linking to a section of the site. In order to make __Blog__ menu item appear active when visiting a page from the Blog section, we compare the `$currentPage.Section` with the menu item's own `.Page.Section`. 
 
 
 Now with our current `{{ partialCached "header.html" . }}`, Hugo will run this `if` clause once and apply its result to every subsquent pages it builds regardless of their section. That’s not good! 
@@ -77,11 +77,9 @@ Enter partials' `variants`.
 
 ## Partial variants
 
-We know that the header is only going to change 5 times, depending on the current page's `.Section`. We therefor need to tell Hugo to cache a different `variant` of the partial depending on this factor.
+We know that the header is only going to change five times, depending on the current page's `.Section`. We therefor need to tell Hugo to cache a different `variant` of the partial depending on this factor.
 
 Contrary to `partial`, `partialCached` list of arguments is not limited to context. 
-
-While the first two arguments remains the path and the context, any subsequent one will be treated as variants.
 
 In our simple use case, the obvious variant is the current page `.Section` so we can drop this:
 
@@ -126,7 +124,7 @@ That was for easy reading but let’s face it, you’ll most likely need somethi
 
 Let’s dive into something a little bit more complex. 
 
-Our blog has an « authors » box. We have 3 authors on site, so this box will either list one, or a combination of them based on an array in our post’s Front Matter. It’s safe to say, that out of our 1000 articles, many will share the same combination.
+Our blog has an « authors » box. We have three authors on site, so this box will either list one, or a combination of them based on an array in our post’s Front Matter. It’s safe to say, that out of our 1000 articles, many will share the same combination.
 
 Here, the ideal variant would therefor be our list of authors in a consistent order, so we'd be tempted to just run:
 
@@ -184,7 +182,7 @@ In a multilingual context, and thinking back to our header partial, we might hav
 {{ partialCached "navigation.html" . .Section .Lang }}
 ```
 
-But you don’t have to do that, as Hugo will build as many cached partial as languages by default. So in our current use case, Hugo will compute our header’s markup 10 times. 
+But you don’t have to do that, as Hugo will build as many cached partial as languages by default. So in our current use case, Hugo will compute our header’s markup ten times. 
 
 {{< notice title="🧮" >}}
 The golden rules to figure out the number of partial « compute » is:
@@ -194,20 +192,20 @@ The golden rules to figure out the number of partial « compute » is:
 
 ## Improving your build time ⏱️
 
-For the projects you have built yourself, it might be fairly easy to go though your `partials` directory and quickly identify those which could be cached. But for projects you inherited or built a long time ago, there is two CLI flags you can run. `hugo --templateMetrics --templateMetricsHint`.
+For the projects you have built yourself, it might be fairly easy to go though your `partials` directory and quickly identify those which could be cached. But for projects you inherited or built a long time ago, there are two CLI flags you can run. `hugo --templateMetrics --templateMetricsHint`.
 
-The first flag ran alone is already very helpful as it will list every template files and give you information about the duration of their building. Not everything in there can be cached though, only partials.
+The first flag ran alone is already very helpful as it will list every template file and give you information about the duration of their building. Not everything in there can be cached though, only partials.
 
 The second one adds an extra column which prints that file's "cache potential" in percentage. 
 
-Those CLI will help identify big clogger, but but really, on any given partial you write and call, you should ask yourself those 3 questions:
+Those commands will help identify any big clogs, but you should always ask yourself these three questions:
 
-1. How complex is the partial what's its duration might end up.
-2. How many times will it processed compared to its potential number of variants.
+1. How complex is the partial and what its cumulative duration might add up to.
+2. How many times will it be processed compared to its potential number of variants.
 3. How can I adapt my code to make it easily cacheable. (identifying variants early on will save a lot of refactoring later)
 
 ## Conclusion
 
-Either when building a new Hugo project or maintaining one you should always keep in mind that every line of code could potentially slow your build! And even after having refactor that code to ease up the work of your favorite SSGm it's still might be very valuable to have Hugo do the heavylifing a few times rather than every time.
+When building a new Hugo project or maintaining one you should always  keep in mind that every line of code could slow your build. Let Hugo do the heavy-lifting a few times rather than every time! 
 
 So go look for those partial files, make up your own variants and start saving time and money by heavily making those `partialCached`!
