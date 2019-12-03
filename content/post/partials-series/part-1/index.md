@@ -39,7 +39,7 @@ Think about your header for example.
 Your header will almost always print the same markup! Same logo, same URL pointing to home, same navigation, same social links.
 It will be printed throughout the site on every single page.
 
-If your Hugo project needs to create on thousand HTML files, then, on every build, Hugo will have to look for your menu configuration, your social configuration and process the exact same markup a thousand times.
+If your Hugo project needs to create one thousand HTML files, then, on every build, Hugo will have to look for your menu configuration, your social configuration and process the exact same markup a thousand times.
 
 With a `partialCached` you can inform Hugo that this piece of code will never change, and can therefor be processed once, cached and reused:
 
