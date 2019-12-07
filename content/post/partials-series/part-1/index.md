@@ -188,7 +188,7 @@ The golden rules to figure out the number of partial « compute » is:
 
 ## Improving your build time ⏱️
 
-For the projects you have built yourself, it might be fairly easy to go though your `partials` directory and quickly identify those which could be cached. But for projects you inherited or built a long time ago, there are two CLI flags you can run. `hugo --templateMetrics --templateMetricsHint`.
+For the projects you have built yourself, it might be fairly easy to go though your `partials` directory and quickly identify those which could be cached. But for projects you inherited or built a long time ago, there are two CLI flags you can run. `hugo --templateMetrics --templateMetricsHints`.
 
 The first flag ran alone is already very helpful as it will list every template file and give you information about the duration of their building. Not everything in there can be cached though, only partials.
 
