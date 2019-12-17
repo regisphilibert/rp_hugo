@@ -7,7 +7,8 @@ buildDrafts: false
 pygmentsCodefences: true
 pygmentsUseClasses: true
 pygmentsCodefencesGuessSyntax: true
-theme: github.com/regisphilibert/rp_hugo_theme
+theme: rp
+# theme: github.com/regisphilibert/rp_hugo_theme
 #module:
 #  imports:
 #  - disable: false

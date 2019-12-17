@@ -1,5 +1,5 @@
 ---
-title: "Bonjour, Hi"
+title: "About"
 date: 2017-11-23T14:44:35-05:00
 draft: false
 layout: about

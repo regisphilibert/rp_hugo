@@ -1,19 +1,7 @@
 ---
-title: "Home"
-date: 2018-07-30T14:44:35-05:00
-projects:
-  - weekly-paper
-  - 375mtl
-  - toxquebec
-  - boralex-france
-
-menu:
-  mobile:
-    identifier: home
-    weight: 1
-    name: ポートフォリオ
-  desktop:
-    weight: 2
-    name: ウェブサイトを作って、
-    pre: ポートフォリオ
+title: "Bonjour, こんにちは"
 ---
+
+私はモントリオールのウェブ開発者です！毎日The New Dynamicで[#JAMStack](https://twitter.com/search?q=%23JAMstack) している！
+
+[Hugo](http://gohugo.io/)についてもブログを[書いています](/tags/hugo)よ。

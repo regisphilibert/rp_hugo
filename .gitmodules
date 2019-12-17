@@ -1,3 +1,6 @@
 [submodule "themes/regisphilibert"]
 	path = themes/regisphilibert
 	url = git@github.com:regisphilibert/rp_hugo_theme.git
+[submodule "themes/rp"]
+	path = themes/rp
+	url = git@github.com:regisphilibert/rp_hugo_theme.git
