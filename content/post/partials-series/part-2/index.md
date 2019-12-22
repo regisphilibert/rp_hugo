@@ -150,7 +150,7 @@ But real power comes with storing its returned value!
 
 Or mine anyway...
 
-To make a good distinction between my regular outputting partials and the returning ones, I usually store _returning partials_' files in a `layouts/partials/func/` directory. This has the benefit of isolating them from any other conventional partials while not adding too much characters to their "calling".
+To make a good distinction between my regular outputting partials and the returning ones, I usually store _returning partials_' files in a `layouts/partials/func/` directory. This has the benefit of isolating them from any other conventional partials while not adding too many characters to their "calling".
 
 ```go-html-template
 {{ partial "func/emoji.html" . }}
@@ -277,13 +277,13 @@ And so we update our partial:
 1. Now that I have a `term` argument, naming the returning variable `$term` might get confusing. I'll just call it `$return` now so it really stands out as __the__ _returning variable_.
 2. 
   Without a `.term` argument, the _returning variable_ should really remain empty. 
-  Before going any further we use `with` to make sure `.term` is set and and store its value at the init so we can access it regardless of further context shifting.
+  Before going any further we use `with` to make sure `.term` is set and store its value at the init so we can access it regardless of further context shifting.
   The following lines present a great example of context shifting by the way!
 3. 🎉
 
 ## Caching!
 
-Now this is great, but I want a function that lists my page's tags and return a slice of maps each containing some structured data. Say `.URL` and `.Name`. This way if I want to switch from `.RelPermalink` to `.Permalink` in the future, I can do it in my _returning partial_ rather than in every template files where I print those links.
+Now this is great, but I want a function that lists my page's tags and returns a slice of maps each containing some structured data. Say `.URL` and `.Name`. This way if I want to switch from `.RelPermalink` to `.Permalink` in the future, I can do it in my _returning partial_ rather than in every template file where I print those links.
 
 It'll give us a great opportunity to call a _returning partial_  from within a _returning partial_ and cache its value.
 
@@ -308,10 +308,10 @@ It'll give us a great opportunity to call a _returning partial_  from within a _
 {{ return $return }}
 ```
 1. We want to safely use `range` on the value of our _returning partial_ In order to make sure the returned value is of type `slice`, we make our _returning variable_ defaults to an empty one.
-2. `range` fails gracefuly on empty slices but breaks builds on any other types. So it's always safer to wrap our `range` calls with a `with` unless you're certain your value is a slice.
+2. `range` fails gracefully on empty slices but breaks builds on any other types. So it's always safer to wrap our `range` calls with a `with` unless you're certain your value is a slice.
 3. We're calling our previously coded _returning partial_, but this time caching it. For variants we use the value of both its arguments.
 4. We create a map and store it in a variable for better readability. Because our `$tag` is declared inside the `range` context, it can not collide with another `$tag` from say, the next tag in the list.
-5. We use the [`append`](https://gohugo.io/functions/append/#readout) function to add our `$tag` map to the slice we'll utlimately return.
+5. We use the [`append`](https://gohugo.io/functions/append/#readout) function to add our `$tag` map to the slice we'll ultimately return.
 6. 🎉
 
 And now from our template file:
@@ -326,7 +326,7 @@ And now from our template file:
 ```
 
 1. 
-  We know for sure the value returned by our homemade _returning partial_ is a slice, emnpty or not. So it's safe to use `range`here.
+  We know for sure the value returned by our homemade _returning partial_ is a slice, empty or not. So it's safe to use `range` here.
 2. We can now use the custom keys of our maps.
 3. That's it!
 
@@ -339,13 +339,13 @@ Sure! We could:
 
 ## Conclusion.
 
-After covering some basic fundementals, we were able to easily build two _returning partials_ which will bring great maintainability to one aspect of the site.
+After covering some fundamentals, we were able to easily build two _returning partials_ which will bring great maintainability to one aspect of the site.
 Shall we need some posts or all our posts to exclude certain tags? That will happen in `GetTags` and `GetTags` only! 
 Shall Hugo introduce a more efficient way to handle taxonomy terms in a future release? We'll adjust our `GetTerm` function and that's it!
 
-By bridging the gap between reusability and typed data serving, Hugo with its _returing partials_ is finaly addressing the need for seperation of concern between templating and data handling! 
+By bridging the gap between reusability and typed data serving, Hugo with its _returing partials_ is finally addressing the need for separation of concern between templating and data handling! 
 
-Did I already mention it was to me the biggest game changer of 2020?
+Did I already mention it was to me the biggest game-changer of 2020?
 
-If you have some personnal experience or questions about _returning partials_ or if you just want to share what you build following based on what we discussed here, just drop a note or codeblocks in the comments!
+If you have some personal experience or questions about _returning partials_ or if you just want to share what you build following based on what we discussed here, just drop a note or code blocks in the comments!
 
