@@ -5,7 +5,7 @@ slug: hugo-partial-series-part-2-functions-with-returning-partials
 toc: true
 serie: partials
 twitter_card: summary_large_image
-descriptions: To me the greatest improvement in @GoHugoIo of 2020 was unquestionably the returning partials or how, you could all of a sudder turn partials into powerful reusable functions to be consumed by any template files!
+description: To me the greatest improvement in @GoHugoIo of 2020 was unquestionably the returning partials! All of a sudden you could turn partials into powerful reusable functions to be consumed by any template files!
 twitter_description: "Did you know @GoHugoIo partials can return typed value? It can and it will change the way you build and maintain your Hugo projects!
 
 In part 2 of The Full Partial Series, we cover in depth 1 of the greatest Hugo addition of 2020: returning partials!
@@ -19,7 +19,7 @@ tags:
 
 ---
 
-As we covered in several articles before including this series' [first part]({{< relref "part-1" >}}), Hugo as a template engine focuses mainly on building template files. As a result, even its most valued partials, while very good at printing stuff, were unable to return typed value. 
+As we covered in several articles before including this series' [first part]({{< relref "part-1" >}}), Hugo as a template engine focuses mainly on building template files. As a result, even its most valued partials, while very good at printing stuff, were until this year unable to return typed value. 
 
 It all changed with Hugo 0.55.0 when the `return` statement was introduced to the partial API! Then all of a sudden partials became powerful reusable functions to be consumed by more conventional template files!
 
@@ -67,7 +67,7 @@ You could even get further and print jsonified data to be interpreted by the par
   # seo tags...
 {{ end }}
 ```
-But the above trickery was limited to basic parseable types like strings or integer and slices or maps of the later. There was no way to safely return a complex object like a Page or a File and certainly no collections of pages.
+But the above trickery was limited to basic parseable types like strings or integer and slices or maps of the later. There was no way to safely return a complex object like a Page or a File and certainly no collection of pages.
 
 Then came Hugo 0.55.0, the `return` statement and _returning partials_! 
 
