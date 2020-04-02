@@ -5,6 +5,12 @@ thanksgiving:
 christmas:
   emoji: "🦌"
   title: Happy holydays!
+corona:
+  emoji: "😷"
+  title: Stay put travelers!
+confinement:
+  emoji: "🏠"
+  title: Stay put, stay in!
 newyear:
   emoji: "🎍"
   title: Happy New Year!
