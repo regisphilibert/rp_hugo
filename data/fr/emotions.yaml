@@ -5,6 +5,10 @@ thanksgiving:
 christmas:
   emoji: "🦌"
   title: Joyeuses fêtes!
+blm:
+  emoji: "✊🏿"
+  title: #BlackLivesMatter
+  url: https://secure.actblue.com/donate/blmm
 newyear:
   emoji: "🎍"
   title: Bonne année !

@@ -5,6 +5,10 @@ thanksgiving:
 christmas:
   emoji: "🦌"
   title: Happy holydays!
+blm:
+  emoji: "✊🏿"
+  title: #BlackLivesMatter
+  url: https://secure.actblue.com/donate/blmm
 corona:
   emoji: "😷"
   title: Stay put travelers!
