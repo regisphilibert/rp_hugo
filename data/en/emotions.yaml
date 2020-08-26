@@ -12,6 +12,10 @@ blm:
 corona:
   emoji: "😷"
   title: Stay put travelers!
+vote:
+  emoji: "🗳️"
+  title: Vote!
+  url: https://votesaveamerica.com/
 confinement:
   emoji: "🏠"
   title: Stay put, stay in!

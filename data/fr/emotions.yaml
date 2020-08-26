@@ -9,6 +9,10 @@ blm:
   emoji: "✊🏿"
   title: #BlackLivesMatter
   url: https://secure.actblue.com/donate/blmm
+vote:
+  emoji: "🗳️"
+  title: Vote!
+  url: https://votesaveamerica.com/
 newyear:
   emoji: "🎍"
   title: Bonne année !

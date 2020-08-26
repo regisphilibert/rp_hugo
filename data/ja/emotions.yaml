@@ -10,3 +10,6 @@ newyear:
   title: 明けましておめでとうございます！
   url: https://ja.wikipedia.org/wiki/門松
   style: "font-size:2em;"
+vote:
+  emoji: "🗳️"
+  title: https://votesaveamerica.com/
