@@ -5,3 +5,4 @@ public
 resources
 .sass-cache/
 content/post/ignore
+.DS_Store
