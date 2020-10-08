@@ -172,7 +172,7 @@ Note that you can force a linking even if default linking factors don’t match.
 All you’d have to do is add to your pages a `translationKey` Front Matter param which share the same value.
 
 ```markdown
-# From all three pages: about.md, a-propos.fr.md, acerda.es.md
+# From all three pages: about.md, a-propos.fr.md, acerca.es.md
 ---
 translationKey: about
 ---
@@ -266,13 +266,13 @@ content
     ├── english
     │   └── about
     │       ├── index.md
-	│		└── header.jpg
-	├── spanish
-	│	└── about
-	│		└── index.md
-	└── french
-	    └── about
-	        └── index.md
+    │	    └── header.jpg
+    ├── spanish
+    │	└── about
+    │	    └── index.md
+    └── french
+        └── about
+            └── index.md
 ```
 
 
@@ -291,14 +291,14 @@ content
   ├── english
   │   └── about
   │       ├── index.md
-	│		└── header.jpg
-	├── spanish
-	│   └── about
-	│       ├── index.md
-	│		└── header.jpg ✨
-	└── french
-		└── about
-			└── index.md
+  │	  └── header.jpg
+  ├── spanish
+  │   └── about
+  │       ├── index.md
+  │	  └── header.jpg ✨
+  └── french
+      └── about
+	  └── index.md
 ```
 
 That’s it, when building the Spanish translation of the about page our `.Resources` method will return the Spanish bundle’s very own `header.jpg`.
@@ -371,15 +371,15 @@ slug: a-propos
 ```
 
 ```yaml
-# acerda.es.md
-title: Acerda
-slug: acerda
+# acerca.es.md
+title: Acerca
+slug: acerca
 ```
 
 Now we end up with the better looking:
 
 - `fr/a-propos/index.html` 🇫🇷 👌
-- `es/acerda/index.html` 🇪🇸 👌
+- `es/acerca/index.html` 🇪🇸 👌
 
 We could have the default language also live below a directory by simply setting `defaultContentLanguageInSubdir`to `true` in our `config.yaml`
 
