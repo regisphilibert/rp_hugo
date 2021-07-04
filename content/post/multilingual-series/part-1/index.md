@@ -43,7 +43,7 @@ languages:
 	weight: 3
 ```
 
-Now, our languages will be available using `.Site.Languages` and sorted by `Weight`. The lower the… firster. As we'll cover later, it is highly recommanded to make the default language come first.
+Now, our languages will be available using `.Site.Languages` and sorted by `Weight`. The lower the… firster. As we'll cover later, it is highly recommended to make the default language come first.
 
 Any custom parameter will be used when calling `.Site.Params` or `.Param` in place of the default site parameter. Se we never have to worry about which parameter to call!
 
