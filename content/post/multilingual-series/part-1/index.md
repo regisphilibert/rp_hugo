@@ -23,7 +23,7 @@ In this first part, we’ll see how set up your multilingual Hugo project and tr
 
 When undertaking a multilingual project in Hugo, the first thing to do would be to tell Hugo what our supported languages are. For this project, we’ll have three:
 
-1. English 🇬🇧
+1. English 🇺🇸
 2. French 🇫🇷
 3. Spanish 🇪🇸
 
@@ -39,7 +39,7 @@ languages:
 	languageName: Français
 	weight: 2
   es:
-	languageName: Spanish
+	languageName: Español
 	weight: 3
 ```
 
@@ -63,7 +63,7 @@ languages:
 	description: Tous ce que vous avez toujours voulu savoir sur les trois langues.
 	twitter_handle: 3Languages_france
   es:
-	languageName: Spanish
+	languageName: Español
 	weight: 3
 	description: Todo lo que necesitas saber sobre los tres idiomas.
 	twitter_handle: 3Languages_espana
@@ -119,7 +119,7 @@ languages:
 	weight: 2
 	contentDir: content/french
   es:
-	languageName: Spanish
+	languageName: Español
 	weight: 3
 	contentDir: content/spanish
 ```
@@ -277,8 +277,8 @@ content
 
 
 For now, every pages share the same `header.jpg`, the one in the English translation. This has nothing to do with it being the default language though.  
- 
-Hugo help save on duplicates here by making any ressource available to every linked translations. Meaning we can access this header image regardless of the current language using our favorite `.Resources` method, say `.Resources.GetMatch "headers.jpg"`
+
+Hugo help save on duplicates here by making any resource available to every linked translations. Meaning we can access this header image regardless of the current language using our favorite `.Resources` method, say `.Resources.GetMatch "headers.jpg"`
 
 This is very convenient.
 But what if we want a header image better aligned with our Spanish audience.
@@ -358,7 +358,7 @@ By default, Hugo will store your default language pages at the root of your `pub
 
 So quiet logically our About pages would en up at:
 
-- `about/index.html` 🇬🇧
+- `about/index.html` 🇺🇸
 - `fr/about/index.html` 🇫🇷
 - `es/about/index.html` 🇪🇸
 
